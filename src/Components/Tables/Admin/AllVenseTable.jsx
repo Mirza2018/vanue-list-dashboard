@@ -4,28 +4,28 @@ import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 
-const AllUserTable = ({
+const AllVenseTable = ({
   data,
   loading,
-  showCompanyViewModal,
-  showCompanyBlockModal,
+  showVenueViewModal,
+  showVenueBlockModal,
   pageSize = 0,
 }) => {
   const columns = [
     {
       title: "S.lD",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "sId",
+      key: "sId",
       responsive: ["md"],
     },
     {
-      title: "Full Name",
-      dataIndex: "userName",
-      key: "userName",
+      title: "Venue Name",
+      dataIndex: "venueName",
+      key: "venueName",
       render: (text) => (
         <div className="flex items-center gap-2">
           <img
-            src={AllImages.yellow}
+            src={AllImages.kfc}
             alt={text}
             className="w-8 h-8 rounded-full"
           />
@@ -33,11 +33,7 @@ const AllUserTable = ({
         </div>
       ),
     },
-    {
-      title: "Gender",
-      dataIndex: "gender",
-      key: "gender",
-    },
+
 
     {
       title: "Email",
@@ -65,7 +61,7 @@ const AllUserTable = ({
                   border: "none",
                   color: "#C50000",
                 }}
-                onClick={() => showCompanyBlockModal(record)}
+                onClick={() => showVenueBlockModal(record)}
               >
                 <RiDeleteBin6Line style={{ fontSize: "24px" }} />
               </Button>
@@ -79,7 +75,7 @@ const AllUserTable = ({
                   border: "none",
                   color: "#075B5D",
                 }}
-                onClick={() => showCompanyViewModal(record)}
+                onClick={() => showVenueViewModal(record)}
               >
                 <GoEye style={{ fontSize: "24px" }} />
               </Button>
@@ -103,4 +99,4 @@ const AllUserTable = ({
   );
 };
 
-export default AllUserTable;
+export default AllVenseTable;

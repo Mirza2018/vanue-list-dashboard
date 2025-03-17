@@ -12,6 +12,7 @@ import userImage from "./userImage.png";
 import PDFImage from "./pdfImage.png";
 import user from "./user.png";
 import yellow from "./yellow.png";
+import kfc from "./kfcLogo.svg";
 
 // Icons
 import company from "./icons/company.png";
@@ -35,6 +36,7 @@ export const AllImages = {
   PDFImage,
   user,
   yellow,
+  kfc
 };
 
 export const AuthImages = {

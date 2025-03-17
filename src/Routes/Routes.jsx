@@ -38,9 +38,13 @@ import CompanyReport from "../Pages/Company/CompanyReport";
 import Loading from "../Components/UI/Loading";
 import AddFeedback from "../Pages/Company/AddFeedback";
 import AdminAllFeedBack from "../Pages/Admin/AllFeedback";
-import UsersPage from "../Pages/Admin/UsersPage";
+
 import CategoriesPage from "../Components/Modal/Admin/CategoriesPage";
 import SettingsPage from "../Pages/Admin/SettingsPage";
+import CustomersPage from "../Pages/Admin/CustomersPage";
+import VanuesPage from "../Pages/Admin/VanuesPage";
+import VenuesRequestPage from "../Pages/Admin/VenuesRequestPage";
+import VenueRequestAccept from "../Pages/Admin/VenueRequestAccept";
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -82,8 +86,20 @@ const router = createBrowserRouter([
         element: <AdminDashboard />,
       },
       {
-        path: "users",
-        element: <UsersPage />,
+        path: "customers",
+        element: <CustomersPage />,
+      },
+      {
+        path: "all-venues",
+        element: <VanuesPage />,
+      },
+      {
+        path: "venues-request",
+        element: <VenuesRequestPage />,
+      },
+      {
+        path: "venues-request/deatils/:id",
+        element: <VenueRequestAccept />,
       },
       {
         path: "categories",

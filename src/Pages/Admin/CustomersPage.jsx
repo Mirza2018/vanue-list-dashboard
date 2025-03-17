@@ -11,8 +11,8 @@ import AllUserTable from "../../Components/Tables/Admin/AllUserTable";
 import ViewUserModal from "../../Components/Modal/Admin/ViewUserModal";
 import BlockUserModal from "../../Components/Modal/Admin/BlockUserModal";
 import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal";
-
-const UsersPage = () => {
+ 
+const CustomersPage = () => {
   //* Store Search Value
   const [searchText, setSearchText] = useState("");
 
@@ -100,7 +100,7 @@ const UsersPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Users List
+            Customers List
           </p>
           <div className="flex gap-4 items-center">
             <ConfigProvider
@@ -153,4 +153,4 @@ const UsersPage = () => {
   );
 };
 
-export default UsersPage;
+export default CustomersPage;

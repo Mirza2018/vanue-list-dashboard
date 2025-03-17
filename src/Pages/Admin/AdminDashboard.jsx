@@ -154,7 +154,21 @@ const AdminDashboard = () => {
 
                   <div className="text-center w-fit">
                     <p className="text-sm lg:text-base xl:text-2xl font-medium ">
-                      Total Users
+                      Total Customers
+                    </p>
+                    <p className="text-xs lg:text-sm xl:text-xl  mb-1 text-secondary-color">
+                      780
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex bg-white border border-secondary-color gap-5 flex-wrap rounded-lg py-2 px-1 lg:p-5 items-center justify-center flex-1">
+                <div className="flex gap-2 xl:gap-4 items-center ">
+                  <img src={AllIcons.totalUser} className="h-14 w-12" alt="" />
+
+                  <div className="text-center w-fit">
+                    <p className="text-sm lg:text-base xl:text-2xl font-medium ">
+                      Total Venues
                     </p>
                     <p className="text-xs lg:text-sm xl:text-xl  mb-1 text-secondary-color">
                       780
@@ -164,17 +178,14 @@ const AdminDashboard = () => {
               </div>
             </div>
             {/* State */}
-            <div
-              className="w-full h-fit  rounded-xl"
-             
-            >
+            <div className="w-full h-fit  rounded-xl">
               <UserRatioBarChart />
             </div>
           </div>
         </div>
         {/* Table  */}
 
-        <div className="text-xl font-medium whitespace-nowrap mt-5">
+        <div className="text-xl font-medium whitespace-nowrap mt-5 text-black">
           Recent Users
         </div>
 

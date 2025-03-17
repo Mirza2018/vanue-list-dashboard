@@ -10,18 +10,18 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Jan", user: 80 },
-  { name: "Feb", user: 70 },
-  { name: "Mar", user: 50 },
-  { name: "Apr", user: 60 },
-  { name: "May", user: 30 },
-  { name: "Jun", user: 20 },
-  { name: "Jul", user: 45 },
-  { name: "Aug", user: 36 },
-  { name: "Sep", user: 53 },
-  { name: "Oct", user: 69 },
-  { name: "Nov", user: 78 },
-  { name: "Dec", user: 36 },
+  { name: "Jan", customers: 80, venues: 140 },
+  { name: "Feb", customers: 70, venues: 140 },
+  { name: "Mar", customers: 50, venues: 140 },
+  { name: "Apr", customers: 60, venues: 140 },
+  { name: "May", customers: 30, venues: 140 },
+  { name: "Jun", customers: 20, venues: 140 },
+  { name: "Jul", customers: 45, venues: 140 },
+  { name: "Aug", customers: 36, venues: 140 },
+  { name: "Sep", customers: 53, venues: 140 },
+  { name: "Oct", customers: 69, venues: 140 },
+  { name: "Nov", customers: 78, venues: 140 },
+  { name: "Dec", customers: 36, venues: 140 },
 ];
 
 const UserRatioBarChart = () => {
@@ -34,6 +34,7 @@ const UserRatioBarChart = () => {
     if (active && payload && payload.length) {
       return (
         <div
+          className="flex gap-2"
           style={{
             backgroundColor: "#BDB169",
             padding: "10px",
@@ -42,8 +43,15 @@ const UserRatioBarChart = () => {
             textAlign: "center",
           }}
         >
-          <p>Users</p>
-          <p>{` ${payload[0].value}`}</p>
+          <div>
+            <p>Customers</p>
+            <p>{` ${payload[0].payload.customers}`}</p>
+          </div>
+          <div>
+            {" "}
+            <p>Venues</p>
+            <p>{` ${payload[0].payload.venues}`}</p>
+          </div>
         </div>
       );
     }
@@ -53,9 +61,24 @@ const UserRatioBarChart = () => {
   return (
     <div className="bg-white border border-secondary-color px-5 mt-5 rounded-md">
       <div className="flex justify-between  mt-4">
-        <div className="text-xl font-medium whitespace-nowrap  ms-8">
+        <div className="text-xl  whitespace-nowrap text-secondary-color ms-8 font-bold">
           User Ratio
-          <p className="text-base font-normal text-secondary-color"> <span className="   rounded-full aspect-square text-secondary-color text-[128px] ">.</span>Users</p>
+          <div className="flex gap-4">
+            <p className="text-base font-normal text-secondary-color">
+              {" "}
+              <span className="   rounded-full aspect-square text-secondary-color text-[128px] ">
+                .
+              </span>
+              Customers
+            </p>
+            <p className="text-base font-normal text-[#989898]">
+              {" "}
+              <span className="   rounded-full aspect-square text-[#989898] text-[128px] ">
+                .
+              </span>
+              Venues
+            </p>
+          </div>
         </div>
 
         <div>
@@ -108,9 +131,16 @@ const UserRatioBarChart = () => {
               cursor={{ fill: "transparent" }}
             />
             <Bar
-              dataKey="user"
-              fill="#839F9F"
-              barSize={22}
+              dataKey="venues"
+              fill="#989898"
+              barSize={12}
+              radius={[6, 6, 0, 0]} // Rounded top corners
+              activeBar={{ fill: "#BDB169" }} // Hover effect
+            />
+            <Bar
+              dataKey="customers"
+              fill="#075B5D"
+              barSize={12}
               radius={[6, 6, 0, 0]} // Rounded top corners
               activeBar={{ fill: "#BDB169" }} // Hover effect
             />

@@ -31,11 +31,17 @@ const DashboardLayout = () => {
     ) {
       return ["dashboard"];
     }
-    if (currentPath.includes("/users")) {
-      return ["users"];
+    if (currentPath.includes("/customers")) {
+      return ["customers"];
     }
     if (currentPath.includes("/categories")) {
       return ["categories"];
+    }
+    if (currentPath.includes("/all-venues")) {
+      return ["all-venues"];
+    }
+    if (currentPath.includes("/venues-request")) {
+      return ["venues-request"];
     }
     if (
       currentPath.includes("/profile") ||
@@ -91,20 +97,43 @@ const DashboardLayout = () => {
       label: <NavLink to="dashboard">Dashboard</NavLink>,
     },
     {
-      key: "users",
+      key: "customers",
       icon: (
         <img
           src={AllIcons.two}
-          alt="users"
+          alt="customers"
           width={20}
           style={{
-            filter: location.pathname.includes("users")
+            filter: location.pathname.includes("customers")
               ? "brightness(0) invert(1)"
               : undefined,
           }}
         />
       ),
-      label: <NavLink to="users">Users</NavLink>,
+      label: <NavLink to="customers">customers</NavLink>,
+    },
+    {
+      key: "venues",
+      label: <span className="!text-secondary-color">Venues</span>,
+      icon: (
+        <img
+          src={AllIcons.four}
+          alt="venues"
+          width={20}
+        />
+      ),
+      children: [
+        {
+          key: "all-venues",
+          icon: <span>&#8226;</span>,
+          label: <NavLink to="all-venues">All Venues</NavLink>,
+        },
+        {
+          key: "venues-request",
+          icon: <span>&#8226;</span>,
+          label: <NavLink to="venues-request">Venue Request</NavLink>,
+        },
+      ],
     },
     {
       key: "categories",
@@ -122,6 +151,7 @@ const DashboardLayout = () => {
       ),
       label: <NavLink to="categories">Categories</NavLink>,
     },
+
     {
       key: "settings",
       icon: (

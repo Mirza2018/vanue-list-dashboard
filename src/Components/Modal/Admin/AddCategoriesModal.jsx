@@ -1,13 +1,25 @@
 /* eslint-disable react/prop-types */
-import { Button, ConfigProvider, Form, Input, Modal, Typography } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import {
+  Button,
+  ConfigProvider,
+  Form,
+  Input,
+  Modal,
+  Typography,
+  Upload,
+} from "antd";
+import { FiUpload } from "react-icons/fi";
 
 const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
   const [form] = Form.useForm();
+  const { Dragger } = Upload;
   const onFinish = (values) => {
     console.log("Service User:", values);
     handleCancel();
     form.resetFields();
   };
+
   return (
     <ConfigProvider
       theme={{
@@ -25,7 +37,7 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
         footer={null}
         centered
         style={{ textAlign: "center" }}
-        className="lg:!w-[1000px]"
+        className="lg:!w-[500px]"
       >
         <div className="p-10">
           <Form
@@ -34,24 +46,6 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
             layout="vertical"
             className="bg-transparent w-full text-start"
           >
-            <Typography.Title level={4} style={{ color: "#222222" }}>
-              Category Serial
-            </Typography.Title>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Category Serial",
-                },
-              ]}
-              name="serial"
-              className=" "
-            >
-              <Input
-                placeholder="Enter Category Serial"
-                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-              />
-            </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Category Name
             </Typography.Title>
@@ -69,6 +63,35 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
                 placeholder="Enter Category Name"
                 className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
               />
+            </Form.Item>
+
+            <Typography.Title level={4} style={{ color: "#222222" }}>
+              Category Image
+            </Typography.Title>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please Upload Category Image",
+                },
+              ]}
+              name="image"
+              className=" w-full"
+            >
+              {/* <Input
+                placeholder="Enter Category Serial"
+                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+              /> */}
+              {/* <Upload maxCount={1} className=""> */}
+              <Dragger maxCount={1} accept="image/*" name="file">
+                <div className="flex flex-col justify-center items-center text-black">
+                  <p className="ant-upload-drag-icon ">
+                    <FiUpload className="text-4xl" />
+                  </p>
+                  <p className="ant-upload-text">Upload your category image</p>
+                </div>
+              </Dragger>
+              {/* </Upload> */}
             </Form.Item>
 
             <Form.Item>

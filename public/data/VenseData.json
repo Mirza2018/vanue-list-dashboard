@@ -1,0 +1,122 @@
+[
+  { 
+    "sId": "01",
+    "venueName": "KFC Dhaka Central",
+    "phone": "123-456-7801",
+    "email": "dhaka.central@kfc.com",
+    "address": "12 Main Street, Dhaka.",
+    "bio": "A bustling KFC outlet in the heart of Dhaka, known for its spicy fried chicken."
+  },
+  {
+    "sId": "02",
+    "venueName": "KFC Chittagong",
+    "phone": "123-456-7802",
+    "email": "chittagong@kfc.com",
+    "address": "25 Ocean Road, Chittagong.",
+    "bio": "Located near the port, offering a scenic view with delicious meals."
+  },
+  {
+    "sId": "03",
+    "venueName": "KFC Sylhet",
+    "phone": "123-456-7803",
+    "email": "sylhet@kfc.com",
+    "address": "8 Hill View Lane, Sylhet.",
+    "bio": "Nestled in the hills, famous for its tea and chicken combo."
+  },
+  {
+    "sId": "04",
+    "venueName": "KFC Rajshahi",
+    "phone": "123-456-7804",
+    "email": "rajshahi@kfc.com",
+    "address": "15 Riverbank Avenue, Rajshahi.",
+    "bio": "Riverside dining with a variety of KFC specials."
+  },
+  {
+    "sId": "05",
+    "venueName": "KFC Khulna",
+    "phone": "123-456-7805",
+    "email": "khulna@kfc.com",
+    "address": "30 Coastal Drive, Khulna.",
+    "bio": "A coastal KFC outlet with fresh seafood-inspired sides."
+  },
+  {
+    "sId": "06",
+    "venueName": "KFC Barisal",
+    "phone": "123-456-7806",
+    "email": "barisal@kfc.com",
+    "address": "7 Canal Street, Barisal.",
+    "bio": "Known for its unique canal-side seating and quick service."
+  },
+  {
+    "sId": "07",
+    "venueName": "KFC Rangpur",
+    "phone": "123-456-7807",
+    "email": "rangpur@kfc.com",
+    "address": "19 North Road, Rangpur.",
+    "bio": "A cozy spot offering authentic KFC flavors in northern Bangladesh."
+  },
+  {
+    "sId": "08",
+    "venueName": "KFC Comilla",
+    "phone": "123-456-7808",
+    "email": "comilla@kfc.com",
+    "address": "22 Market Lane, Comilla.",
+    "bio": "A busy market location with a wide range of KFC menu items."
+  },
+  {
+    "sId": "09",
+    "venueName": "KFC Mymensingh",
+    "phone": "123-456-7809",
+    "email": "mymensingh@kfc.com",
+    "address": "14 Lakeview Road, Mymensingh.",
+    "bio": "Overlooking a lake, perfect for a relaxing meal."
+  },
+  {
+    "sId": "10",
+    "venueName": "KFC Jessore",
+    "phone": "123-456-7810",
+    "email": "jessore@kfc.com",
+    "address": "9 Airport Boulevard, Jessore.",
+    "bio": "Conveniently located near the airport for travelers."
+  },
+  {
+    "sId": "11",
+    "venueName": "KFC Bogra",
+    "phone": "123-456-7811",
+    "email": "bogra@kfc.com",
+    "address": "16 Silk Road, Bogra.",
+    "bio": "A historic area outlet with a modern KFC twist."
+  },
+  {
+    "sId": "12",
+    "venueName": "KFC Narayanganj",
+    "phone": "123-456-7812",
+    "email": "narayanganj@kfc.com",
+    "address": "3 Riverside Lane, Narayanganj.",
+    "bio": "Famous for its riverside ambiance and fast service."
+  },
+  {
+    "sId": "13",
+    "venueName": "KFC Faridpur",
+    "phone": "123-456-7813",
+    "email": "faridpur@kfc.com",
+    "address": "11 Town Square, Faridpur.",
+    "bio": "A central hub for KFC lovers in a quaint town."
+  },
+  {
+    "sId": "14",
+    "venueName": "KFC Pabna",
+    "phone": "123-456-7814",
+    "email": "pabna@kfc.com",
+    "address": "20 High Street, Pabna.",
+    "bio": "Offers a high-energy dining experience with great food."
+  },
+  {
+    "sId": "15",
+    "venueName": "KFC Kushtia",
+    "phone": "123-456-7815",
+    "email": "kushtia@kfc.com",
+    "address": "5 Cultural Avenue, Kushtia.",
+    "bio": "Celebrating local culture with a delicious KFC menu."
+  }
+]
