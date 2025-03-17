@@ -1,0 +1,211 @@
+[
+  {
+    "id": "01",
+    "name": "John Doe",
+    "reportAgainst": {
+      "id": "101",
+      "name": "Jane Smith"
+    },
+    "date": "10-12-2024",
+    "userType": "Service User",
+    "description": "She has been consistently dominating every meeting and decision-making process. Her actions have made it difficult for me to express my views or contribute meaningfully. The atmosphere has become tense, and I feel like my ideas are being disregarded in favor of her overpowering influence."
+  },
+  {
+    "id": "02",
+    "name": "Jane Smith",
+    "reportAgainst": {
+      "id": "102",
+      "name": "Michael Johnson"
+    },
+    "date": "11-15-2024",
+    "userType": "Service User",
+    "description": "Michael has repeatedly undermined my contributions, dismissing my input without any constructive feedback. He interrupts me during discussions, making it difficult to have a productive conversation. This behavior has escalated to a point where I no longer feel valued or heard in the workplace."
+  },
+  {
+    "id": "03",
+    "name": "Michael Johnson",
+    "reportAgainst": {
+      "id": "103",
+      "name": "Robert Williams"
+    },
+    "date": "09-30-2024",
+    "userType": "Service User",
+    "description": "Over the past few weeks, Robert has taken control of discussions without considering my perspective. His approach has stifled collaboration, and I feel as though my thoughts and ideas are continuously disregarded. This lack of consideration for others' input is making it hard to work effectively."
+  },
+  {
+    "id": "04",
+    "name": "Emily Davis",
+    "reportAgainst": {
+      "id": "104",
+      "name": "David Miller"
+    },
+    "date": "08-25-2024",
+    "userType": "Service User",
+    "description": "David’s behavior has been controlling, as he regularly makes decisions without consulting the team. His actions have created an environment where I feel hesitant to share my ideas, as he frequently shuts them down without giving them fair consideration. This has led to a sense of exclusion."
+  },
+  {
+    "id": "05",
+    "name": "Sophia Taylor",
+    "reportAgainst": {
+      "id": "105",
+      "name": "James Brown"
+    },
+    "date": "07-12-2024",
+    "userType": "Service User",
+    "description": "James has been increasingly dominating every conversation, disregarding my thoughts and opinions. He has been making decisions unilaterally, leaving me out of important discussions. This behavior is affecting my confidence and making it difficult to work effectively as a team."
+  },
+  {
+    "id": "06",
+    "name": "Oliver Williams",
+    "reportAgainst": {
+      "id": "106",
+      "name": "Mary Johnson"
+    },
+    "date": "06-20-2024",
+    "userType": "Service User",
+    "description": "Mary’s behavior has been increasingly overbearing, often talking over me during meetings and dismissing my contributions without any justification. This constant undermining of my ideas has created a toxic work environment, and I feel unable to express myself freely without fear of retaliation."
+  },
+  {
+    "id": "07",
+    "name": "Liam Brown",
+    "reportAgainst": {
+      "id": "107",
+      "name": "Charlotte Lee"
+    },
+    "date": "05-05-2024",
+    "userType": "Service User",
+    "description": "Charlotte tends to dominate all discussions and makes decisions without consulting others. This makes it difficult for me to contribute my ideas, as she regularly disregards any input that contradicts her own. The lack of collaboration is affecting my productivity and morale."
+  },
+  {
+    "id": "08",
+    "name": "Amelia Clark",
+    "reportAgainst": {
+      "id": "108",
+      "name": "Lucas Allen"
+    },
+    "date": "04-18-2024",
+    "userType": "Service User",
+    "description": "Lucas frequently interrupts me during meetings, dismissing my thoughts without any explanation. This behavior has created an uncomfortable atmosphere, as it feels like my ideas are being invalidated. I no longer feel encouraged to contribute, which is negatively impacting my work experience."
+  },
+  {
+    "id": "09",
+    "name": "Ethan Scott",
+    "reportAgainst": {
+      "id": "109",
+      "name": "Ella Turner"
+    },
+    "date": "03-12-2024",
+    "userType": "Service User",
+    "description": "Ella’s constant disregard for my opinions and ideas has made it difficult to collaborate effectively. She often dominates discussions and refuses to entertain any suggestions that conflict with her own. This approach is leading to a lack of collaboration and diminishing the quality of our work."
+  },
+  {
+    "id": "10",
+    "name": "Isabella Wilson",
+    "reportAgainst": {
+      "id": "110",
+      "name": "Jacob Miller"
+    },
+    "date": "02-25-2024",
+    "userType": "Service User",
+    "description": "Jacob consistently takes charge of meetings without consulting anyone else. His behavior has resulted in a lack of diversity in ideas and opinions. It has created an unproductive environment where people feel afraid to speak up, which is stifling creativity and innovation."
+  },
+  {
+    "id": "11",
+    "name": "David Moore",
+    "reportAgainst": {
+      "id": "111",
+      "name": "Sarah Hall"
+    },
+    "date": "01-19-2024",
+    "userType": "Service User",
+    "description": "Sarah’s overbearing attitude and constant need to control every conversation has made it nearly impossible to have an open and honest discussion. Her behavior is impacting team morale, and I feel that my ideas are not given the proper consideration they deserve."
+  },
+  {
+    "id": "12",
+    "name": "Mason Wright",
+    "reportAgainst": {
+      "id": "112",
+      "name": "Grace Harris"
+    },
+    "date": "12-15-2023",
+    "userType": "Service User",
+    "description": "Grace’s leadership style has been too authoritarian, and she rarely takes anyone’s input into account. She has been making key decisions without consulting the team, and this lack of collaboration has led to frustration among team members, myself included."
+  },
+  {
+    "id": "13",
+    "name": "Ava Johnson",
+    "reportAgainst": {
+      "id": "113",
+      "name": "William Green"
+    },
+    "date": "11-10-2023",
+    "userType": "Service User",
+    "description": "William’s tendency to make all decisions on his own without any input from the team has led to a lack of collaboration. His dismissive behavior makes it difficult for others to contribute, and as a result, the team has been struggling with communication and cooperation."
+  },
+  {
+    "id": "14",
+    "name": "Daniel Lewis",
+    "reportAgainst": {
+      "id": "114",
+      "name": "Sophie White"
+    },
+    "date": "10-30-2023",
+    "userType": "Service User",
+    "description": "Sophie often dismisses my suggestions and ideas without providing any reasoning. This behavior has led to a lack of transparency and effective communication. I feel discouraged from speaking up, as my contributions are routinely ignored or belittled."
+  },
+  {
+    "id": "15",
+    "name": "Mia Martin",
+    "reportAgainst": {
+      "id": "115",
+      "name": "Hannah Brown"
+    },
+    "date": "09-25-2023",
+    "userType": "Service User",
+    "description": "Hannah’s constant interruptions and tendency to dominate every discussion have made it difficult for me to contribute meaningfully. This behavior has not only affected my morale but has also created an unhealthy team dynamic where collaboration is limited."
+  },
+  {
+    "id": "16",
+    "name": "Noah King",
+    "reportAgainst": {
+      "id": "116",
+      "name": "James Davis"
+    },
+    "date": "08-20-2023",
+    "userType": "Service User",
+    "description": "James consistently dismisses my input and takes control of all the major decisions. His behavior has led to a sense of exclusion, and I feel that my skills and contributions are being undervalued, which has had a negative impact on my confidence."
+  },
+  {
+    "id": "17",
+    "name": "Lucas Clark",
+    "reportAgainst": {
+      "id": "117",
+      "name": "Olivia Lee"
+    },
+    "date": "07-15-2023",
+    "userType": "Service User",
+    "description": "Olivia has been acting in a highly authoritative manner, often cutting me off during discussions and overriding my ideas. This has created an environment of frustration and demotivation, as I feel my contributions are not respected or valued."
+  },
+  {
+    "id": "18",
+    "name": "Harper Turner",
+    "reportAgainst": {
+      "id": "118",
+      "name": "Jack Evans"
+    },
+    "date": "06-10-2023",
+    "userType": "Service User",
+    "description": "Jack’s tendency to dominate every project and decision has made it difficult for me to contribute effectively. I feel overshadowed and dismissed, as he regularly disregards my input without explanation, which has caused unnecessary conflict within the team."
+  },
+  {
+    "id": "19",
+    "name": "Ella Carter",
+    "reportAgainst": {
+      "id": "119",
+      "name": "John Mitchell"
+    },
+    "date": "05-05-2023",
+    "userType": "Service User",
+    "description": "John has been micromanaging my every move and questioning my decisions without providing any constructive feedback. His controlling nature is making it hard for me to work independently, and it has created a highly stressful environment."
+  }
+]

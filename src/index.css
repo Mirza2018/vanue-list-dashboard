@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-tel-input .form-control {
+  width: 100% !important;
+
+  border: 1px solid #839f9f !important;
+}
+.country-name{
+  color: black;
+}
+ .noText .ant-upload-list-text {
+  width:150px  !important;
+  text-align: start;
+
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #19363d, #19363d);
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e8ebec;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #ffffff;
+  background: #19363d;
+}
+
+::selection {
+  color: #ffffff;
+  background: #19363d;
+}

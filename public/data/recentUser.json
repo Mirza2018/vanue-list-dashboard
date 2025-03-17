@@ -1,0 +1,50 @@
+[
+  {
+    "id": "01",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox01@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Service Users"
+  },
+  {
+    "id": "02",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox02@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Carer"
+  },
+  {
+    "id": "03",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox03@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Service Users"
+  },
+  {
+    "id": "04",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox04@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Carer"
+  },
+  {
+    "id": "05",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox05@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Service Users"
+  },
+  {
+    "id": "06",
+    "fullName": "Robert Fox",
+    "phone": "516) 831-1111",
+    "email": "robert.fox07@gmail.com",
+    "joiningDate": "22/11/2024",
+    "userType": "Service Users"
+  }
+]

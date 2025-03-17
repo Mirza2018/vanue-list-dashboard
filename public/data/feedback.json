@@ -1,0 +1,212 @@
+[
+  {
+    "id": "01",
+    "companyName": "Tech Solutions Ltd.",
+    "email": "john.doe01@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is slow to respond when navigating between sections, which is hindering my ability to complete tasks efficiently. I need help resolving this performance issue so I can work effectively."
+  },
+  {
+    "id": "02",
+    "companyName": "Global Tech Co.",
+    "email": "jane.smith02@gmail.com",
+    "date": "12/12/24",
+    "review": "I’ve encountered several issues with the system. It’s running very slowly, and I’m unable to access certain features. I would greatly appreciate assistance in fixing this problem."
+  },
+  {
+    "id": "03",
+    "companyName": "Future Innovations Ltd.",
+    "email": "michael.johnson03@gmail.com",
+    "date": "12/12/24",
+    "review": "The user interface is not intuitive, and it’s difficult to navigate the app. I often experience crashes when trying to access menus. I would like help in resolving these issues."
+  },
+  {
+    "id": "04",
+    "companyName": "Smart Solutions Inc.",
+    "email": "emily.davis04@gmail.com",
+    "date": "12/12/24",
+    "review": "The app crashes unexpectedly every time I try to use specific features. I’ve been experiencing this issue for several days now and would appreciate support in fixing it."
+  },
+  {
+    "id": "05",
+    "companyName": "Innovative Technologies Ltd.",
+    "email": "james.brown05@gmail.com",
+    "date": "12/12/24",
+    "review": "I am facing an issue with the system where the application freezes every time I try to use the search feature. This is preventing me from completing tasks. I need help to fix this issue urgently."
+  },
+  {
+    "id": "06",
+    "companyName": "NextGen Tech Ltd.",
+    "email": "mary.wilson06@gmail.com",
+    "date": "12/12/24",
+    "review": "I’m experiencing a slowdown when using the app. Every action takes significantly longer than it should, and sometimes pages fail to load altogether. I would like assistance improving the app’s performance."
+  },
+  {
+    "id": "07",
+    "companyName": "Digital Innovations Co.",
+    "email": "david.miller07@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is not syncing properly between devices. Information updated on my phone is not showing up when I log into the desktop version. This is causing confusion and delays. I need help resolving this issue."
+  },
+  {
+    "id": "08",
+    "companyName": "Creative Tech Solutions",
+    "email": "linda.moore08@gmail.com",
+    "date": "12/12/24",
+    "review": "I am not receiving notifications for new updates or messages. I’ve checked my notification settings, but the issue persists. Can you help me fix this problem so I can stay up-to-date?"
+  },
+  {
+    "id": "09",
+    "companyName": "TechWave Solutions",
+    "email": "robert.taylor09@gmail.com",
+    "date": "12/12/24",
+    "review": "The app freezes every time I try to upload files, making it impossible for me to complete my work. I’ve reinstalled the app, but the issue continues. Please help me resolve this as soon as possible."
+  },
+  {
+    "id": "10",
+    "companyName": "Pioneers in Tech Ltd.",
+    "email": "patricia.anderson10@gmail.com",
+    "date": "12/12/24",
+    "review": "I am encountering an error when trying to log in. The password reset option does not seem to work, and I’ve been locked out of my account. I need immediate assistance with this login issue."
+  },
+  {
+    "id": "11",
+    "companyName": "FutureTech Solutions",
+    "email": "daniel.thomas11@gmail.com",
+    "date": "12/12/24",
+    "review": "I’m having intermittent connection issues with the app. Sometimes it works fine, but other times it takes too long to load or doesn’t load at all. I would appreciate support to fix this issue."
+  },
+  {
+    "id": "12",
+    "companyName": "Innovation Partners Ltd.",
+    "email": "joseph.jackson12@gmail.com",
+    "date": "12/12/24",
+    "review": "The app crashes frequently when I try to access certain features. It’s becoming difficult to use the app for day-to-day tasks, and I need help fixing the issue. I’d appreciate prompt assistance."
+  },
+  {
+    "id": "13",
+    "companyName": "Tech Innovations Co.",
+    "email": "dorothy.white13@gmail.com",
+    "date": "12/12/24",
+    "review": "I’m unable to load any data on my dashboard. Every time I open the app, it shows a blank screen. I’ve tried clearing cache and restarting, but it didn’t work. I need help troubleshooting this issue."
+  },
+  {
+    "id": "14",
+    "companyName": "Tech Horizon Ltd.",
+    "email": "charles.harris14@gmail.com",
+    "date": "12/12/24",
+    "review": "The user interface is very hard to navigate. It’s difficult to find the necessary information, and I often get lost in the app. I think a redesign is needed to improve usability."
+  },
+  {
+    "id": "15",
+    "companyName": "Techno Vision Ltd.",
+    "email": "sophia.martin15@gmail.com",
+    "date": "12/12/24",
+    "review": "The app freezes whenever I try to access different sections. This is frustrating and makes it difficult for me to complete my tasks. I need assistance in fixing these frequent freezes."
+  },
+  {
+    "id": "16",
+    "companyName": "Innovative Minds Co.",
+    "email": "william.thompson16@gmail.com",
+    "date": "12/12/24",
+    "review": "I can’t access the customer support section of the app. Every time I try to open it, the page redirects to an error page. I’ve tried clearing the cache, but it didn’t solve the issue."
+  },
+  {
+    "id": "17",
+    "companyName": "TechConnect Solutions",
+    "email": "olivia.garcia17@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is taking too long to process requests. There’s a significant delay between actions, which is affecting my work. Could you provide assistance in improving the app’s response time?"
+  },
+  {
+    "id": "18",
+    "companyName": "NextGen Ventures Ltd.",
+    "email": "benjamin.martinez18@gmail.com",
+    "date": "12/12/24",
+    "review": "I’m unable to update my account information. The fields are unresponsive, and I can’t save any changes. I need help with fixing this bug as soon as possible so I can update my profile."
+  },
+  {
+    "id": "19",
+    "companyName": "Innovators Hub Ltd.",
+    "email": "charlotte.robinson19@gmail.com",
+    "date": "12/12/24",
+    "review": "Notifications are not working for me. I am not receiving any updates or alerts, despite having them enabled in the settings. Can someone help me fix this issue so I don’t miss any important information?"
+  },
+  {
+    "id": "20",
+    "companyName": "Bright Future Tech",
+    "email": "alexander.clark20@gmail.com",
+    "date": "12/12/24",
+    "review": "I am experiencing slow loading times across the app. It takes a long time to open any section, and it’s difficult to complete tasks efficiently. I would appreciate assistance to resolve this issue."
+  },
+  {
+    "id": "21",
+    "companyName": "Digital Ventures Ltd.",
+    "email": "amelia.lewis21@gmail.com",
+    "date": "12/12/24",
+    "review": "Every time I try to update my data, I receive an error message. The app does not allow any changes to be saved. I need urgent help to resolve this issue so I can proceed with my work."
+  },
+  {
+    "id": "22",
+    "companyName": "TechBridge Solutions",
+    "email": "mason.walker22@gmail.com",
+    "date": "12/12/24",
+    "review": "The search functionality in the app is not working as expected. It takes a long time to return results or doesn’t return anything at all. I need help improving the search feature."
+  },
+  {
+    "id": "23",
+    "companyName": "Digital Horizon Inc.",
+    "email": "isabella.hall23@gmail.com",
+    "date": "12/12/24",
+    "review": "The report generation feature is not working. I am unable to generate any reports, as the fields remain empty. I would appreciate immediate support in fixing this issue to avoid delays in my tasks."
+  },
+  {
+    "id": "24",
+    "companyName": "Tech Solutions Global",
+    "email": "lucas.allen24@gmail.com",
+    "date": "12/12/24",
+    "review": "I can’t access the settings page. Every time I try, the app freezes and I’m unable to make changes to my preferences. Please assist me in resolving this issue."
+  },
+  {
+    "id": "25",
+    "companyName": "TechGenius Ltd.",
+    "email": "evelyn.young25@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is not logging me out properly. I’ve tried multiple times, but every time I try to log out, I get stuck on the loading screen. I need help with this issue."
+  },
+  {
+    "id": "26",
+    "companyName": "NextGen Innovations",
+    "email": "logan.hernandez26@gmail.com",
+    "date": "12/12/24",
+    "review": "Certain sections of the app show up as blank pages. This issue happens frequently and prevents me from performing my tasks. Please assist in fixing this issue quickly."
+  },
+  {
+    "id": "27",
+    "companyName": "Creative Minds Co.",
+    "email": "ella.king27@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is not saving my work properly. Every time I try to save, I get an error message and my work is lost. Please assist in resolving this issue as it’s preventing me from completing my tasks."
+  },
+  {
+    "id": "28",
+    "companyName": "Digital Pathways Ltd.",
+    "email": "jack.wright28@gmail.com",
+    "date": "12/12/24",
+    "review": "The app is taking too long to upload files. Every time I try, it either takes forever or doesn’t upload at all. I would appreciate assistance in fixing the file upload functionality."
+  },
+  {
+    "id": "29",
+    "companyName": "TechSynergy Solutions",
+    "email": "grace.scott29@gmail.com",
+    "date": "12/12/24",
+    "review": "I am unable to edit my data. The fields are not responsive, and I can’t save any changes. This is causing a major delay in my work, and I need support to fix this problem."
+  },
+  {
+    "id": "30",
+    "companyName": "Innovative Labs",
+    "email": "henry.green30@gmail.com",
+    "date": "12/12/24",
+    "review": "The app keeps logging me out randomly. This is very frustrating and causes interruptions in my work. I’ve checked my login credentials, but the issue still persists. Can someone assist in fixing this problem?"
+  }
+]

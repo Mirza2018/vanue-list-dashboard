@@ -1,0 +1,272 @@
+[
+  {
+    "id": "01",
+    "companyName": "Tech Solutions Ltd.",
+    "phone": "516) 831-1111",
+    "email": "john.doe01@gmail.com",
+    "location": "Dhaka, Bangladesh",
+    "serviceuser": 1,
+    "carer": 2
+  },
+  {
+    "id": "02",
+    "companyName": "Global Tech Co.",
+    "phone": "516) 832-1112",
+    "email": "jane.smith02@gmail.com",
+    "location": "Chittagong, Bangladesh",
+    "serviceuser": 2,
+    "carer": 3
+  },
+  {
+    "id": "03",
+    "companyName": "Future Innovations Ltd.",
+    "phone": "516) 833-1113",
+    "email": "michael.johnson03@gmail.com",
+    "location": "Sylhet, Bangladesh",
+    "serviceuser": 3,
+    "carer": 4
+  },
+  {
+    "id": "04",
+    "companyName": "Smart Solutions Inc.",
+    "phone": "516) 834-1114",
+    "email": "emily.davis04@gmail.com",
+    "location": "Khulna, Bangladesh",
+    "serviceuser": 4,
+    "carer": 5
+  },
+  {
+    "id": "05",
+    "companyName": "Bright Future Tech",
+    "phone": "516) 835-1115",
+    "email": "james.brown05@gmail.com",
+    "location": "Rajshahi, Bangladesh",
+    "serviceuser": 5,
+    "carer": 6
+  },
+  {
+    "id": "06",
+    "companyName": "Innovative Solutions Ltd.",
+    "phone": "516) 836-1116",
+    "email": "mary.wilson06@gmail.com",
+    "location": "Barisal, Bangladesh",
+    "serviceuser": 6,
+    "carer": 7
+  },
+  {
+    "id": "07",
+    "companyName": "NextGen Tech Ltd.",
+    "phone": "516) 837-1117",
+    "email": "david.miller07@gmail.com",
+    "location": "Rangpur, Bangladesh",
+    "serviceuser": 7,
+    "carer": 8
+  },
+  {
+    "id": "08",
+    "companyName": "Digital Innovations Co.",
+    "phone": "516) 838-1118",
+    "email": "linda.moore08@gmail.com",
+    "location": "Mymensingh, Bangladesh",
+    "serviceuser": 8,
+    "carer": 9
+  },
+  {
+    "id": "09",
+    "companyName": "Techno Vision Ltd.",
+    "phone": "516) 839-1119",
+    "email": "robert.taylor09@gmail.com",
+    "location": "Narayanganj, Bangladesh",
+    "serviceuser": 9,
+    "carer": 10
+  },
+  {
+    "id": "10",
+    "companyName": "Creative Tech Inc.",
+    "phone": "516) 840-1120",
+    "email": "patricia.anderson10@gmail.com",
+    "location": "Comilla, Bangladesh",
+    "serviceuser": 10,
+    "carer": 11
+  },
+  {
+    "id": "11",
+    "companyName": "FutureTech Solutions",
+    "phone": "516) 841-1121",
+    "email": "daniel.thomas11@gmail.com",
+    "location": "Tangail, Bangladesh",
+    "serviceuser": 11,
+    "carer": 12
+  },
+  {
+    "id": "12",
+    "companyName": "Tech Bridge Ltd.",
+    "phone": "516) 842-1122",
+    "email": "joseph.jackson12@gmail.com",
+    "location": "Cox's Bazar, Bangladesh",
+    "serviceuser": 12,
+    "carer": 13
+  },
+  {
+    "id": "13",
+    "companyName": "Innovation Partners Ltd.",
+    "phone": "516) 843-1123",
+    "email": "dorothy.white13@gmail.com",
+    "location": "Noakhali, Bangladesh",
+    "serviceuser": 13,
+    "carer": 14
+  },
+  {
+    "id": "14",
+    "companyName": "Tech Horizon Ltd.",
+    "phone": "516) 844-1124",
+    "email": "charles.harris14@gmail.com",
+    "location": "Bogra, Bangladesh",
+    "serviceuser": 14,
+    "carer": 15
+  },
+  {
+    "id": "15",
+    "companyName": "Digital Solutions Inc.",
+    "phone": "516) 845-1125",
+    "email": "sophia.martin15@gmail.com",
+    "location": "Jessore, Bangladesh",
+    "serviceuser": 15,
+    "carer": 16
+  },
+  {
+    "id": "16",
+    "companyName": "Pioneers in Tech Ltd.",
+    "phone": "516) 846-1126",
+    "email": "william.thompson16@gmail.com",
+    "location": "Patuakhali, Bangladesh",
+    "serviceuser": 16,
+    "carer": 17
+  },
+  {
+    "id": "17",
+    "companyName": "TechWave Solutions",
+    "phone": "516) 847-1127",
+    "email": "olivia.garcia17@gmail.com",
+    "location": "Khulna, Bangladesh",
+    "serviceuser": 17,
+    "carer": 18
+  },
+  {
+    "id": "18",
+    "companyName": "Bright Ideas Tech",
+    "phone": "516) 848-1128",
+    "email": "benjamin.martinez18@gmail.com",
+    "location": "Brahmanbaria, Bangladesh",
+    "serviceuser": 18,
+    "carer": 19
+  },
+  {
+    "id": "19",
+    "companyName": "Tech Innovators Inc.",
+    "phone": "516) 849-1129",
+    "email": "charlotte.robinson19@gmail.com",
+    "location": "Dinajpur, Bangladesh",
+    "serviceuser": 19,
+    "carer": 20
+  },
+  {
+    "id": "20",
+    "companyName": "FutureTech Innovations",
+    "phone": "516) 850-1130",
+    "email": "alexander.clark20@gmail.com",
+    "location": "Shariatpur, Bangladesh",
+    "serviceuser": 20,
+    "carer": 21
+  },
+  {
+    "id": "21",
+    "companyName": "NextGen Innovations Co.",
+    "phone": "516) 851-1131",
+    "email": "amelia.lewis21@gmail.com",
+    "location": "Moulvibazar, Bangladesh",
+    "serviceuser": 21,
+    "carer": 22
+  },
+  {
+    "id": "22",
+    "companyName": "Innovative Technologies Ltd.",
+    "phone": "516) 852-1132",
+    "email": "mason.walker22@gmail.com",
+    "location": "Lakshmipur, Bangladesh",
+    "serviceuser": 22,
+    "carer": 23
+  },
+  {
+    "id": "23",
+    "companyName": "TechVision Co.",
+    "phone": "516) 853-1133",
+    "email": "isabella.hall23@gmail.com",
+    "location": "Netrakona, Bangladesh",
+    "serviceuser": 23,
+    "carer": 24
+  },
+  {
+    "id": "24",
+    "companyName": "Digital Ventures Ltd.",
+    "phone": "516) 854-1134",
+    "email": "lucas.allen24@gmail.com",
+    "location": "Pabna, Bangladesh",
+    "serviceuser": 24,
+    "carer": 25
+  },
+  {
+    "id": "25",
+    "companyName": "Innovation Tech Solutions",
+    "phone": "516) 855-1135",
+    "email": "evelyn.young25@gmail.com",
+    "location": "Meherpur, Bangladesh",
+    "serviceuser": 25,
+    "carer": 26
+  },
+  {
+    "id": "26",
+    "companyName": "NextGen Ventures Ltd.",
+    "phone": "516) 856-1136",
+    "email": "logan.hernandez26@gmail.com",
+    "location": "Rangamati, Bangladesh",
+    "serviceuser": 26,
+    "carer": 27
+  },
+  {
+    "id": "27",
+    "companyName": "Tech Connect Ltd.",
+    "phone": "516) 857-1137",
+    "email": "ella.king27@gmail.com",
+    "location": "Naogaon, Bangladesh",
+    "serviceuser": 27,
+    "carer": 28
+  },
+  {
+    "id": "28",
+    "companyName": "Innovative Minds Co.",
+    "phone": "516) 858-1138",
+    "email": "jack.wright28@gmail.com",
+    "location": "Habiganj, Bangladesh",
+    "serviceuser": 28,
+    "carer": 29
+  },
+  {
+    "id": "29",
+    "companyName": "Digital Future Tech",
+    "phone": "516) 859-1139",
+    "email": "grace.scott29@gmail.com",
+    "location": "Narsingdi, Bangladesh",
+    "serviceuser": 29,
+    "carer": 30
+  },
+  {
+    "id": "30",
+    "companyName": "Innovators Hub Ltd.",
+    "phone": "516) 860-1140",
+    "email": "henry.green30@gmail.com",
+    "location": "Jhalokathi, Bangladesh",
+    "serviceuser": 30,
+    "carer": 31
+  }
+]

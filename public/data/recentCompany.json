@@ -1,0 +1,44 @@
+[
+  {
+    "id": "01",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare01@gmail.com",
+    "location": "New York, USA"
+  },
+  {
+    "id": "02",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare02@gmail.com",
+    "location": "Los Angeles, USA"
+  },
+  {
+    "id": "03",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare03@gmail.com",
+    "location": "Chicago, USA"
+  },
+  {
+    "id": "04",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare04@gmail.com",
+    "location": "Houston, USA"
+  },
+  {
+    "id": "05",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare05@gmail.com",
+    "location": "Phoenix, USA"
+  },
+  {
+    "id": "06",
+    "companyName": "My Homecare",
+    "phone": "516) 831-1111",
+    "email": "myhomecare06@gmail.com",
+    "location": "Philadelphia, USA"
+  }
+]
