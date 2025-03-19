@@ -39,12 +39,17 @@ import Loading from "../Components/UI/Loading";
 import AddFeedback from "../Pages/Company/AddFeedback";
 import AdminAllFeedBack from "../Pages/Admin/AllFeedback";
 
-import CategoriesPage from "../Components/Modal/Admin/CategoriesPage";
+import CategoriesPage from "../Pages/Admin/CategoriesPage";
 import SettingsPage from "../Pages/Admin/SettingsPage";
 import CustomersPage from "../Pages/Admin/CustomersPage";
 import VanuesPage from "../Pages/Admin/VanuesPage";
 import VenuesRequestPage from "../Pages/Admin/VenuesRequestPage";
 import VenueRequestAccept from "../Pages/Admin/VenueRequestAccept";
+import EarningsPage from "../Pages/Admin/EarningsPage";
+import QRforVenuePage from "../Pages/Admin/QRforVenuePage";
+import RecommendedContentPage from "../Pages/Admin/RecommendedContentPage";
+import NotificationsPage from "../Pages/Admin/NotificationsPage";
+import SubscriptionPage from "../Pages/Admin/SubscriptionPage";
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -104,6 +109,26 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <CategoriesPage />,
+      },
+      {
+        path: "subscription",
+        element: <SubscriptionPage />,
+      },
+      {
+        path: "earnings",
+        element: <EarningsPage />,
+      },
+      {
+        path: "venue-qr",
+        element: <QRforVenuePage />,
+      },
+      {
+        path: "recommented-content",
+        element: <RecommendedContentPage />,
+      },
+      {
+        path: "notification",
+        element: <NotificationsPage />,
       },
       {
         path: "settings",

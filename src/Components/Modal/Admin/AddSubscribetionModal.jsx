@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { InboxOutlined } from "@ant-design/icons";
-import { 
+import {
   Button,
   ConfigProvider,
   Form,
@@ -11,7 +11,7 @@ import {
 } from "antd";
 import { FiUpload } from "react-icons/fi";
 
-const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
+const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
   const [form] = Form.useForm();
   const { Dragger } = Upload;
   const onFinish = (values) => {
@@ -32,9 +32,9 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
       }}
     >
       <Modal
-        open={isAddCompanyModalVisible}
-        onCancel={handleCancel}
-        footer={null}
+        open={isAddSubscription}
+        onCancel={() => setIsAddSubscription(false)}
+        footer={[]}
         centered
         style={{ textAlign: "center" }}
         className="lg:!w-[500px]"
@@ -47,51 +47,59 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
             className="bg-transparent w-full text-start"
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Category Name
+              Plan Name
             </Typography.Title>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please enter Category Name",
+                  message: "Please enter Plan Name",
                 },
               ]}
               name="name"
               className=" "
             >
               <Input
-                placeholder="Enter Category Name"
+                placeholder="Enter Plan Name"
                 className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
               />
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Category Image
+              Plan Price
             </Typography.Title>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please Upload Category Image",
+                  message: "Please enter Plan Price",
                 },
               ]}
-              name="image"
-              className=" w-full"
+              name="name"
+              className=" "
             >
-              {/* <Input
-                placeholder="Enter Category Serial"
+              <Input
+                placeholder="Enter Plan Price"
                 className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-              /> */}
-              {/* <Upload maxCount={1} className=""> */}
-              <Dragger maxCount={1} accept="image/*" name="file">
-                <div className="flex flex-col justify-center items-center text-black">
-                  <p className="ant-upload-drag-icon ">
-                    <FiUpload className="text-4xl" />
-                  </p>
-                  <p className="ant-upload-text">Upload your category image</p>
-                </div>
-              </Dragger>
-              {/* </Upload> */}
+              />
+            </Form.Item>
+            <Typography.Title level={4} style={{ color: "#222222" }}>
+              Facilities
+            </Typography.Title>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter Plan Facilities",
+                },
+              ]}
+              name="facilities"
+              className=" "
+            >
+              <Input
+                placeholder="Enter Plan Facilities"
+                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+              />
             </Form.Item>
 
             <Form.Item>
@@ -99,7 +107,7 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
                 className="w-full py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded mt-3"
                 htmlType="submit"
               >
-                Add
+                Save
               </Button>
             </Form.Item>
           </Form>
@@ -109,4 +117,4 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
   );
 };
 
-export default AddCategoriesModal;
+export default AddSubscribetionModal;

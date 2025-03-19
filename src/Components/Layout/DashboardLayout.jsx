@@ -26,9 +26,7 @@ const DashboardLayout = () => {
 
   // Logic to set active keys
   const activeKeys = (() => {
-    if (
-      currentPath.includes("/dashboard")
-    ) {
+    if (currentPath.includes("/dashboard")) {
       return ["dashboard"];
     }
     if (currentPath.includes("/customers")) {
@@ -42,6 +40,21 @@ const DashboardLayout = () => {
     }
     if (currentPath.includes("/venues-request")) {
       return ["venues-request"];
+    }
+    if (currentPath.includes("/subscription")) {
+      return ["subscription"];
+    }
+    if (currentPath.includes("/earnings")) {
+      return ["earnings"];
+    }
+    if (currentPath.includes("/venue-qr")) {
+      return ["venue-qr"];
+    }
+    if (currentPath.includes("/recommented-content")) {
+      return ["recommented-content"];
+    }
+    if (currentPath.includes("/notification")) {
+      return ["notification"];
     }
     if (
       currentPath.includes("/profile") ||
@@ -115,13 +128,7 @@ const DashboardLayout = () => {
     {
       key: "venues",
       label: <span className="!text-secondary-color">Venues</span>,
-      icon: (
-        <img
-          src={AllIcons.four}
-          alt="venues"
-          width={20}
-        />
-      ),
+      icon: <img src={AllIcons.three} alt="venues" width={20} />,
       children: [
         {
           key: "all-venues",
@@ -139,7 +146,7 @@ const DashboardLayout = () => {
       key: "categories",
       icon: (
         <img
-          src={AllIcons.three}
+          src={AllIcons.four}
           alt="categories"
           width={20}
           style={{
@@ -151,12 +158,111 @@ const DashboardLayout = () => {
       ),
       label: <NavLink to="categories">Categories</NavLink>,
     },
+    {
+      key: "subscription",
+      icon: (
+        <img
+          src={AllIcons.subscription}
+          alt="subscription"
+          width={20}
+          style={{
+            filter: location.pathname.includes("subscription")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="subscription">Subscription</NavLink>,
+    },
+    {
+      key: "earnings",
+      icon: (
+        <img
+          src={AllIcons.five}
+          alt="earnings"
+          width={20}
+          style={{
+            filter: location.pathname.includes("earnings")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="earnings">Earnings</NavLink>,
+    },
 
+    {
+      key: "venue-qr",
+      icon: (
+        <img
+          src={AllIcons.six}
+          alt="venue-qr"
+          width={20}
+          style={{
+            filter: location.pathname.includes("venue-qr")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="venue-qr">QR for Venue</NavLink>,
+    },
+    {
+      key: "recommented-content",
+      icon: (
+        <img
+          src={AllIcons.seven}
+          alt="recommented-content"
+          width={20}
+          style={{
+            filter: location.pathname.includes("recommented-content")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="recommented-content">Recommended Content</NavLink>,
+    },
+    {
+      key: "notification",
+      icon: (
+        <img
+          src={AllIcons.eight}
+          alt="notification"
+          width={20}
+          style={{
+            filter: location.pathname.includes("notification")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="notification">Notifications</NavLink>,
+    },
+    {
+      key: "profile",
+      icon: (
+        <img
+          src={AllIcons.nine}
+          alt="profile"
+          width={16}
+          height={16}
+          style={{
+            filter:
+              location.pathname.includes("/profile") ||
+              location.pathname.includes("/edit-profile")
+                ? "brightness(0) invert(1)"
+                : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="profile">Profile</NavLink>,
+    },
     {
       key: "settings",
       icon: (
         <img
-          src={AllIcons.four}
+          src={AllIcons.ten}
           alt="settings"
           width={20}
           style={{
@@ -174,30 +280,10 @@ const DashboardLayout = () => {
 
   const commonItems = [
     {
-      key: "profile",
-      icon: (
-        <img
-          src={AllIcons.five}
-          alt="profile"
-          width={16}
-          height={16}
-          style={{
-            filter:
-              location.pathname.includes("/profile") ||
-              location.pathname.includes("/edit-profile")
-                ? "brightness(0) invert(1)"
-                : undefined,
-          }}
-        />
-      ),
-      label: <NavLink to="profile">Profile</NavLink>,
-    },
-
-    {
       key: "logout",
       icon: (
         <img
-          src={AllIcons.six}
+          src={AllIcons.eleven}
           alt="logout"
           width={16}
           height={16}

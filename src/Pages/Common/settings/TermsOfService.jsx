@@ -16,8 +16,8 @@ const TermsOfService = () => {
       className=" min-h-[90vh]  rounded-xl bg-white"
       style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
     >
-      <div className=" w-full flex items-center p-5 mb-10   rounded-tl-xl rounded-tr-xl">
-        <p className="text-2xl flex  font-semibold">
+      <div className="bg-secondary-color w-full flex items-center p-5 mb-10   rounded-tl-xl rounded-tr-xl">
+        <p className="text-2xl flex  font-semibold text-white">
           <IoChevronBackOutline
             className="text-4xl cursor-pointer  font-semibold"
             onClick={() => window.history.back()}

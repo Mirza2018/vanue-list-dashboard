@@ -1,7 +1,7 @@
 import { Button, Form, Input, Typography } from "antd";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
+ 
 const SettingsChangePassword = () => {
   const user = JSON.parse(localStorage.getItem("home_care_user"));
   const onFinish = (values) => {
@@ -14,9 +14,9 @@ const SettingsChangePassword = () => {
       className="bg-highlight-color min-h-[90vh]  rounded-xl"
       style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
     >
-      <div className=" w-full p-5 mb-10  rounded-tl-xl rounded-tr-xl">
+      <div className="bg-secondary-color text-white w-full p-5 mb-10  rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center ">
-          <p className="text-2xl text-black font-semibold flex ">
+          <p className="text-2xl  font-semibold flex ">
             <IoChevronBackOutline
               className="text-4xl cursor-pointer  font-semibold"
               onClick={() => window.history.back()}

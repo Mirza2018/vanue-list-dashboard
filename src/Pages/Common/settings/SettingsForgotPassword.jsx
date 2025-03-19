@@ -9,7 +9,7 @@ const SettingsForgotPassword = () => {
     console.log("Success:", values);
     navigate(`/${user.role}/settings/otp-page`);
   };
-  return (
+  return ( 
     <div
       className="bg-highlight-color min-h-[90vh]  rounded-xl"
       style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}

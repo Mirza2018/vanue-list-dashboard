@@ -1,4 +1,4 @@
-import logo from "./logo.png";
+import logo from "./logo.svg";
 
 // Auth Images
 import ForgotPassword from "./authImages/ForgotPassword.png";
@@ -20,14 +20,19 @@ import totalUser from "./icons/user.svg";
 
 import bell from "./icons/bell.png";
 
-
-
 import one from "./dashboard-logo/1.svg";
 import two from "./dashboard-logo/2.svg";
 import three from "./dashboard-logo/3.svg";
 import four from "./dashboard-logo/4.svg";
 import five from "./dashboard-logo/5.svg";
 import six from "./dashboard-logo/6.svg";
+import seven from "./dashboard-logo/7.svg";
+import eight from "./dashboard-logo/8.svg";
+import nine from "./dashboard-logo/9.svg";
+import ten from "./dashboard-logo/10.svg";
+import eleven from "./dashboard-logo/11.svg";
+import recover from "./icons/recover.svg";
+import subscription from "./icons/subscription.svg";
 
 export const AllImages = {
   logo,
@@ -36,7 +41,7 @@ export const AllImages = {
   PDFImage,
   user,
   yellow,
-  kfc
+  kfc,
 };
 
 export const AuthImages = {
@@ -54,5 +59,12 @@ export const AllIcons = {
   three,
   four,
   five,
-  six
+  six,
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  recover,
+  subscription
 };
