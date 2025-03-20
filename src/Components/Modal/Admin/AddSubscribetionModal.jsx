@@ -10,14 +10,29 @@ import {
   Upload,
 } from "antd";
 import { FiUpload } from "react-icons/fi";
+import { useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
 
 const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
   const [form] = Form.useForm();
   const { Dragger } = Upload;
+  const [facilities, setFacilities] = useState([""]); // Array to store facility inputs
+
+  const addFacilityInput = () => {
+    setFacilities([...facilities, ""]);
+  };
+
+  const handleFacilityChange = (index, value) => {
+    const newFacilities = [...facilities];
+    newFacilities[index] = value;
+    setFacilities(newFacilities);
+  };
+
   const onFinish = (values) => {
-    console.log("Service User:", values);
-    handleCancel();
+    console.log("subscription:", { ...values, facilities });
     form.resetFields();
+    setFacilities([""]); // Reset facilities
+    setIsAddSubscription(false);
   };
 
   return (
@@ -37,7 +52,7 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
         footer={[]}
         centered
         style={{ textAlign: "center" }}
-        className="lg:!w-[500px]"
+        className="lg:!w-[700px]"
       >
         <div className="p-10">
           <Form
@@ -50,14 +65,8 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               Plan Name
             </Typography.Title>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Plan Name",
-                },
-              ]}
+              rules={[{ required: true, message: "Please enter Plan Name" }]}
               name="name"
-              className=" "
             >
               <Input
                 placeholder="Enter Plan Name"
@@ -69,14 +78,8 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               Plan Price
             </Typography.Title>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Plan Price",
-                },
-              ]}
-              name="name"
-              className=" "
+              rules={[{ required: true, message: "Please enter Plan Price" }]}
+              name="price"
             >
               <Input
                 placeholder="Enter Plan Price"
@@ -84,23 +87,43 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               />
             </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Facilities
+              Plan Duration
             </Typography.Title>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Plan Facilities",
-                },
-              ]}
-              name="facilities"
-              className=" "
+              rules={[{ required: true, message: "Please enter Plan duration " }]}
+              name="duration"
             >
               <Input
-                placeholder="Enter Plan Facilities"
+                placeholder="Enter Plan duration in months"
                 className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
               />
             </Form.Item>
+
+            <Typography.Title level={4} style={{ color: "#222222" }}>
+              Facilities
+            </Typography.Title>
+            {facilities.map((facility, index) => (
+              <Form.Item
+                key={index}
+                name={`facility-${index}`}
+                rules={[{ required: true, message: "Please enter a facility" }]}
+              >
+                <Input
+                  placeholder="Enter Plan Facility"
+                  value={facility}
+                  onChange={(e) => handleFacilityChange(index, e.target.value)}
+                  className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                />
+              </Form.Item>
+            ))}
+            <Button
+              type="dashed"
+              onClick={addFacilityInput}
+              icon={<PlusOutlined />}
+              className="w-full mb-4"
+            >
+              Add another Facility
+            </Button>
 
             <Form.Item>
               <Button

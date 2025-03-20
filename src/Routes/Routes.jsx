@@ -50,6 +50,7 @@ import QRforVenuePage from "../Pages/Admin/QRforVenuePage";
 import RecommendedContentPage from "../Pages/Admin/RecommendedContentPage";
 import NotificationsPage from "../Pages/Admin/NotificationsPage";
 import SubscriptionPage from "../Pages/Admin/SubscriptionPage";
+import ReportPage from "../Pages/Admin/ReportPage";
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "venues-request/deatils/:id",
         element: <VenueRequestAccept />,
+      },
+      {
+        path: "report",
+        element: <ReportPage/>,
       },
       {
         path: "categories",

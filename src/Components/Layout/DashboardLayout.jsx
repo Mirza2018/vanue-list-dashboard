@@ -38,6 +38,9 @@ const DashboardLayout = () => {
     if (currentPath.includes("/all-venues")) {
       return ["all-venues"];
     }
+    if (currentPath.includes("/report")) {
+      return ["report"];
+    }
     if (currentPath.includes("/venues-request")) {
       return ["venues-request"];
     }
@@ -142,6 +145,24 @@ const DashboardLayout = () => {
         },
       ],
     },
+
+    {
+      key: "report",
+      icon: (
+        <img
+          src={AllIcons.four}
+          alt="report"
+          width={20}
+          style={{
+            filter: location.pathname.includes("report")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="report">Report</NavLink>,
+    },
+
     {
       key: "categories",
       icon: (

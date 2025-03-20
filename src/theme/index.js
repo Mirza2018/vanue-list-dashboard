@@ -65,5 +65,11 @@ export const mainTheme = {
       colorPrimary: "#F3F3F3",
       colorPrimaryHover: "#F3F3F3",
     },
+
+    Switch: {
+      colorPrimary: "#075B5D",
+      colorPrimaryBorder: "#075B5D",
+      colorPrimaryHover: "#075B5D",
+    },
   },
 };
