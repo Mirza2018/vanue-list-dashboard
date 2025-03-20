@@ -150,7 +150,7 @@ const AdminDashboard = () => {
               {/* Carer  */}
               <div className="flex bg-white border border-secondary-color gap-5 flex-wrap rounded-lg py-2 px-1 lg:p-5 items-center justify-center flex-1">
                 <div className="flex gap-2 xl:gap-4 items-center ">
-                  <img src={AllIcons.totalUser} className="h-14 w-12" alt="" />
+                  <img src={AllIcons.two} className="h-14 w-12" alt="" />
 
                   <div className="text-center w-fit">
                     <p className="text-sm lg:text-base xl:text-2xl font-medium ">
@@ -164,7 +164,7 @@ const AdminDashboard = () => {
               </div>
               <div className="flex bg-white border border-secondary-color gap-5 flex-wrap rounded-lg py-2 px-1 lg:p-5 items-center justify-center flex-1">
                 <div className="flex gap-2 xl:gap-4 items-center ">
-                  <img src={AllIcons.totalUser} className="h-14 w-12" alt="" />
+                  <img src={AllIcons.three} className="h-14 w-12" alt="" />
 
                   <div className="text-center w-fit">
                     <p className="text-sm lg:text-base xl:text-2xl font-medium ">

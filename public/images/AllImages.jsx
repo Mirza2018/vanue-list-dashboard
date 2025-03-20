@@ -34,6 +34,8 @@ import eleven from "./dashboard-logo/11.svg";
 import recover from "./icons/recover.svg";
 import subscription from "./icons/subscription.svg";
 import monthReport from "./icons/monthReport.svg";
+import revenue from "./icons/revenue.svg";
+import cash from "./icons/cash.svg";
 
 export const AllImages = {
   logo,
@@ -69,4 +71,6 @@ export const AllIcons = {
   recover,
   subscription,
   monthReport,
+  revenue,
+  cash,
 };

@@ -3,7 +3,7 @@ import { AllIcons, AllImages } from "../../../public/images/AllImages";
 
 const Demographics = () => {
   return (
-    <section className="bg-base-color py-4 px-3 rounded flex flex-col justify-between">
+    <section className="bg-base-color py-4 px-3 rounded flex flex-col justify-between flex-1">
       <div>
         <div className="flex gap-[10px] justify-center mb-[10px]">
           <img src={AllIcons.monthReport} alt="" />
