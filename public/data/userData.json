@@ -11,7 +11,8 @@
     "address": "123 Main St, Washington, DC",
     "weight": 75,
     "height": "180",
-    "prescription": ["Atorvastatin", "Lisinopril"]
+    "prescription": ["Atorvastatin", "Lisinopril"],
+    "status": true
   },
   {
     "id": 2,
@@ -25,7 +26,8 @@
     "address": "456 Oak Ave, Arlington, VA",
     "weight": 60,
     "height": "180",
-    "prescription": ["Metformin", "Insulin"]
+    "prescription": ["Metformin", "Insulin"],
+    "status": false
   },
   {
     "id": 3,
@@ -39,7 +41,8 @@
     "address": "789 Maple Rd, Bethesda, MD",
     "weight": 82,
     "height": "180",
-    "prescription": ["Amlodipine", "Metoprolol"]
+    "prescription": ["Amlodipine", "Metoprolol"],
+    "status": true
   },
   {
     "id": 4,
@@ -53,7 +56,8 @@
     "address": "321 Birch Ln, Alexandria, VA",
     "weight": 68,
     "height": "180",
-    "prescription": ["Levothyroxine"]
+    "prescription": ["Levothyroxine"],
+    "status": false
   },
   {
     "id": 5,
@@ -67,7 +71,8 @@
     "address": "555 Pine St, Reston, VA",
     "weight": 85,
     "height": "180",
-    "prescription": ["Atorvastatin"]
+    "prescription": ["Atorvastatin"],
+    "status": false
   },
   {
     "id": 6,
@@ -81,7 +86,8 @@
     "address": "678 Willow Rd, Fairfax, VA",
     "weight": 65,
     "height": "180",
-    "prescription": ["Albuterol", "Prednisone"]
+    "prescription": ["Albuterol", "Prednisone"],
+    "status": true
   },
   {
     "id": 7,
@@ -95,7 +101,8 @@
     "address": "910 Cedar St, Washington, DC",
     "weight": 78,
     "height": "180",
-    "prescription": ["Losartan", "Furosemide"]
+    "prescription": ["Losartan", "Furosemide"],
+    "status": true
   },
   {
     "id": 8,
@@ -109,7 +116,8 @@
     "address": "112 Spruce Ave, Silver Spring, MD",
     "weight": 62,
     "height": "180",
-    "prescription": ["Omeprazole"]
+    "prescription": ["Omeprazole"],
+    "status": true
   },
   {
     "id": 9,
@@ -123,7 +131,8 @@
     "address": "224 Cherry St, Vienna, VA",
     "weight": 81,
     "height": "180",
-    "prescription": ["Clopidogrel", "Aspirin"]
+    "prescription": ["Clopidogrel", "Aspirin"],
+    "status": true
   },
   {
     "id": 10,
@@ -137,7 +146,8 @@
     "address": "330 Elm St, Baltimore, MD",
     "weight": 59,
     "height": "180",
-    "prescription": ["Gabapentin"]
+    "prescription": ["Gabapentin"],
+    "status": true
   },
   {
     "id": 11,
@@ -151,7 +161,8 @@
     "address": "441 Fir Ln, Frederick, MD",
     "weight": 86,
     "height": "180",
-    "prescription": ["Simvastatin"]
+    "prescription": ["Simvastatin"],
+    "status": true
   },
   {
     "id": 12,
@@ -165,7 +176,8 @@
     "address": "552 Walnut St, Gaithersburg, MD",
     "weight": 63,
     "height": "180",
-    "prescription": ["Spironolactone"]
+    "prescription": ["Spironolactone"],
+    "status": true
   },
   {
     "id": 13,
@@ -179,7 +191,8 @@
     "address": "663 Oak Dr, Herndon, VA",
     "weight": 90,
     "height": "180",
-    "prescription": ["Warfarin"]
+    "prescription": ["Warfarin"],
+    "status": true
   },
   {
     "id": 14,
@@ -193,7 +206,8 @@
     "address": "123 Cypress Ln, Springfield, VA",
     "weight": 58,
     "height": "180",
-    "prescription": ["Levothyroxine"]
+    "prescription": ["Levothyroxine"],
+    "status": true
   },
   {
     "id": 15,
@@ -207,7 +221,8 @@
     "address": "456 Magnolia St, Washington, DC",
     "weight": 88,
     "height": "180",
-    "prescription": ["Metformin", "Lisinopril"]
+    "prescription": ["Metformin", "Lisinopril"],
+    "status": true
   },
   {
     "id": 16,
@@ -221,7 +236,8 @@
     "address": "789 Hickory Ave, Arlington, VA",
     "weight": 66,
     "height": "180",
-    "prescription": ["Losartan", "Aspirin"]
+    "prescription": ["Losartan", "Aspirin"],
+    "status": true
   },
   {
     "id": 17,
@@ -235,7 +251,8 @@
     "address": "321 Chestnut Ln, Fairfax, VA",
     "weight": 79,
     "height": "180",
-    "prescription": ["Albuterol", "Prednisone"]
+    "prescription": ["Albuterol", "Prednisone"],
+    "status": true
   },
   {
     "id": 18,
@@ -249,7 +266,8 @@
     "address": "654 Sycamore Dr, Rockville, MD",
     "weight": 61,
     "height": "180",
-    "prescription": ["Omeprazole"]
+    "prescription": ["Omeprazole"],
+    "status": true
   },
   {
     "id": 19,
@@ -263,7 +281,8 @@
     "address": "987 Dogwood St, Baltimore, MD",
     "weight": 92,
     "height": "180",
-    "prescription": ["Metformin"]
+    "prescription": ["Metformin"],
+    "status": true
   },
   {
     "id": 20,
@@ -277,7 +296,8 @@
     "address": "543 Palm Ave, Bethesda, MD",
     "weight": 54,
     "height": "180",
-    "prescription": ["Levothyroxine"]
+    "prescription": ["Levothyroxine"],
+    "status": true
   },
   {
     "id": 21,
@@ -291,7 +311,8 @@
     "address": "210 Maple St, Washington, DC",
     "weight": 80,
     "height": "180",
-    "prescription": ["Warfarin", "Atorvastatin"]
+    "prescription": ["Warfarin", "Atorvastatin"],
+    "status": true
   },
   {
     "id": 22,
@@ -305,7 +326,8 @@
     "address": "432 Cedar Ln, Arlington, VA",
     "weight": 69,
     "height": "180",
-    "prescription": ["Amlodipine"]
+    "prescription": ["Amlodipine"],
+    "status": true
   },
   {
     "id": 23,
@@ -319,7 +341,8 @@
     "address": "654 Maple St, Alexandria, VA",
     "weight": 83,
     "height": "180",
-    "prescription": ["Clopidogrel", "Lisinopril"]
+    "prescription": ["Clopidogrel", "Lisinopril"],
+    "status": true
   },
   {
     "id": 24,
@@ -333,7 +356,8 @@
     "address": "321 Spruce Ln, Rockville, MD",
     "weight": 65,
     "height": "180",
-    "prescription": ["Losartan", "Metformin"]
+    "prescription": ["Losartan", "Metformin"],
+    "status": true
   },
   {
     "id": 25,
@@ -347,7 +371,8 @@
     "address": "543 Chestnut Dr, Vienna, VA",
     "weight": 89,
     "height": "180",
-    "prescription": ["Albuterol"]
+    "prescription": ["Albuterol"],
+    "status": true
   },
   {
     "id": 26,
@@ -361,7 +386,8 @@
     "address": "123 Pine St, Bethesda, MD",
     "weight": 56,
     "height": "180",
-    "prescription": ["Levothyroxine"]
+    "prescription": ["Levothyroxine"],
+    "status": true
   },
   {
     "id": 27,
@@ -375,7 +401,8 @@
     "address": "456 Willow Dr, Fairfax, VA",
     "weight": 84,
     "height": "180",
-    "prescription": ["Amlodipine", "Omeprazole"]
+    "prescription": ["Amlodipine", "Omeprazole"],
+    "status": true
   },
   {
     "id": 28,
@@ -389,7 +416,8 @@
     "address": "789 Cedar St, Herndon, VA",
     "weight": 63,
     "height": "180",
-    "prescription": ["Metoprolol", "Prednisone"]
+    "prescription": ["Metoprolol", "Prednisone"],
+    "status": true
   },
   {
     "id": 29,
@@ -403,7 +431,8 @@
     "address": "432 Maple St, Arlington, VA",
     "weight": 90,
     "height": "180",
-    "prescription": ["Simvastatin", "Warfarin"]
+    "prescription": ["Simvastatin", "Warfarin"],
+    "status": false
   },
   {
     "id": 30,
@@ -417,6 +446,7 @@
     "address": "123 Birch Ln, Alexandria, VA",
     "weight": 64,
     "height": "180",
-    "prescription": ["Levothyroxine", "Metformin"]
+    "prescription": ["Levothyroxine", "Metformin"],
+    "status": true
   }
 ]

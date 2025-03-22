@@ -11,52 +11,13 @@ import AllUserTable from "../../Components/Tables/Admin/AllUserTable";
 import ViewUserModal from "../../Components/Modal/Admin/ViewUserModal";
 import BlockUserModal from "../../Components/Modal/Admin/BlockUserModal";
 import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal";
- 
+import AllCustomers from "../../Components/CustomerPage/AllCustomers";
+import AccountRecoveryRequests from "../../Components/CustomerPage/AccountRecoveryRequests";
+
 const CustomersPage = () => {
   //* Store Search Value
+  const [isCustomer, setIsCustomer] = useState(true);
   const [searchText, setSearchText] = useState("");
-
-  //* Use to set user
-  const [data, setData] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-  //* It's Use to Show Modal
-  const [isCompanyViewModalVisible, setIsCompanyViewModalVisible] =
-    useState(false);
-
-  //* It's Use to Block Modal
-  const [isCompanyBlockModalVisible, setIsCompanyBlockModalVisible] =
-    useState(false);
-
-  //* It's Use to Add Modal
-  const [isAddCompanyModalVisible, setIsAddCompanyModalVisible] =
-    useState(false);
-
-  //* It's Use to Set Seclected User to Block and view
-  const [currentCompanyRecord, setCurrentCompanyRecord] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const filteredCompanyData = useMemo(() => {
-    if (!searchText) return data;
-    return data.filter((item) =>
-      item.userName.toLowerCase().includes(searchText.toLowerCase())
-    );
-  }, [data, searchText]);
 
   const onSearch = (value) => {
     setSearchText(value);
@@ -64,31 +25,6 @@ const CustomersPage = () => {
 
   const showAddCompanyModal = () => {
     setIsAddCompanyModalVisible(true);
-  };
-
-  const showCompanyViewModal = (record) => {
-    setCurrentCompanyRecord(record);
-    setIsCompanyViewModalVisible(true);
-  };
-
-  const showCompanyBlockModal = (record) => {
-    setCurrentCompanyRecord(record);
-    setIsCompanyBlockModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsCompanyViewModalVisible(false);
-    setIsCompanyBlockModalVisible(false);
-    setIsAddCompanyModalVisible(false);
-  };
-
-  const handleCompanyBlock = (data) => {
-    console.log("Blocked Company:", {
-      id: data?.id,
-      companyName: data?.companyName,
-    });
-    setIsCompanyViewModalVisible(false);
-    setIsCompanyBlockModalVisible(false);
   };
 
   return (
@@ -119,36 +55,51 @@ const CustomersPage = () => {
           </div>
         </div>
       </div>
+      <main className="p-5">
+        <div className="flex md:flex-row md:gap-2 gap-5  flex-col  justify-start items-center   w-fit mt-5 mb-[21px] bg-base-color pe-1">
+          <h1
+            onClick={() => setIsCustomer(true)}
+            className={`text-2xl cursor-pointer py-2 text-nowrap  text-center ${
+              isCustomer
+                ? "font-normal bg-secondary-color my-2 text-white  border-b-4 px-2"
+                : "font-normal text-black  "
+            }`}
+          >
+            All Customers
+          </h1>
+
+          <h1
+            onClick={() => setIsCustomer(false)}
+            className={`text-2xl cursor-pointer py-2 text-nowrap  text-center ${
+              isCustomer
+                ? "font-normal text-black  "
+                : "font-normal bg-secondary-color my-2 text-white  border-b-4 px-2 "
+            }`}
+          >
+            Account Recovery Requests
+          </h1>
+        </div>
+      </main>
 
       {/* Table  */}
-      <div className="px-10 py-10">
-        <AllUserTable
-          data={filteredCompanyData}
-          loading={loading}
-          showCompanyViewModal={showCompanyViewModal}
-          showCompanyBlockModal={showCompanyBlockModal}
-          pageSize={8}
-        />
-      </div>
-
-      {/* Modals */}
-      <AddCategoriesModal
-        isAddCompanyModalVisible={isAddCompanyModalVisible}
-        handleCancel={handleCancel}
-      />
-      <ViewUserModal
-        isCompanyViewModalVisible={isCompanyViewModalVisible}
-        handleCancel={handleCancel}
-        currentCompanyRecord={currentCompanyRecord}
-        handleCompanyBlock={handleCompanyBlock}
-        showCompanyBlockModal={showCompanyBlockModal}
-      />
-      <BlockUserModal
-        isCompanyBlockModalVisible={isCompanyBlockModalVisible}
-        handleCompanyBlock={handleCompanyBlock}
-        handleCancel={handleCancel}
-        currentCompanyRecord={currentCompanyRecord}
-      />
+      {
+        isCustomer ? (
+          <AllCustomers
+            setSearchText={setSearchText}
+            searchText={searchText}
+          />
+        ) : (
+          <AccountRecoveryRequests
+            setSearchText={setSearchText}
+            searchText={searchText}
+          />
+        )
+      }
+      {/* <AllCustomers setSearchText={setSearchText} searchText={searchText} />
+      <AccountRecoveryRequests
+        setSearchText={setSearchText}
+        searchText={searchText}
+      /> */}
     </div>
   );
 };
