@@ -65,8 +65,8 @@ const DeleteCategories = () => {
       key: "categoryImage",
       render: () => (
         <img
-          src={AllImages.userImage}
-          className="w-20 aspect-video object-cover"
+          src={AllImages.doc2}
+          className="w-24 h-14 rounded-md object-cover"
         />
       ),
     },
@@ -78,7 +78,7 @@ const DeleteCategories = () => {
           <Button
             onClick={() => setBlockModal(true)}
             type="text"
-                  icon={<img src={AllIcons.recover} />}
+            icon={<img src={AllIcons.recover} />}
             // className="!text-red-600 !hover:text-red-800"
           />
         </div>

@@ -4,6 +4,8 @@ import { Select, Table, Button, QRCode, theme, Tooltip } from "antd";
 const { useToken } = theme;
 
 import React, { useState } from "react";
+import { render } from "react-dom";
+import { AllImages } from "../../../public/images/AllImages";
 
 const data = Array.from({ length: 8 }, (_, index) => ({
   key: (index + 1).toString(),
@@ -24,6 +26,12 @@ const columns = [
     title: "User Name",
     dataIndex: "userName",
     key: "userName",
+    render: (text) => (
+      <div className="flex gap-2 justify-start items-center">
+        <img src={AllImages.user} className="rounded-full w-12" alt="" />{" "}
+        <p>{text}</p>
+      </div>
+    ),
   },
   {
     title: "QR Code Link",

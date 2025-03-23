@@ -22,7 +22,7 @@ const SignIn = () => {
     <div className="">
       <div className="max-w-[1350px] w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center gap-10 min-h-screen py-10">
         <div className="">
-          <img src={AllImages.logo} alt="logo" className=" mx-auto" />
+          <img src={AllImages.logo} alt="logo" className=" mx-auto w-96" />
         </div>
         <div className="w-full md:w-[80%] lg:w-full mx-auto">
           {/* -------- Sign In Page Header ------------ */}

@@ -34,8 +34,12 @@ import eleven from "./dashboard-logo/11.svg";
 import recover from "./icons/recover.svg";
 import subscription from "./icons/subscription.svg";
 import monthReport from "./icons/monthReport.svg";
+import report from "./icons/report.svg";
 import revenue from "./icons/revenue.svg";
 import cash from "./icons/cash.svg";
+import doc1 from "./doc1.png";
+import doc2 from "./doc2.png";
+import doc3 from "./doc3.png";
 
 export const AllImages = {
   logo,
@@ -45,6 +49,9 @@ export const AllImages = {
   user,
   yellow,
   kfc,
+  doc1,
+  doc2,
+  doc3,
 };
 
 export const AuthImages = {
@@ -73,4 +80,5 @@ export const AllIcons = {
   monthReport,
   revenue,
   cash,
+  report
 };

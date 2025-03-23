@@ -8,7 +8,7 @@ import SubscriptionTrenda from "../../Components/ReportPage/SubscriptionTrenda";
 const ReportPage = () => {
   return (
     <div
-      className="bg-highlight-color min-h-[90vh]  http://localhost:5174/rounded-xl"
+      className="bg-highlight-color min-h-[90vh]  rounded-xl"
       style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
     >
       {/* Header  */}

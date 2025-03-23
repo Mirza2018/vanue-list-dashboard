@@ -51,6 +51,7 @@ import RecommendedContentPage from "../Pages/Admin/RecommendedContentPage";
 import NotificationsPage from "../Pages/Admin/NotificationsPage";
 import SubscriptionPage from "../Pages/Admin/SubscriptionPage";
 import ReportPage from "../Pages/Admin/ReportPage";
+import VenueSeeDetails from "../Pages/Admin/VenueSeeDetails";
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -105,11 +106,15 @@ const router = createBrowserRouter([
       },
       {
         path: "venues-request/deatils/:id",
+        element: <VenueSeeDetails />,
+      },
+      {
+        path: "venues-request/deatils/:id/accepted",
         element: <VenueRequestAccept />,
       },
       {
         path: "report",
-        element: <ReportPage/>,
+        element: <ReportPage />,
       },
       {
         path: "categories",

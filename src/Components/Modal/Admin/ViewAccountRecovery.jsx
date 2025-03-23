@@ -11,69 +11,80 @@ const ViewAccountRecovery = ({
   handleCompanyBlock,
   showCompanyBlockModal,
 }) => {
+  console.log(currentCompanyRecord);
+
   return (
     <Modal
-      title={
-        <div className="pt-7 text-center">
-          <h2 className="text-secondary-color text-4xl ">User Details</h2>
-          <p className="text-[#989898] mt-3 text-xl">
-            See all details about {currentCompanyRecord?.userName}
-          </p>
-        </div>
-      }
+      title=""
       open={isCompanyViewModalVisible}
       onCancel={handleCancel}
       footer={null}
       centered
       style={{ textAlign: "center" }}
-      className="lg:!w-[500px]"
+      className="lg:!w-[800px]"
     >
-      <div className="px-5 pb-5">
-        <div className="">
-          <div className="flex justify-center items-center p-4">
-            {/* Avatar */}
-            <img
-              src={AllImages.profile}
-              alt={currentCompanyRecord?.userName}
-              className="w-12 h-12 sm:w-16  sm:h-16 rounded-lg mr-4"
-            />
-            <div className="text-xl sm:text-2xl font-bold text-secondary-color">
-              {currentCompanyRecord?.userName}
-            </div>
+      <section className="grid md:grid-cols-5 grid-cols-1 gap-6">
+        <div className="md:col-span-2">
+          <h1 className="text-2xl font-bold text-start mt-5">
+            User Information
+          </h1>
+          <div className="grid grid-cols-2 gap-2 text-start mt-2">
+            <h1 className="text-lg">S.ID :</h1>
+            <p className="text-lg">{currentCompanyRecord?.id}</p>
+            <h1 className="text-lg">Name :</h1>
+            <p className="text-lg">{currentCompanyRecord?.userName}</p>
+            <h1 className="text-lg">Email :</h1>
+            <p className="text-lg">{currentCompanyRecord?.email}</p>
+            <h1 className="text-lg">Address :</h1>
+            <p className="text-lg">{currentCompanyRecord?.address}</p>
+            <h1 className="text-lg">Registration Date </h1>
+            <p className="text-lg">: {currentCompanyRecord?.joiningDate}</p>
+            <h1 className="text-lg">Last Login</h1>
+            <p className="text-lg"> : {currentCompanyRecord?.joiningDate}</p>
           </div>
-
-          <div className="mt-2">
-            <h2 className=" font-bold text-3xl mb-5">User Information</h2>
-            <div className="text-lg w-[90%] mx-auto">
-              <div className="sm:flex gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Name:</div>
-                <div>{currentCompanyRecord?.userName}</div>
-              </div>
-
-              <div className="sm:flex gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Email:</div>
-                <div>{currentCompanyRecord?.email}</div>
-              </div>
-              <div className="sm:flex gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Adress:</div>
-                <div>{currentCompanyRecord?.address}</div>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Joining Date:</div>
-                <div>{currentCompanyRecord?.joiningDate}</div>
-              </div>
+        </div>
+        <div className="md:col-span-3">
+          <h1 className="text-2xl font-bold text-start mt-5">
+            Request Details
+          </h1>
+          <div className="grid grid-cols-2 gap-2 text-start mt-2">
+            <h1 className="text-lg">Request ID :</h1>
+            <p className="text-lg">{currentCompanyRecord?.id}</p>
+            <h1 className="text-lg">Request Date :</h1>
+            <p className="text-lg">{currentCompanyRecord?.joiningDate}</p>
+            <h1 className="text-lg">Status :</h1>
+            <p className="text-lg">Pending.</p>
+            <h1 className="text-lg">Reason for Request :</h1>
+            <p className="text-lg">Forgot password.</p>
+            <h1 className="text-lg">Supporting Documents :</h1>
+            <div className="flex gap-2.5 flex-wrap">
+              <img
+                src={AllImages.doc1}
+                className="rounded-lg w-16 aspect-square object-cover"
+                alt=""
+              />
+              <img
+                src={AllImages.doc2}
+                className="rounded-lg w-16 aspect-square object-cover"
+                alt=""
+              />
+              <img
+                src={AllImages.doc3}
+                className="rounded-lg w-16 aspect-square object-cover"
+                alt=""
+              />
             </div>
           </div>
         </div>
-        <button
-          onClick={() => (
-            handleCompanyBlock(currentCompanyRecord), showCompanyBlockModal()
-          )}
-          className="bg-secondary-color text-primary-color py-3 text-xl font-semibold rounded-lg mt-8 w-full"
-        >
-          Block
-        </button>
-      </div>
+        <div className="md:col-span-5">
+          <button
+            onClick={handleCancel}
+            className="text-xl rounded-2xl text-white bg-[#8C8C8C] py-[10px] px-44"
+          >
+            Close
+          </button>
+        </div>
+      </section>
     </Modal>
   );
 };

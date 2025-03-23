@@ -65,8 +65,8 @@ const ActiveCategories = () => {
       key: "categoryImage",
       render: () => (
         <img
-          src={AllImages.userImage}
-          className="w-20 aspect-video object-cover"
+          src={AllImages.doc2}
+          className="w-24 h-14 rounded-md object-cover"
         />
       ),
     },

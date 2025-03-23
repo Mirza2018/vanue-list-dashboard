@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AllImages } from "../../../public/images/AllImages";
 import { FaChevronLeft } from "react-icons/fa";
 
-const VenueRequestAccept = () => {
+const VenueSeeDetails = () => {
   return (
     <div className="bg-white rounded-tl-xl rounded-tr-xl">
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl mb-20">
@@ -12,7 +12,7 @@ const VenueRequestAccept = () => {
             onClick={() => window.history.back()}
             className="text-3xl text-primary-color font-semibold flex justify-center items-center gap-2 cursor-pointer"
           >
-            <FaChevronLeft /> Accepted Venue Request
+            <FaChevronLeft /> Venue Request
           </p>
           {/* <div className="flex gap-4 items-center">
                  <ConfigProvider
@@ -36,19 +36,19 @@ const VenueRequestAccept = () => {
           <img src={AllImages.kfc} className="w-20" alt="" />
           <div className="">
             <h1 className="text-xl font-semibold">Dianne Russell</h1>
-            {/* <div className="flex justify-between items-center gap-2">
-              <Link to={`/admin/driver-request/accept/${1}`}>
+            <div className="flex justify-between items-center gap-2">
+              <Link to={`accepted`}>
                 <button
-                  className="font-semibold text-base bg-[#0D1B2A] rounded-tl-xl rounded-br-xl text-white px-3 py-2  hover:scale-105 transition delay-100  text-nowrap
-                           "
+                  className="font-semibold text-base bg-secondary-color rounded-tl-xl rounded-br-xl text-white px-3 py-2  hover:scale-105 transition delay-100  text-nowrap
+                     "
                 >
                   Accept
                 </button>
               </Link>
-              <button className="font-semibold text-base rounded-br-xl  rounded-tl-xl border border-[#0D1B2A]  px-3 py-2 hover:scale-105 transition delay-100 ">
+              <button className="font-semibold text-base rounded-br-xl  rounded-tl-xl border border-secondary-color text-secondary-color  px-3 py-2 hover:scale-105 transition delay-100 ">
                 Delete
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
 
@@ -87,6 +87,20 @@ const VenueRequestAccept = () => {
               <h1 className="font-bold text-2xl mb-4 text-start">
                 Attachments
               </h1>
+              {/* <div className="flex  gap-4">
+                <div className="bg-[#B4B8BD] h-[116px] w-[92px] p-2  cursor-pointer">
+                  <div className="bg-secondary-color rounded-full w-[76px] aspect-square flex justify-center items-center ">
+                    <img src={AllImages.PDFImage} alt="" />
+                  </div>
+                  <p className="text-black  text-nowrap text-xs">Resume.pdf</p>
+                </div>
+                <div className="bg-[#B4B8BD] h-[116px] w-[92px] p-2  cursor-pointer ">
+                  <div className="bg-secondary-color rounded-full w-[76px] aspect-square flex justify-center items-center ">
+                    <img src={AllImages.PDFImage} alt="" />
+                  </div>{" "}
+                  <p className="text-black  text-nowrap text-xs">Resume.pdf</p>
+                </div>
+              </div> */}
               <div className="flex gap-2.5">
                 <img
                   src={AllImages.doc1}
@@ -112,4 +126,4 @@ const VenueRequestAccept = () => {
   );
 };
 
-export default VenueRequestAccept;
+export default VenueSeeDetails;

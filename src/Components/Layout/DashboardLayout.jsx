@@ -150,7 +150,7 @@ const DashboardLayout = () => {
       key: "report",
       icon: (
         <img
-          src={AllIcons.four}
+          src={AllIcons.report}
           alt="report"
           width={20}
           style={{
@@ -244,22 +244,22 @@ const DashboardLayout = () => {
       ),
       label: <NavLink to="recommented-content">Recommended Content</NavLink>,
     },
-    {
-      key: "notification",
-      icon: (
-        <img
-          src={AllIcons.eight}
-          alt="notification"
-          width={20}
-          style={{
-            filter: location.pathname.includes("notification")
-              ? "brightness(0) invert(1)"
-              : undefined,
-          }}
-        />
-      ),
-      label: <NavLink to="notification">Notifications</NavLink>,
-    },
+    // {
+    //   key: "notification",
+    //   icon: (
+    //     <img
+    //       src={AllIcons.eight}
+    //       alt="notification"
+    //       width={20}
+    //       style={{
+    //         filter: location.pathname.includes("notification")
+    //           ? "brightness(0) invert(1)"
+    //           : undefined,
+    //       }}
+    //     />
+    //   ),
+    //   label: <NavLink to="notification">Notifications</NavLink>,
+    // },
     {
       key: "profile",
       icon: (
@@ -378,7 +378,7 @@ const DashboardLayout = () => {
               width={0}
               height={0}
               sizes="100vw"
-              className="my-7 mx-auto w-40"
+              className="my-7 mx-auto w-80"
             />
           </Link>
 
