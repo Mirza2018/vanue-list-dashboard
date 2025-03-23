@@ -8,10 +8,10 @@ import PhoneInput from "react-phone-input-2";
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("home_care_user"));
   const profileData = {
-    firstName: "James",
-    LastName: "Mitchell",
+    firstName: "Damienntc",
+    LastName: "",
     email: "emily@gmail.com",
-    contactNumber: "88017707139055",
+    contactNumber: "+2305 123 4567",
     dob: "10-10-1998",
   };
 
