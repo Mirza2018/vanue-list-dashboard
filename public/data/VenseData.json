@@ -1,122 +1,122 @@
 [
-  { 
+  {
     "sId": "01",
-    "venueName": "KFC Dhaka Central",
+    "venueName": "KFC Port Louis Central",
     "phone": "123-456-7801",
-    "email": "dhaka.central@kfc.com",
-    "address": "12 Main Street, Dhaka.",
-    "bio": "A bustling KFC outlet in the heart of Dhaka, known for its spicy fried chicken."
+    "email": "portlouis.central@kfc.com",
+    "address": "12 Harbour Street, Port Louis.",
+    "bio": "A bustling KFC outlet in the heart of Port Louis, known for its spicy fried chicken."
   },
   {
     "sId": "02",
-    "venueName": "KFC Chittagong",
+    "venueName": "KFC Grand Baie",
     "phone": "123-456-7802",
-    "email": "chittagong@kfc.com",
-    "address": "25 Ocean Road, Chittagong.",
-    "bio": "Located near the port, offering a scenic view with delicious meals."
+    "email": "grandbaie@kfc.com",
+    "address": "25 Coastal Road, Grand Baie.",
+    "bio": "Located near the beach, offering scenic views with delicious meals."
   },
   {
     "sId": "03",
-    "venueName": "KFC Sylhet",
+    "venueName": "KFC Curepipe",
     "phone": "123-456-7803",
-    "email": "sylhet@kfc.com",
-    "address": "8 Hill View Lane, Sylhet.",
-    "bio": "Nestled in the hills, famous for its tea and chicken combo."
+    "email": "curepipe@kfc.com",
+    "address": "8 Volcanic Lane, Curepipe.",
+    "bio": "Nestled in the highlands, famous for its tea and chicken combo."
   },
   {
     "sId": "04",
-    "venueName": "KFC Rajshahi",
+    "venueName": "KFC Quatre Bornes",
     "phone": "123-456-7804",
-    "email": "rajshahi@kfc.com",
-    "address": "15 Riverbank Avenue, Rajshahi.",
-    "bio": "Riverside dining with a variety of KFC specials."
+    "email": "quatrebornes@kfc.com",
+    "address": "15 St Jean Avenue, Quatre Bornes.",
+    "bio": "Urban dining with a variety of KFC specials."
   },
   {
     "sId": "05",
-    "venueName": "KFC Khulna",
+    "venueName": "KFC Mahebourg",
     "phone": "123-456-7805",
-    "email": "khulna@kfc.com",
-    "address": "30 Coastal Drive, Khulna.",
+    "email": "mahebourg@kfc.com",
+    "address": "30 Waterfront Drive, Mahebourg.",
     "bio": "A coastal KFC outlet with fresh seafood-inspired sides."
   },
   {
     "sId": "06",
-    "venueName": "KFC Barisal",
+    "venueName": "KFC Flacq",
     "phone": "123-456-7806",
-    "email": "barisal@kfc.com",
-    "address": "7 Canal Street, Barisal.",
-    "bio": "Known for its unique canal-side seating and quick service."
+    "email": "flacq@kfc.com",
+    "address": "7 Market Street, Flacq.",
+    "bio": "Known for its vibrant market vibe and quick service."
   },
   {
     "sId": "07",
-    "venueName": "KFC Rangpur",
+    "venueName": "KFC Goodlands",
     "phone": "123-456-7807",
-    "email": "rangpur@kfc.com",
-    "address": "19 North Road, Rangpur.",
-    "bio": "A cozy spot offering authentic KFC flavors in northern Bangladesh."
+    "email": "goodlands@kfc.com",
+    "address": "19 Royal Road, Goodlands.",
+    "bio": "A cozy spot offering authentic KFC flavors in northern Mauritius."
   },
   {
     "sId": "08",
-    "venueName": "KFC Comilla",
+    "venueName": "KFC Rose Hill",
     "phone": "123-456-7808",
-    "email": "comilla@kfc.com",
-    "address": "22 Market Lane, Comilla.",
-    "bio": "A busy market location with a wide range of KFC menu items."
+    "email": "rosehill@kfc.com",
+    "address": "22 Boundary Lane, Rose Hill.",
+    "bio": "A busy urban location with a wide range of KFC menu items."
   },
   {
     "sId": "09",
-    "venueName": "KFC Mymensingh",
+    "venueName": "KFC Flic en Flac",
     "phone": "123-456-7809",
-    "email": "mymensingh@kfc.com",
-    "address": "14 Lakeview Road, Mymensingh.",
-    "bio": "Overlooking a lake, perfect for a relaxing meal."
+    "email": "flicenflac@kfc.com",
+    "address": "14 Beachfront Road, Flic en Flac.",
+    "bio": "Overlooking the beach, perfect for a relaxing meal."
   },
   {
     "sId": "10",
-    "venueName": "KFC Jessore",
+    "venueName": "KFC Ebene",
     "phone": "123-456-7810",
-    "email": "jessore@kfc.com",
-    "address": "9 Airport Boulevard, Jessore.",
-    "bio": "Conveniently located near the airport for travelers."
+    "email": "ebene@kfc.com",
+    "address": "9 Cybercity Boulevard, Ebene.",
+    "bio": "Conveniently located in the business hub for quick bites."
   },
   {
     "sId": "11",
-    "venueName": "KFC Bogra",
+    "venueName": "KFC Triolet",
     "phone": "123-456-7811",
-    "email": "bogra@kfc.com",
-    "address": "16 Silk Road, Bogra.",
-    "bio": "A historic area outlet with a modern KFC twist."
+    "email": "triolet@kfc.com",
+    "address": "16 Main Road, Triolet.",
+    "bio": "A local favorite with a modern KFC twist."
   },
   {
     "sId": "12",
-    "venueName": "KFC Narayanganj",
+    "venueName": "KFC Black River",
     "phone": "123-456-7812",
-    "email": "narayanganj@kfc.com",
-    "address": "3 Riverside Lane, Narayanganj.",
+    "email": "blackriver@kfc.com",
+    "address": "3 Riverview Lane, Black River.",
     "bio": "Famous for its riverside ambiance and fast service."
   },
   {
     "sId": "13",
-    "venueName": "KFC Faridpur",
+    "venueName": "KFC Souillac",
     "phone": "123-456-7813",
-    "email": "faridpur@kfc.com",
-    "address": "11 Town Square, Faridpur.",
-    "bio": "A central hub for KFC lovers in a quaint town."
+    "email": "souillac@kfc.com",
+    "address": "11 Coastal Square, Souillac.",
+    "bio": "A central hub for KFC lovers in a quaint southern town."
   },
   {
     "sId": "14",
-    "venueName": "KFC Pabna",
+    "venueName": "KFC Vacoas",
     "phone": "123-456-7814",
-    "email": "pabna@kfc.com",
-    "address": "20 High Street, Pabna.",
+    "email": "vacoas@kfc.com",
+    "address": "20 Independence Street, Vacoas.",
     "bio": "Offers a high-energy dining experience with great food."
   },
   {
     "sId": "15",
-    "venueName": "KFC Kushtia",
+    "venueName": "KFC Phoenix",
     "phone": "123-456-7815",
-    "email": "kushtia@kfc.com",
-    "address": "5 Cultural Avenue, Kushtia.",
-    "bio": "Celebrating local culture with a delicious KFC menu."
+    "email": "phoenix@kfc.com",
+    "address": "5 Mall Avenue, Phoenix.",
+    "bio": "Celebrating local vibes with a delicious KFC menu."
   }
 ]

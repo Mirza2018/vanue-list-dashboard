@@ -8,9 +8,9 @@ import PhoneInput from "react-phone-input-2";
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("home_care_user"));
   const profileData = {
-    firstName: "Damienntc",
-    LastName: "",
-    email: "emily@gmail.com",
+    firstName: "Damien",
+    LastName: "NG TAT CHUNG",
+    email: "damienntc@yahoo.com",
     contactNumber: "+2305 123 4567",
     dob: "10-10-1998",
   };
@@ -45,7 +45,7 @@ const Profile = () => {
         <div className=" rounded-lg h-full w-full md:grid grid-cols-3">
           <div className="flex flex-col items-center justify-between">
             <div className="flex flex-col items-center justify-center gap-5">
-              <img className="h-36 w-36 relative" src={profileImage} alt="" />
+              <img className="h-36 w-36 relative rounded-full ring-2" src={profileImage} alt="" />
               <p className="text-center text-2xl font-medium">Admin</p>
               <p className="text-3xl font-medium">
                 {profileData.firstName} {profileData.LastName}

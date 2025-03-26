@@ -9,6 +9,8 @@ const AccountRecoveryTable = ({
   loading,
   showCompanyViewModal,
   showCompanyBlockModal,
+  setApproveAccount,
+  ApproveAccountRecord,
   pageSize = 0,
 }) => {
   const columns = [
@@ -66,13 +68,12 @@ const AccountRecoveryTable = ({
         <>
           <div className="flex items-center gap-2">
             {/* Block User Tooltip */}
-            {record?.status && (
+            {record?.status || (
               <>
-                {" "}
                 <Tooltip placement="left" title="Block this User">
                   <Button
                     className="bg-[#3AD800] rounded px-3 py-1"
-                    // onClick={() => showCompanyBlockModal(record)}
+                    onClick={() => ApproveAccountRecord(record)}
                   >
                     Approve
                   </Button>

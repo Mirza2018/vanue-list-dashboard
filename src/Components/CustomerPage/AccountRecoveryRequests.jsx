@@ -4,6 +4,8 @@ import AddCategoriesModal from "../Modal/Admin/AddCategoriesModal";
 import AccountRecoveryTable from "../Tables/Admin/AccountRecoveryTable";
 import ViewAccountRecovery from "../Modal/Admin/ViewAccountRecovery";
 import RejectAccountRecovery from "../Modal/Admin/RejectAccountRecovery";
+import AproveAccountModal from "../Modal/Admin/AproveAccountModal";
+import { App } from "antd";
 
 //* Modal Table
 
@@ -11,6 +13,13 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
   const [data, setData] = useState([]);
   //   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
+  const [approveAccount, setApproveAccount] = useState(false);
+  const [approveAccountRecord, setApproveAccountRecord] = useState(null);
+
+  const ApproveAccountRecord = (record) => {
+    setApproveAccount(true);
+    setApproveAccountRecord(record)
+   }
 
   //* It's Use to Show Modal
   const [isCompanyViewModalVisible, setIsCompanyViewModalVisible] =
@@ -88,6 +97,8 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
           loading={loading}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
+          setapproveAccount={setApproveAccount}
+          ApproveAccountRecord={ApproveAccountRecord}
           pageSize={8}
         />
       </div>
@@ -109,6 +120,11 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
         handleCompanyBlock={handleCompanyBlock}
         handleCancel={handleCancel}
         currentCompanyRecord={currentCompanyRecord}
+      />
+      <AproveAccountModal
+        approveAccount={approveAccount}
+        setApproveAccount={setApproveAccount}
+        approveAccountRecord={approveAccountRecord}
       />
     </div>
   );
