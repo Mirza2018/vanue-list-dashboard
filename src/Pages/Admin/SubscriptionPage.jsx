@@ -5,6 +5,7 @@ import { FaArrowRight, FaCheck, FaRegEdit } from "react-icons/fa";
 import { Switch } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { EditOutlined } from "@ant-design/icons";
+import { useGetSubscriptionQuery } from "../../redux/api/adminApi";
 const plans = [
   {
     name: "Basic",
@@ -26,6 +27,13 @@ const plans = [
   },
 ];
 const SubscriptionPage = () => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetSubscriptionQuery();
+
+  const displayedData = data ?? currentData;
+
+  console.log(displayedData);
+  
   const [isAddSubscription, setIsAddSubscription] = useState(false);
   return (
     <div
@@ -45,10 +53,16 @@ const SubscriptionPage = () => {
         <div className="px-5 mt-5 ">
           <div
             onClick={() => setIsAddSubscription(true)}
-            className="bg-secondary-color text-primary-color flex justify-center items-center gap-2 py-2 w-full rounded-lg cursor-pointer"
+            className="bg-secondary-color text-primary-color flex justify-center items-center gap-2 py-2 w-full rounded-lg cursor-pointer px-2"
           >
-            <FaRegEdit className="md:text-3xl text-2xl" />
-            <p className="md:text-2xl text-lg font-semibold whitespace-nowrap">
+            <FaRegEdit
+              style={{ fontSize: "clamp(18px, 1vw + 1rem ,30px)" }}
+              className=""
+            />
+            <p
+              style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
+              className="font-semibold "
+            >
               Create Subscription Plan
             </p>
           </div>
@@ -58,9 +72,10 @@ const SubscriptionPage = () => {
           setIsAddSubscription={setIsAddSubscription}
         />
         <div className="flex justify-around my-10 gap-10 flex-wrap">
-          {plans.map((plan, index) => (
+          {displayedData?.data?.map((plan, index) => (
             <section
-              className="bg-highlight-color rounded-xl flex flex-col gap-4 p-5 min-w-[300px]"
+              key={plan?._id}
+              className="bg-highlight-color rounded-xl flex flex-col gap-4 p-5  md:w-[500px] w-[300px]"
               style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
             >
               <div className="flex items-center gap-2 justify-end">
@@ -75,19 +90,40 @@ const SubscriptionPage = () => {
                 </p>
               </div>
               <div>
-                <h1 className="text-2xl font-bold">{plan.name}</h1>
+                <h1
+                  style={{ fontSize: "clamp(16px, 1vw + 1rem ,24px)" }}
+                  className=" font-bold"
+                >
+                  {plan?.name}
+                </h1>
                 <div className="flex items-end">
-                  <h1 className="text-6xl font-bold">${plan.price}</h1>
-                  <p className="text-xl font-bold">{plan.duration}</p>
+                  <h1
+                    style={{ fontSize: "clamp(36px, 1vw + 1rem ,60px)" }}
+                    className="text-6xl font-bold"
+                  >
+                    ${plan?.price}
+                  </h1>
+                  <p
+                    style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
+                    className="text-xl font-bold"
+                  >
+                    {" "}
+                    {plan?.duration} {plan?.durationType}
+                  </p>
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                {plan.facilities.map((facility) => (
+                {plan?.features?.map((facility) => (
                   <div className="flex items-center gap-2">
                     <div>
                       <FaCheck className="bg-base-color size-8 rounded-full p-2 text-secondary-color" />
                     </div>
-                    <h1 className="text-lg font-medium">{facility}</h1>
+                    <h1
+                      style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                      className=" font-medium"
+                    >
+                      {facility}
+                    </h1>
                   </div>
                 ))}
                 {/* 

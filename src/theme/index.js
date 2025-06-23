@@ -25,8 +25,8 @@ export const mainTheme = {
     Select: {
       colorBgContainer: "rgba(0,0,0,0)",
       fontSize: 20,
-      optionSelectedColor: "#F3F3F3",
-      optionSelectedBg: "#075B5D",
+
+      // optionSelectedBg: "#075B5D",
 
       optionActiveColor: "#F3F3F3",
       colorBorder: "#075B5D",
@@ -36,6 +36,7 @@ export const mainTheme = {
       colorTextPlaceholder: "#075B5D",
 
       zIndexPopup: 990,
+      controlHeight: 44,
     },
     DatePicker: {
       fontSize: 20,

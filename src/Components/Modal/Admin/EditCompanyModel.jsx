@@ -6,44 +6,40 @@ import {
   Form,
   Input,
   Modal,
-  Typography, 
+  Typography,
   Upload,
 } from "antd";
 import { FiUpload } from "react-icons/fi";
-import { useCreateCategoryMutation } from "../../../redux/api/adminApi";
+import { useUpdateCategoryMutation } from "../../../redux/api/adminApi";
 import { toast } from "sonner";
 
-const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
-  const [addCategoty] = useCreateCategoryMutation();
+const EditCompanyModel = ({ isAddCompanyModalVisible, handleCancel, data }) => {
+  const [addCategoty] = useUpdateCategoryMutation();
   const [form] = Form.useForm();
   const { Dragger } = Upload;
+
+  console.log(data);
+
   const onFinish = async (values) => {
     const toastId = toast.loading("Category is adding...");
-
-
+    const formData = new FormData();
     if (
       !values?.image?.fileList?.length ||
       !values?.image?.fileList[0]?.originFileObj
     ) {
-      return toast.error("Please select an image", {
-        id: toastId,
-        duration: 2000,
-      });
+      formData.append("image", data?.image);
+    } else {
+      formData.append("image", values.image.fileList[0].originFileObj);
     }
+
     if (!values?.name) {
-      return toast.error("Please selete a name", {
-        id: toastId,
-        duration: 2000,
-      });
+      formData.append("name", date?.name);
+    } else {
+      formData.append("name", values.name);
     }
-    const formData = new FormData();
-    formData.append("name", values.name);
-
-    formData.append("image", values.image.fileList[0].originFileObj);
-
 
     try {
-      const res = await addCategoty(formData).unwrap();
+      const res = await addCategoty({data:formData,id:data._id}).unwrap();
       console.log(res);
       toast.success("Category is added successfully", {
         id: toastId,
@@ -90,18 +86,9 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
             className="bg-transparent w-full text-start"
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Category Name
+              Category Namew
             </Typography.Title>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Category Name",
-                },
-              ]}
-              name="name"
-              className=" "
-            >
+            <Form.Item initialValue={data?.name} name="name" className=" ">
               <Input
                 placeholder="Enter Category Name"
                 className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
@@ -112,12 +99,7 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
               Category Image
             </Typography.Title>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Upload Category Image",
-                },
-              ]}
+         
               name="image"
               className=" w-full"
             >
@@ -152,4 +134,4 @@ const AddCategoriesModal = ({ isAddCompanyModalVisible, handleCancel }) => {
   );
 };
 
-export default AddCategoriesModal;
+export default EditCompanyModel;

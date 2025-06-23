@@ -5,7 +5,9 @@ import {
   ConfigProvider,
   Form,
   Input,
+  InputNumber,
   Modal,
+  Select,
   Typography,
   Upload,
 } from "antd";
@@ -29,10 +31,26 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
   };
 
   const onFinish = (values) => {
-    console.log("subscription:", { ...values, facilities });
-    form.resetFields();
-    setFacilities([""]); // Reset facilities
-    setIsAddSubscription(false);
+  
+    const data = {
+      name: values.name,
+      price: values.price,
+      duration: values.duration,
+      type: values.type,
+      features: facilities,
+    };
+
+
+    console.log("subscription:", data);
+
+
+
+
+
+
+    // form.resetFields();
+    // setFacilities([""]);
+    // setIsAddSubscription(false);
   };
 
   return (
@@ -81,24 +99,61 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               rules={[{ required: true, message: "Please enter Plan Price" }]}
               name="price"
             >
-              <Input
+              <InputNumber
+                controls={false}
                 placeholder="Enter Plan Price"
-                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                className="px-3 text-xl border !border-input-color !bg-transparent w-full"
               />
             </Form.Item>
-            <Typography.Title level={4} style={{ color: "#222222" }}>
-              Plan Duration
-            </Typography.Title>
-            <Form.Item
-              rules={[{ required: true, message: "Please enter Plan duration " }]}
-              name="duration"
-            >
-              <Input
-                placeholder="Enter Plan duration in months"
-                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-              />
-            </Form.Item>
-
+            <div className="flex sm:flex-row flex-col sm:gap-5">
+              <div className="flex-1">
+                <Typography.Title
+                  className="whitespace-nowrap"
+                  level={4}
+                  style={{ color: "#222222" }}
+                >
+                  Plan Type
+                </Typography.Title>
+                <Form.Item
+                  rules={[
+                    { required: true, message: "Please enter Plan duration " },
+                  ]}
+                  name="type"
+                >
+                  {/* <Input
+                    placeholder="Enter Plan duration in months"
+                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                  /> */}
+                  <Select
+                    placeholder="Plan type"
+                    className="text-xl "
+                    options={[
+       
+                      { value: "Day", label: "Day" },
+                      { value: "Week", label: "Week" },
+                      { value: "Month", label: "Month" },
+                      { value: "Year", label: "Year" },
+                    ]}
+                  />
+                </Form.Item>
+              </div>
+              <div className="flex-1">
+                <Typography.Title level={4} style={{ color: "#222222" }}>
+                  Plan Duration
+                </Typography.Title>
+                <Form.Item
+                  rules={[
+                    { required: true, message: "Please enter Plan duration " },
+                  ]}
+                  name="duration"
+                >
+                  <Input
+                    placeholder="Enter Plan duration in months"
+                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                  />
+                </Form.Item>
+              </div>
+            </div>
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Facilities
             </Typography.Title>

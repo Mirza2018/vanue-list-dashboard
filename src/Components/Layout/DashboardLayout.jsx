@@ -8,6 +8,7 @@ import {
   Outlet,
   ScrollRestoration,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import { Layout, Menu, Typography } from "antd";
 import Sider from "antd/es/layout/Sider";
@@ -15,10 +16,14 @@ import { Content, Header } from "antd/es/layout/layout";
 import { useEffect, useState } from "react";
 import { AllIcons, AllImages } from "../../../public/images/AllImages";
 import TopLoadingBar from "react-top-loading-bar";
+import { clearAuth } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const DashboardLayout = () => {
   const userRole = JSON.parse(localStorage.getItem("home_care_user")); // Parse the stored JSON string
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const pathSegment = location.pathname.split("/").pop();
 
@@ -312,16 +317,20 @@ const DashboardLayout = () => {
         />
       ),
       label: (
-        <div onClick={() => localStorage.removeItem("home_care_user")}>
-          <NavLink to="/signin">Logout</NavLink>
+        <div
+          onClick={() => {
+            dispatch(clearAuth());
+            navigate("/signin");
+          }}
+        >
+          Logout
         </div>
       ),
     },
   ];
 
   // Select the appropriate menu items based on user role
-  const menuItems =
-    userRole?.role === "admin" ? adminMenuItems : companyMenuItems;
+  const menuItems = adminMenuItems;
 
   const [progress, setProgress] = useState(0);
 

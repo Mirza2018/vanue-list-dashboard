@@ -2,72 +2,55 @@ import React, { useState } from "react";
 import { Button, ConfigProvider, Input, Modal, Table } from "antd";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { AllIcons, AllImages } from "../../../public/images/AllImages";
-const data = Array.from({ length: 8 }, (_, index) => ({
-  key: (index + 1).toString(),
-  // slNumber: "#1234",
-  userName: "Mirza",
-  categoryName: "toy",
-  categoryImage: "photo",
-}));
-const columns = [
-  {
-    title: "Category Serial",
-    dataIndex: "key",
-    key: "key",
-  },
-  {
-    title: "Category Name",
-    dataIndex: "categoryName",
-    key: "userName",
-  },
-  {
-    title: "Category Image",
-    dataIndex: "categoryImage",
-    key: "categoryImage",
-    render: () => (
-      <img
-        src={AllImages.userImage}
-        className="w-20 aspect-video object-cover"
-      />
-    ),
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: () => (
-      <div className="flex gap-2">
-        <Button
-          onClick={() => setBlockModal(true)}
-          type="text"
-          icon={<FaRegTrashCan />}
-          className="!text-red-600 !hover:text-red-800"
-        />
-      </div>
-    ),
-  },
-];
+import { useGetdeleteCategoryQuery } from "../../redux/api/adminApi";
+// const data = Array.from({ length: 8 }, (_, index) => ({
+//   key: (index + 1).toString(),
+//   // slNumber: "#1234",
+//   userName: "Mirza",
+//   categoryName: "toy",
+//   categoryImage: "photo",
+// }));
+
 const DeleteCategories = () => {
+
+
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetdeleteCategoryQuery();
+
+  const displayedData = data ?? currentData;
+
+
+
+
+
+
+console.log(displayedData);
+
+
+
+
+
   const [blockModal, setBlockModal] = useState(false);
   const columns = [
     {
       title: "Category Serial",
-      dataIndex: "key",
-      key: "key",
+      dataIndex: "_id",
+      key: "_id",
+      render: (text, _, index) => (
+        <div className="text-center">{index + 1}</div>
+      ),
     },
     {
       title: "Category Name",
-      dataIndex: "categoryName",
-      key: "userName",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Category Image",
-      dataIndex: "categoryImage",
-      key: "categoryImage",
-      render: () => (
-        <img
-          src={AllImages.doc2}
-          className="w-24 h-14 rounded-md object-cover"
-        />
+      dataIndex: "image",
+      key: "image",
+      render: (text) => (
+        <img src={text} className="w-24 h-14 rounded-md object-cover" />
       ),
     },
     {
@@ -89,10 +72,10 @@ const DeleteCategories = () => {
     <div>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={displayedData?.data}
         pagination={{
           pageSize: 8,
-          total: 250, // Total number of items
+          total: displayedData?.data?.length, // Total number of items
           showSizeChanger: true,
           pageSizeOptions: ["8", "60", "120"],
           defaultCurrent: 1,
