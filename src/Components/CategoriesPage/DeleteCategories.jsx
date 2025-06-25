@@ -72,10 +72,10 @@ console.log(displayedData);
     <div>
       <Table
         columns={columns}
-        dataSource={displayedData?.data}
+        dataSource={displayedData?.data?.result}
         pagination={{
           pageSize: 8,
-          total: displayedData?.data?.length, // Total number of items
+          total: displayedData?.data?.result?.length, // Total number of items
           showSizeChanger: true,
           pageSizeOptions: ["8", "60", "120"],
           defaultCurrent: 1,

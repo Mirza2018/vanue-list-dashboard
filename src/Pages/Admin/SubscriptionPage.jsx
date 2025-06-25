@@ -6,6 +6,8 @@ import { Switch } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { EditOutlined } from "@ant-design/icons";
 import { useGetSubscriptionQuery } from "../../redux/api/adminApi";
+import EditSubscribtion from "../../Components/Modal/Admin/EditSubscribtion";
+import DeleteSubscribtion from "../../Components/Modal/Admin/DeleteSubscribtion";
 const plans = [
   {
     name: "Basic",
@@ -32,9 +34,11 @@ const SubscriptionPage = () => {
 
   const displayedData = data ?? currentData;
 
-  console.log(displayedData);
-  
+  // console.log(displayedData);
+  const [subscriptionPaln, setsubscriptionPlan] = useState(null);
   const [isAddSubscription, setIsAddSubscription] = useState(false);
+  const [isEditSubscription, setIsEditSubscription] = useState(false);
+  const [isdeleteSubscription, setIsDeleteSubscription] = useState(false);
   return (
     <div
       className="bg-highlight-color min-h-[90vh]  rounded-xl"
@@ -79,14 +83,26 @@ const SubscriptionPage = () => {
               style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
             >
               <div className="flex items-center gap-2 justify-end">
-                <p>
+                {/* <p>
                   <Switch size="small" defaultChecked />
+                </p> */}
+                <p>
+                  <RiDeleteBin6Line
+                    onClick={() => {
+                      setIsDeleteSubscription(true);
+                      setsubscriptionPlan(plan);
+                    }}
+                    className="text-xl text-red-500 cursor-pointer"
+                  />
                 </p>
                 <p>
-                  <RiDeleteBin6Line className="text-xl text-secondary-color cursor-pointer" />
-                </p>
-                <p>
-                  <EditOutlined className="text-xl text-secondary-color cursor-pointer" />
+                  <EditOutlined
+                    onClick={() => {
+                      setIsEditSubscription(true);
+                      setsubscriptionPlan(plan);
+                    }}
+                    className="text-xl text-secondary-color cursor-pointer"
+                  />
                 </p>
               </div>
               <div>
@@ -157,6 +173,17 @@ const SubscriptionPage = () => {
               </div>
             </section>
           ))}
+
+          <EditSubscribtion
+            isAddSubscription={isEditSubscription}
+            setIsAddSubscription={setIsEditSubscription}
+            plan={subscriptionPaln}
+          />
+          <DeleteSubscribtion
+            isAddSubscription={isdeleteSubscription}
+            setIsAddSubscription={setIsDeleteSubscription}
+            plan={subscriptionPaln}
+          />
         </div>
       </main>
     </div>

@@ -9,56 +9,59 @@ import {
   Modal,
   Select,
   Typography,
-  Upload,
 } from "antd";
-import { FiUpload } from "react-icons/fi";
-import { useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { useCreateSubscriptionMutation } from "../../../redux/api/adminApi";
+import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import { useUpdateSubscriptionMutation } from "../../../redux/api/adminApi";
 import { toast } from "sonner";
 
-const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
-  const [createSubscription] = useCreateSubscriptionMutation();
+const EditSubscribtion = ({
+  isAddSubscription,
+  setIsAddSubscription,
+  plan,
+}) => {
+  const [editSubscription] = useUpdateSubscriptionMutation();
   const [form] = Form.useForm();
-  const { Dragger } = Upload;
-  const [facilities, setFacilities] = useState([""]); // Array to store facility inputs
 
-  const addFacilityInput = () => {
-    setFacilities([...facilities, ""]);
-  };
-
-  const handleFacilityChange = (index, value) => {
-    const newFacilities = [...facilities];
-    newFacilities[index] = value;
-    setFacilities(newFacilities);
-  };
+  useEffect(() => {
+    if (plan) {
+      form.setFieldsValue({
+        name: plan.name,
+        price: plan.price,
+        duration: plan.duration,
+        type: plan.type,
+        facilities: plan.features || [""], // Ensure at least one empty facility
+      });
+    }
+  }, [plan, form]);
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Subscription is creating...");
+    const toastId = toast.loading("Subscription is editing...");
     const data = {
       name: values.name,
       price: values.price,
       duration: values.duration,
       type: values.type,
-      features: facilities,
+      features: values.facilities.filter((f) => f), // Remove empty strings
     };
 
-    console.log("subscription:", data);
+    console.log(data);
 
+    //   return
     try {
-      const res = await createSubscription(data).unwrap();
-      console.log(res);
-      toast.success("Subscription create Successfully", {
+      const res = await editSubscription({
+        data: data,
+        id: plan?._id,
+      }).unwrap();
+      toast.success("Subscription edited successfully", {
         id: toastId,
         duration: 2000,
       });
       form.resetFields();
-      setFacilities([""]);
       setIsAddSubscription(false);
     } catch (error) {
-      console.log(error);
       toast.error(
-        error?.data?.message || "There is an problem ,please try later",
+        error?.data?.message || "There was a problem, please try later",
         {
           id: toastId,
           duration: 2000,
@@ -97,8 +100,8 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               Plan Name
             </Typography.Title>
             <Form.Item
-              rules={[{ required: true, message: "Please enter Plan Name" }]}
               name="name"
+              rules={[{ required: true, message: "Please enter Plan Name" }]}
             >
               <Input
                 placeholder="Enter Plan Name"
@@ -110,8 +113,8 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
               Plan Price
             </Typography.Title>
             <Form.Item
-              rules={[{ required: true, message: "Please enter Plan Price" }]}
               name="price"
+              rules={[{ required: true, message: "Please enter Plan Price" }]}
             >
               <InputNumber
                 controls={false}
@@ -119,28 +122,21 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
                 className="px-3 text-xl border !border-input-color !bg-transparent w-full"
               />
             </Form.Item>
+
             <div className="flex sm:flex-row flex-col sm:gap-5">
               <div className="flex-1">
-                <Typography.Title
-                  className="whitespace-nowrap"
-                  level={4}
-                  style={{ color: "#222222" }}
-                >
+                <Typography.Title level={4} style={{ color: "#222222" }}>
                   Plan Type
                 </Typography.Title>
                 <Form.Item
-                  rules={[
-                    { required: true, message: "Please enter Plan duration " },
-                  ]}
                   name="type"
+                  rules={[
+                    { required: true, message: "Please select Plan Type" },
+                  ]}
                 >
-                  {/* <Input
-                    placeholder="Enter Plan duration in months"
-                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-                  /> */}
                   <Select
                     placeholder="Plan type"
-                    className="text-xl "
+                    className="text-xl"
                     options={[
                       { value: "Day", label: "Day" },
                       { value: "Week", label: "Week" },
@@ -155,44 +151,78 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
                   Plan Duration
                 </Typography.Title>
                 <Form.Item
-                  rules={[
-                    { required: true, message: "Please enter Plan duration " },
-                  ]}
                   name="duration"
+                  rules={[
+                    { required: true, message: "Please enter Plan duration" },
+                  ]}
                 >
                   <InputNumber
                     controls={false}
-                    placeholder="Enter Plan duration in months"
+                    placeholder="Enter Plan duration"
                     className="w-full px-3 text-xl border !border-input-color !bg-transparent"
                   />
                 </Form.Item>
               </div>
             </div>
+
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Facilities
             </Typography.Title>
-            {facilities.map((facility, index) => (
-              <Form.Item
-                key={index}
-                name={`facility-${index}`}
-                rules={[{ required: true, message: "Please enter a facility" }]}
-              >
-                <Input
-                  placeholder="Enter Plan Facility"
-                  value={facility}
-                  onChange={(e) => handleFacilityChange(index, e.target.value)}
-                  className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-                />
-              </Form.Item>
-            ))}
-            <Button
-              type="dashed"
-              onClick={addFacilityInput}
-              icon={<PlusOutlined />}
-              className="w-full mb-4"
+            <Form.List
+              name="facilities"
+              rules={[
+                {
+                  validator: async (_, facilities) => {
+                    if (!facilities || facilities.length < 1) {
+                      return Promise.reject(
+                        new Error("At least one facility is required")
+                      );
+                    }
+                  },
+                },
+              ]}
             >
-              Add another Facility
-            </Button>
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <div key={key} className="flex items-center gap-2">
+                      <Form.Item
+                        {...restField}
+                        name={name}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter a facility",
+                          },
+                        ]}
+                        className="flex-1"
+                      >
+                        <Input
+                          placeholder="Enter Plan Facility"
+                          className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                        />
+                      </Form.Item>
+                      {fields.length > 1 && (
+                        <Button
+                          type="text"
+                          icon={<MinusCircleOutlined />}
+                          onClick={() => remove(name)}
+                          className="text-red-500"
+                        />
+                      )}
+                    </div>
+                  ))}
+                  <Button
+                    type="dashed"
+                    onClick={() => add()}
+                    icon={<PlusOutlined />}
+                    className="w-full mb-4"
+                  >
+                    Add another Facility
+                  </Button>
+                </>
+              )}
+            </Form.List>
 
             <Form.Item>
               <Button
@@ -209,4 +239,4 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
   );
 };
 
-export default AddSubscribetionModal;
+export default EditSubscribtion;

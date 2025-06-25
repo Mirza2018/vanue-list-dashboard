@@ -63,7 +63,7 @@ export const adminApi = baseApi.injectEndpoints({
 
     updateSubscription: build.mutation({
       query: (data) => ({
-        url: `/subscription/${id}/update`,
+        url: `/subscription/${data?.id}/update`,
         method: "PATCH",
         body: data.data,
       }),
@@ -87,5 +87,8 @@ export const {
   useGetdeleteCategoryQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
-  useGetSubscriptionQuery
+  useGetSubscriptionQuery,
+  useCreateSubscriptionMutation,
+  useDeleteSubscriptionMutation,
+  useUpdateSubscriptionMutation
 } = adminApi;

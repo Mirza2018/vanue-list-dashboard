@@ -109,7 +109,7 @@ const ActiveCategories = () => {
       <div>
         <Table
           columns={columns}
-          dataSource={displayedData?.data}
+          dataSource={displayedData?.data?.result}
           pagination={{
             pageSize: 8,
             total: displayedData?.data?.length,
