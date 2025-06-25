@@ -77,6 +77,47 @@ export const adminApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.subscription],
     }),
 
+    // venue
+    getVenue: build.query({
+      query: () => ({
+        url: `/venue`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.venue],
+    }),
+    deleteVenue: build.mutation({
+      query: (id) => ({
+        url: `/subscription/${id}/delete`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.venue],
+    }),
+    pendingVenue: build.query({
+      query: () => ({
+        url: `/venue/pending`,
+        method: "GET",
+      }),
+      invalidatesTags: [tagTypes.venue],
+    }),
+
+    /// Customers
+
+    getCustomers: build.query({
+      query: () => ({
+        url: `/users/all`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.customer],
+    }),
+
+    deleteCustomers: build.mutation({
+      query: (id) => ({
+        url: `/subscription/${id}/delete`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.venue],
+    }),
+
     //end
   }),
 });
@@ -87,8 +128,14 @@ export const {
   useGetdeleteCategoryQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
+  //sub
   useGetSubscriptionQuery,
   useCreateSubscriptionMutation,
   useDeleteSubscriptionMutation,
-  useUpdateSubscriptionMutation
+  useUpdateSubscriptionMutation,
+  //venu
+  useGetVenueQuery,
+  usePendingVenueQuery,
+  // Customers
+  useGetCustomersQuery,
 } = adminApi;

@@ -3,6 +3,7 @@ import { Button, Space, Table, Tooltip } from "antd";
 import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
+import { getImageUrl } from "../../../redux/getBaseUrl";
 
 const AllVenseTable = ({
   data,
@@ -12,28 +13,29 @@ const AllVenseTable = ({
   pageSize = 0,
 }) => {
   const columns = [
-    {
-      title: "S.lD",
-      dataIndex: "sId",
-      key: "sId",
-      responsive: ["md"],
-    },
+    // {
+    //   title: "S.lD",
+    //   dataIndex: "sId",
+    //   key: "sId",
+    //   responsive: ["md"],
+    // },
     {
       title: "Venue Name",
-      dataIndex: "venueName",
-      key: "venueName",
-      render: (text) => (
+      dataIndex: "name",
+      key: "name",
+      render: (text, record) => (
         <div className="flex items-center gap-2">
           <img
-            src={AllImages.kfc}
+            src={getImageUrl() + record?.profileImage}
             alt={text}
             className="w-8 h-8 rounded-full"
           />
+          {/* {console.log(getImageUrl() + record?.profileImage)} */}
+
           <p>{text}</p>
         </div>
       ),
     },
-
 
     {
       title: "Email",
@@ -42,8 +44,8 @@ const AllVenseTable = ({
     },
     {
       title: "Address",
-      dataIndex: "address",
-      key: "address",
+      dataIndex: "postalAddress",
+      key: "postalAddress",
     },
 
     {

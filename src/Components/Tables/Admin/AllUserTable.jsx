@@ -13,19 +13,13 @@ const AllUserTable = ({
 }) => {
   const columns = [
     {
-      title: "S.lD",
-      dataIndex: "id",
-      key: "id",
-      responsive: ["md"],
-    },
-    {
       title: "Full Name",
-      dataIndex: "userName",
-      key: "userName",
-      render: (text) => (
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (text, record) => (
         <div className="flex items-center gap-2">
           <img
-            src={AllImages.yellow}
+            src={record?.profileImage}
             alt={text}
             className="w-8 h-8 rounded-full"
           />
@@ -45,9 +39,9 @@ const AllUserTable = ({
       key: "email",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Country",
+      dataIndex: "country",
+      key: "country",
     },
 
     {

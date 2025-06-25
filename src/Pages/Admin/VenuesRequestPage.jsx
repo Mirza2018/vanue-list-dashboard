@@ -4,24 +4,19 @@ import React, { useEffect, useState } from "react";
 import VenuesRequestSingle from "../../Components/VenuesRequest/VenuesRequestSingle";
 import axios from "axios";
 import { FaChevronLeft } from "react-icons/fa";
+import {  usePendingVenueQuery } from "../../redux/api/adminApi";
 
 const VenuesRequestPage = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/VenseData.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    usePendingVenueQuery();
+  const displayedData = data ?? currentData;
   console.log(data);
+  
+
+  
+
+
+
 
   return (
     <div className="bg-white rounded-tl-xl rounded-tr-xl h-full">
@@ -38,8 +33,8 @@ const VenuesRequestPage = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 p-10">
-        {data.map((singleData) => (
-          <VenuesRequestSingle data={singleData} key={singleData?.sId} />
+        {displayedData?.data?.map((singleData) => (
+          <VenuesRequestSingle data={singleData} key={singleData?._Id} />
         ))}
       </div>
     </div>

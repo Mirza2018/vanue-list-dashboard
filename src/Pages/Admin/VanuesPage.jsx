@@ -14,13 +14,17 @@ import BlockUserModal from "../../Components/Modal/Admin/BlockUserModal";
 import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal";
 import ViewVenseModal from "../../Components/Modal/Admin/ViewVenseModal";
 import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
-
+import { useGetVenueQuery } from "../../redux/api/adminApi";
+ 
 const VanuesPage = () => {
+   const { data, currentData, isLoading, isFetching, isSuccess } =
+     useGetVenueQuery();
+    const displayedData = data ?? currentData;
   //* Store Search Value
   const [searchText, setSearchText] = useState("");
 
   //* Use to set user
-  const [data, setData] = useState([]);
+  const [dat, setData] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -126,17 +130,15 @@ const VanuesPage = () => {
       {/* Table  */}
       <div className="px-10 py-10">
         <AllVenseTable
-          data={filteredVenueData}
-          loading={loading}
+          data={displayedData?.data}
+          loading={isLoading}
           showVenueViewModal={showVenueViewModal}
           showVenueBlockModal={showVenueBlockModal}
           pageSize={8}
         />
       </div>
 
-          {/* Modals */}
-          
-
+      {/* Modals */}
 
       {/* <AddCategoriesModal
         isAddVenueModalVisible={isAddVenueModalVisible}

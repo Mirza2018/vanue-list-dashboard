@@ -3,6 +3,7 @@ import { Button, Modal, Tooltip } from "antd";
 import { AllImages } from "../../../../public/images/AllImages";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "../../../redux/getBaseUrl";
 
 const ViewVenseModal = ({
   isVenueViewModalVisible,
@@ -11,6 +12,8 @@ const ViewVenseModal = ({
   handleVenueBlock,
   showVenueBlockModal,
 }) => {
+  console.log(currentVenueRecord);
+
   return (
     <Modal
       title={
@@ -33,12 +36,12 @@ const ViewVenseModal = ({
           <div className="flex justify-center items-center p-4">
             {/* Avatar */}
             <img
-              src={AllImages.kfc}
-              alt={currentVenueRecord?.userName}
+              src={getImageUrl() + currentVenueRecord?.profileImage}
+              alt={currentVenueRecord?.name}
               className="w-12 h-12 sm:w-16  sm:h-16 rounded-lg mr-4"
             />
             <div className="text-xl sm:text-2xl font-bold text-secondary-color">
-              {currentVenueRecord?.venueName}
+              {currentVenueRecord?.name}
             </div>
           </div>
 
@@ -47,7 +50,7 @@ const ViewVenseModal = ({
             <div className="text-lg w-[90%] mx-auto">
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
                 <div className="font-bold">Name:</div>
-                <div>{currentVenueRecord?.venueName}</div>
+                <div>{currentVenueRecord?.name}</div>
               </div>
 
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
@@ -60,23 +63,23 @@ const ViewVenseModal = ({
               </div>
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
                 <div className="font-bold">Adress:</div>
-                <div>{currentVenueRecord?.address}</div>
+                <div>{currentVenueRecord?.postalAddress}</div>
               </div>
               <div className="flex items-center gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Bio:</div>
-                <div>{currentVenueRecord?.bio}</div>
+                <div className="font-bold">Description:</div>
+                <div>{currentVenueRecord?.description}</div>
               </div>
             </div>
           </div>
         </div>
-        <button
+        {/* <button
           onClick={() => (
             handleVenueBlock(currentVenueRecord), showVenueBlockModal()
           )}
           className="bg-secondary-color text-primary-color py-3 text-xl font-semibold rounded-lg mt-8 w-full"
         >
           Block
-        </button>
+        </button> */}
       </div>
     </Modal>
   );

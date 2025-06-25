@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
 
-const BlockUserModal = ({
+const BlockUserModal = ({ 
   isCompanyBlockModalVisible,
   handleCompanyBlock,
   handleCancel,

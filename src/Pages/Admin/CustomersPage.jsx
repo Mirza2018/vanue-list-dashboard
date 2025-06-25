@@ -15,6 +15,8 @@ import AllCustomers from "../../Components/CustomerPage/AllCustomers";
 import AccountRecoveryRequests from "../../Components/CustomerPage/AccountRecoveryRequests";
 
 const CustomersPage = () => {
+
+  
   //* Store Search Value
   const [isCustomer, setIsCustomer] = useState(true);
   const [searchText, setSearchText] = useState("");

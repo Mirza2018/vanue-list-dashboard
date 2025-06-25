@@ -17,7 +17,7 @@ const ViewUserModal = ({
         <div className="pt-7 text-center">
           <h2 className="text-secondary-color text-4xl ">User Details</h2>
           <p className="text-[#989898] mt-3 text-xl">
-            See all details about {currentCompanyRecord?.userName}
+            See all details about {currentCompanyRecord?.fullName}
           </p>
         </div>
       }
@@ -33,8 +33,8 @@ const ViewUserModal = ({
           <div className="flex justify-center items-center p-4">
             {/* Avatar */}
             <img
-              src={AllImages.profile}
-              alt={currentCompanyRecord?.userName}
+              src={currentCompanyRecord?.profileImage}
+              alt={currentCompanyRecord?.fullName}
               className="w-12 h-12 sm:w-16  sm:h-16 rounded-lg mr-4"
             />
             <div className="text-xl sm:text-2xl font-bold text-secondary-color">
@@ -47,7 +47,7 @@ const ViewUserModal = ({
             <div className="text-lg w-[90%] mx-auto">
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
                 <div className="font-bold">Name:</div>
-                <div>{currentCompanyRecord?.userName}</div>
+                <div>{currentCompanyRecord?.fullName}</div>
               </div>
 
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
@@ -55,12 +55,12 @@ const ViewUserModal = ({
                 <div>{currentCompanyRecord?.email}</div>
               </div>
               <div className="sm:flex gap-1 sm:gap-2 mb-2">
-                <div className="font-bold">Adress:</div>
-                <div>{currentCompanyRecord?.address}</div>
+                <div className="font-bold">Country:</div>
+                <div>{currentCompanyRecord?.country}</div>
               </div>
               <div className="flex items-center gap-1 sm:gap-2 mb-2">
                 <div className="font-bold">Joining Date:</div>
-                <div>{currentCompanyRecord?.joiningDate}</div>
+                <div>{currentCompanyRecord?.createdAt?.split("T")[0]}</div>
               </div>
             </div>
           </div>

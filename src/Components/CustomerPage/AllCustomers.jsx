@@ -4,14 +4,16 @@ import AddCategoriesModal from "../Modal/Admin/AddCategoriesModal";
 import BlockUserModal from "../Modal/Admin/BlockUserModal";
 import ViewUserModal from "../Modal/Admin/ViewUserModal";
 import AllUserTable from "../Tables/Admin/AllUserTable";
+import { useGetCustomersQuery } from "../../redux/api/adminApi";
 
 //* Modal Table
 
-
 const AllCustomers = ({ setSearchText, searchText }) => {
-  const [data, setData] = useState([]);
-//   const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(true);
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetCustomersQuery();
+  const displayedData = data ?? currentData;
+
+
 
   //* It's Use to Show Modal
   const [isCompanyViewModalVisible, setIsCompanyViewModalVisible] =
@@ -28,20 +30,7 @@ const AllCustomers = ({ setSearchText, searchText }) => {
   //* It's Use to Set Seclected User to Block and view
   const [currentCompanyRecord, setCurrentCompanyRecord] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchData();
-  }, []);
   const filteredCompanyData = useMemo(() => {
     if (!searchText) return data;
     return data.filter((item) =>
@@ -85,8 +74,8 @@ const AllCustomers = ({ setSearchText, searchText }) => {
     <div>
       <div className="px-10 py-10">
         <AllUserTable
-          data={filteredCompanyData}
-          loading={loading}
+          data={displayedData?.data}
+          loading={isLoading}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
           pageSize={8}

@@ -20,7 +20,7 @@ const CategoriesPage = () => {
 
   const [searchText, setSearchText] = useState("");
   const columns = [
-    {
+    { 
       title: "Category Serial",
       dataIndex: "key",
       key: "key",

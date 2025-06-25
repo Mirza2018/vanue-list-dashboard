@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
+import { toast } from "sonner";
 
 const BlockVenseModal = ({
   isVenueBlockModalVisible,
@@ -7,6 +8,33 @@ const BlockVenseModal = ({
   handleCancel,
   currentVenueRecord,
 }) => {
+
+  console.log(currentVenueRecord)
+    // const [deleteSubscription] = useDeleteSubscriptionMutation();
+  
+    // const onFinish = async () => {
+    //   const toastId = toast.loading("Subscription is deleting...");
+  
+    //   //   return
+    //   try {
+    //     const res = await deleteSubscription(plan?._id).unwrap();
+    //     toast.success("Subscription delete successfully", {
+    //       id: toastId,
+    //       duration: 2000,
+    //     });
+  
+    //     setIsAddSubscription(false);
+    //   } catch (error) {
+    //     toast.error(
+    //       error?.data?.message || "There was a problem, please try later",
+    //       {
+    //         id: toastId,
+    //         duration: 2000,
+    //       }
+    //     );
+    //   }
+    // };
+  
   return (
     <Modal
       // title="Confirm Delete"

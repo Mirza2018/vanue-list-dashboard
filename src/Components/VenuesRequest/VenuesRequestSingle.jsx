@@ -3,7 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AllImages } from "../../../public/images/AllImages";
 
-const VenuesRequestSingle = ({data}) => {
+const VenuesRequestSingle = ({ data }) => {
+  console.log(data);
+  
   return (
     <div className="flex  justify-center items-center gap-2">
       <img src={AllImages.kfc} alt="" className="w-20" />
