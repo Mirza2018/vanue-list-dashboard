@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Space, Table, Tooltip } from "antd";
 import { GoEye } from "react-icons/go";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 
 const AllUserTable = ({
@@ -46,22 +46,31 @@ const AllUserTable = ({
 
     {
       title: "Action",
-      key: "action",
-      render: (_, record) => (
+      key: "isBlocked",
+      render: (text, record) => (
         <>
           <Space size="middle">
             {/* Block User Tooltip */}
-            <Tooltip placement="left" title="Block this User">
+            <Tooltip placement="left" title="">
               <Button
                 className="!p-0"
                 style={{
                   background: "#FFFFFF",
                   border: "none",
-                  color: "#C50000",
                 }}
                 onClick={() => showCompanyBlockModal(record)}
               >
-                <RiDeleteBin6Line style={{ fontSize: "24px" }} />
+                {/* {console.log(record?.isBlocked)} */}
+
+                {record?.isBlocked == true ? (
+                  <RiDeviceRecoverLine
+                    style={{ fontSize: "26px", color: "#ff9966" }}
+                  />
+                ) : (
+                  <RiDeleteBin6Line
+                    style={{ fontSize: "24px", color: "#C50000" }}
+                  />
+                )}
               </Button>
             </Tooltip>
             {/* View Details Tooltip */}

@@ -45,7 +45,7 @@ const AllCustomers = ({ setSearchText, searchText }) => {
   const showAddCompanyModal = () => {
     setIsAddCompanyModalVisible(true);
   };
-
+ 
   const showCompanyViewModal = (record) => {
     setCurrentCompanyRecord(record);
     setIsCompanyViewModalVisible(true);

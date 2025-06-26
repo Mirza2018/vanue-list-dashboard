@@ -87,7 +87,7 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <AdminDashboard />,
       },
-      {
+      { 
         path: "customers",
         element: <CustomersPage />,
       },

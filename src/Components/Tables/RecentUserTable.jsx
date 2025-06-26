@@ -12,12 +12,11 @@ import AddCompanyModal from "../Modal/Admin/AddCategoriesModal";
 import ViewCompanyModal from "../Modal/Admin/ViewUserModal";
 import BlockCompanyModal from "../Modal/Admin/BlockUserModal";
 
-const RecentUserTable = () => {
+const RecentUserTable = ({ data, isLoading }) => {
   //* Store Search Value
   const [searchText, setSearchText] = useState("");
 
   //* Use to set user
-  const [data, setData] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -35,21 +34,6 @@ const RecentUserTable = () => {
 
   //* It's Use to Set Seclected User to Block and view
   const [currentCompanyRecord, setCurrentCompanyRecord] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const filteredCompanyData = useMemo(() => {
     if (!searchText) return data;
@@ -107,8 +91,8 @@ const RecentUserTable = () => {
       {/* Table  */}
       <div className="">
         <AllCompanyTable
-          data={filteredCompanyData}
-          loading={loading}
+          data={data}
+          loading={isLoading}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
           pageSize={2}

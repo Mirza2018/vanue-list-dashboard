@@ -107,7 +107,7 @@ const VanuesPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Customers List
+            Venue List
           </p>
           <div className="flex gap-4 items-center">
             <ConfigProvider

@@ -1,12 +1,45 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
+import { toast } from "sonner";
+import { useBlockCustomersMutation } from "../../../redux/api/adminApi";
 
-const BlockUserModal = ({ 
+const BlockUserModal = ({
   isCompanyBlockModalVisible,
   handleCompanyBlock,
   handleCancel,
   currentCompanyRecord,
 }) => {
+  const [blockUser] = useBlockCustomersMutation();
+  // console.log(currentCompanyRecord?._id);
+
+  const handleBlock = async (block) => {
+    const toastId = toast.loading(
+      `Customer is ${currentCompanyRecord?.isBlocked ? "Unblock" : "block"}ing...`
+    );
+
+    console.log(currentCompanyRecord?._id, block);
+
+    // return;
+    try {
+      const res = await blockUser({
+        id: currentCompanyRecord?._id,
+        action: block,
+      }).unwrap();
+      console.log(res);
+      toast.success(res?.message || "Customer is block successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      handleCancel();
+    } catch (error) {
+      console.log(error);
+      toast.error("There is an problem, please try later", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  };
+
   return (
     <Modal
       // title="Confirm Delete"
@@ -39,19 +72,31 @@ const BlockUserModal = ({
           >
             Cancel
           </Button>
-          <Button
-            className="text-xl py-5 px-8"
-            type="primary"
-            style={{ background: "#CE0000" }}
-            onClick={() => handleCompanyBlock(currentCompanyRecord)}
-          >
-            Block
-          </Button>
+          {currentCompanyRecord?.isBlocked ? (
+            <Button
+              className="text-xl py-5 px-8"
+              type="primary"
+              style={{ background: "#ff9966" }}
+              onClick={() => handleBlock("unblock")}
+            >
+              UnBlock
+            </Button>
+          ) : (
+            <Button
+              className="text-xl py-5 px-8"
+              type="primary"
+              style={{ background: "#CE0000" }}
+              onClick={() => handleBlock("block")}
+            >
+              Block
+            </Button>
+          )}
         </div>
       }
     >
       <p className="text-3xl font-semibold pt-10 pb-4 text-center text-black">
-        Do you want to block this user?
+        Do you want to {currentCompanyRecord?.isBlocked ? "Unblock" : "block"}{" "}
+        this user?
       </p>
     </Modal>
   );

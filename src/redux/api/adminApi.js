@@ -34,6 +34,14 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.category],
     }),
+    recoveryCategory: build.mutation({
+      query: (data) => ({
+        url: `/category/recovery/${data.id}`,
+        method: "PATCH",
+        // body: data.data,
+      }),
+      invalidatesTags: [tagTypes.category],
+    }),
     updateCategory: build.mutation({
       query: (data) => ({
         url: `/category/${data.id}`,
@@ -102,6 +110,13 @@ export const adminApi = baseApi.injectEndpoints({
 
     /// Customers
 
+    getCustomersOverview: build.query({
+      query: () => ({
+        url: `/users/all-overview`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.customer],
+    }),
     getCustomers: build.query({
       query: () => ({
         url: `/users/all`,
@@ -110,12 +125,12 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.customer],
     }),
 
-    deleteCustomers: build.mutation({
-      query: (id) => ({
-        url: `/subscription/${id}/delete`,
-        method: "DELETE",
+    blockCustomers: build.mutation({
+      query: (data) => ({
+        url: `/users/${data.action}/${data?.id}`,
+        method: "PATCH",
       }),
-      invalidatesTags: [tagTypes.venue],
+      invalidatesTags: [tagTypes.customer],
     }),
 
     //end
@@ -128,6 +143,7 @@ export const {
   useGetdeleteCategoryQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
+  useRecoveryCategoryMutation,
   //sub
   useGetSubscriptionQuery,
   useCreateSubscriptionMutation,
@@ -138,4 +154,6 @@ export const {
   usePendingVenueQuery,
   // Customers
   useGetCustomersQuery,
+  useBlockCustomersMutation,
+  useGetCustomersOverviewQuery
 } = adminApi;

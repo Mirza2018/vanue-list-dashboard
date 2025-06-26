@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Button, ConfigProvider, Input, Modal, Table } from "antd";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { AllIcons, AllImages } from "../../../public/images/AllImages";
-import { useGetdeleteCategoryQuery } from "../../redux/api/adminApi";
+import {
+  useGetdeleteCategoryQuery,
+  useRecoveryCategoryMutation,
+} from "../../redux/api/adminApi";
+import { toast } from "sonner";
 // const data = Array.from({ length: 8 }, (_, index) => ({
 //   key: (index + 1).toString(),
 //   // slNumber: "#1234",
@@ -12,25 +16,34 @@ import { useGetdeleteCategoryQuery } from "../../redux/api/adminApi";
 // }));
 
 const DeleteCategories = () => {
-
-
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useGetdeleteCategoryQuery();
 
   const displayedData = data ?? currentData;
-
-
-
-
-
-
-console.log(displayedData);
-
-
-
-
+  const [recovaryCategory] = useRecoveryCategoryMutation();
+  const [categoryId, setCategoryId] = useState(null);
 
   const [blockModal, setBlockModal] = useState(false);
+
+  const handleRecovery = async () => {
+    const toastId = toast.loading("Category is recovering...");
+    try {
+      const res = await recovaryCategory({id:categoryId}).unwrap();
+      console.log(res);
+      toast.success("Category is recover successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      setBlockModal(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("There is an problem, please try later", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  };
+
   const columns = [
     {
       title: "Category Serial",
@@ -56,10 +69,13 @@ console.log(displayedData);
     {
       title: "Action",
       key: "action",
-      render: () => (
+      render: (_, record) => (
         <div className="flex gap-2">
           <Button
-            onClick={() => setBlockModal(true)}
+            onClick={() => {
+              setBlockModal(true);
+              setCategoryId(record?._id);
+            }}
             type="text"
             icon={<img src={AllIcons.recover} />}
             // className="!text-red-600 !hover:text-red-800"
@@ -120,7 +136,7 @@ console.log(displayedData);
               className="text-xl py-5 px-8"
               type="primary"
               style={{ background: "#075B5D" }}
-              onClick={() => setBlockModal(false)}
+              onClick={handleRecovery}
             >
               Yes
             </Button>

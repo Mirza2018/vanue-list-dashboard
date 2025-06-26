@@ -47,7 +47,7 @@ const EditProfile = () => {
   };
   const dobDate = new Date(displayedData?.data?.dateOfBirth).toDateString();
   const onFinish = async (values) => {
-    const toastId = toast.loading("...");
+    const toastId = toast.loading("Updateing user profile...");
 
     const data = { ...values };
 
@@ -66,7 +66,7 @@ const EditProfile = () => {
     try {
       const res = await updateProfile(formData).unwrap();
       console.log(res);
-      toast.success("accept Successfully", {
+      toast.success("Update user profile successfully", {
         id: toastId,
         duration: 2000,
       });
