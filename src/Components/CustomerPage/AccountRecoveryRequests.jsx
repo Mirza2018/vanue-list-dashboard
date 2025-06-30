@@ -6,20 +6,28 @@ import ViewAccountRecovery from "../Modal/Admin/ViewAccountRecovery";
 import RejectAccountRecovery from "../Modal/Admin/RejectAccountRecovery";
 import AproveAccountModal from "../Modal/Admin/AproveAccountModal";
 import { App } from "antd";
+import {
+  useGetRecoveryAccountQuery,
+  useRecoveryAccountRequestMutation,
+} from "../../redux/api/adminApi";
+import { toast } from "sonner";
 
 //* Modal Table
 
 const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
-  const [data, setData] = useState([]);
-  //   const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(true);
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetRecoveryAccountQuery();
+
+  const displayedData = data ?? currentData;
+  const [recoveryAccountRequest] = useRecoveryAccountRequestMutation();
+
   const [approveAccount, setApproveAccount] = useState(false);
   const [approveAccountRecord, setApproveAccountRecord] = useState(null);
 
   const ApproveAccountRecord = (record) => {
     setApproveAccount(true);
-    setApproveAccountRecord(record)
-   }
+    setApproveAccountRecord(record);
+  };
 
   //* It's Use to Show Modal
   const [isCompanyViewModalVisible, setIsCompanyViewModalVisible] =
@@ -36,20 +44,6 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
   //* It's Use to Set Seclected User to Block and view
   const [currentCompanyRecord, setCurrentCompanyRecord] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
   const filteredCompanyData = useMemo(() => {
     if (!searchText) return data;
     return data.filter((item) =>
@@ -81,20 +75,41 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
     setIsAddCompanyModalVisible(false);
   };
 
-  const handleCompanyBlock = (data) => {
-    console.log("Blocked Company:", {
-      id: data?.id,
-      companyName: data?.companyName,
-    });
-    setIsCompanyViewModalVisible(false);
-    setIsCompanyBlockModalVisible(false);
+  const handleCompanyBlock = async () => {
+    const toastId = toast.loading("Request rejecting...");
+    const data = {
+      status: "rejected",
+    };
+    try {
+      const res = await recoveryAccountRequest({
+        id: data?._id,
+        data: data,
+      }).unwrap();
+      console.log(res);
+      toast.success("Request reject Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      setIsCompanyViewModalVisible(false);
+      setIsCompanyBlockModalVisible(false);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem ,please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
   };
   return (
     <div>
       <div className="px-10 py-10">
         <AccountRecoveryTable
-          data={filteredCompanyData}
-          loading={loading}
+          data={displayedData?.data?.result}
+          loading={isLoading}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
           setapproveAccount={setApproveAccount}

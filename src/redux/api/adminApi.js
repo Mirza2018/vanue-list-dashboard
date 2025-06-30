@@ -5,9 +5,10 @@ export const adminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     // Category
     getCategory: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `/category`,
         method: "GET",
+        params: params,
       }),
       providesTags: [tagTypes.category],
     }),
@@ -93,10 +94,10 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.venue],
     }),
-    deleteVenue: build.mutation({
-      query: (id) => ({
-        url: `/subscription/${id}/delete`,
-        method: "DELETE",
+    venueAction: build.mutation({
+      query: (data) => ({
+        url: `/venue/${data.action}/${data.id}`,
+        method: "PATCH",
       }),
       invalidatesTags: [tagTypes.venue],
     }),
@@ -104,6 +105,14 @@ export const adminApi = baseApi.injectEndpoints({
       query: () => ({
         url: `/venue/pending`,
         method: "GET",
+      }),
+      providesTags: [tagTypes.venue],
+    }),
+    createVenue: build.mutation({
+      query: (data) => ({
+        url: `/venue/admin/create`,
+        method: "POST",
+        body: data,
       }),
       invalidatesTags: [tagTypes.venue],
     }),
@@ -117,10 +126,19 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.customer],
     }),
-    getCustomers: build.query({
+    getRecoveryAccount: build.query({
       query: () => ({
+        url: `/recovery/account`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.customer],
+    }),
+
+    getCustomers: build.query({
+      query: (params) => ({
         url: `/users/all`,
         method: "GET",
+        params: params,
       }),
       providesTags: [tagTypes.customer],
     }),
@@ -132,7 +150,44 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.customer],
     }),
+    recoveryAccountRequest: build.mutation({
+      query: (data) => {
+        // console.log("data ",data);
+        // return
+        return {
+          url: `/recovery/update/${data?.id}`,
+          method: "PATCH",
+          body: data?.data,
+        };
+      },
+      invalidatesTags: [tagTypes.customer],
+    }),
 
+    ///recommented content
+    getAcceptdRecommentedContent: build.query({
+      query: (params) => ({
+        url: `/recommented/accepted`,
+        method: "GET",
+        params: params,
+      }),
+      providesTags: [tagTypes.recommented],
+    }),
+    getPendingRecommentedContent: build.query({
+      query: (params) => ({
+        url: `/recommented/pending`,
+        method: "GET",
+        params: params,
+      }),
+      providesTags: [tagTypes.recommented],
+    }),
+    actionRecommentedContent: build.mutation({
+      query: (data) => ({
+        url: `/recommented/updateStatus/${data.id}`,
+        method: "PARCH",
+        body: data.data,
+      }),
+      invalidatesTags: [tagTypes.recommented],
+    }),
     //end
   }),
 });
@@ -152,8 +207,17 @@ export const {
   //venu
   useGetVenueQuery,
   usePendingVenueQuery,
+  useCreateVenueMutation,
+  useVenueActionMutation,
   // Customers
   useGetCustomersQuery,
   useBlockCustomersMutation,
-  useGetCustomersOverviewQuery
+  useGetCustomersOverviewQuery,
+  useGetRecoveryAccountQuery,
+  useRecoveryAccountRequestMutation,
+  //recommented
+
+  useGetAcceptdRecommentedContentQuery,
+  useActionRecommentedContentMutation,
+  useGetPendingRecommentedContentQuery
 } = adminApi;

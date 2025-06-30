@@ -36,7 +36,7 @@ const ViewVenseModal = ({
           <div className="flex justify-center items-center p-4">
             {/* Avatar */}
             <img
-              src={getImageUrl() + currentVenueRecord?.profileImage}
+              src={currentVenueRecord?.profileImage}
               alt={currentVenueRecord?.name}
               className="w-12 h-12 sm:w-16  sm:h-16 rounded-lg mr-4"
             />

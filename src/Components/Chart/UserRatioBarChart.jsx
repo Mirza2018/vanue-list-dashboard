@@ -1,4 +1,5 @@
 import { ConfigProvider, Select } from "antd";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -24,14 +25,21 @@ const data = [
   { name: "Dec", customers: 36, venues: 140 },
 ];
 
-const UserRatioBarChart = () => {
+const UserRatioBarChart = ({ monthlyOverview }) => {
   // Formatter function to add 'K' suffix to Y-axis values
   const yAxisTickFormatter = (value) => `${value}K`;
+  const [realdata, setRealData] = useState(null);
+
+
+
+  // const realdata = combineOverview(userOverview, venueOverview);
 
   // Custom tick style
   const tickStyle = { fill: "#222222" };
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
+      console.log(payload);
+      
       return (
         <div
           className="flex gap-2"
@@ -45,12 +53,12 @@ const UserRatioBarChart = () => {
         >
           <div>
             <p>Customers</p>
-            <p>{` ${payload[0].payload.customers}`}</p>
+            <p>{` ${payload[0].payload.userCount}`}</p>
           </div>
           <div>
             {" "}
             <p>Venues</p>
-            <p>{` ${payload[0].payload.venues}`}</p>
+            <p>{` ${payload[0].payload.venueCount}`}</p>
           </div>
         </div>
       );
@@ -109,7 +117,7 @@ const UserRatioBarChart = () => {
       <div className="w-full h-64 mt-2">
         <ResponsiveContainer>
           <BarChart
-            data={data}
+            data={monthlyOverview}
             margin={{
               top: 10,
               right: 20,
@@ -118,7 +126,12 @@ const UserRatioBarChart = () => {
             }}
             barCategoryGap={30} // Adjust the gap between bars if necessary
           >
-            <XAxis dataKey="name" tick={[]} axisLine={false} tickMargin={6} />
+            <XAxis
+              dataKey="monthName"
+              tick={[]}
+              axisLine={false}
+              tickMargin={6}
+            />
             <YAxis tickMargin={16} tick={[]} axisLine={false} />
             {/* Add several horizontal black lines using ReferenceLine */}
             <ReferenceLine y={20} stroke="#22222255" strokeWidth={0.5} />
@@ -131,14 +144,14 @@ const UserRatioBarChart = () => {
               cursor={{ fill: "transparent" }}
             />
             <Bar
-              dataKey="venues"
+              dataKey="venueCount"
               fill="#989898"
               barSize={12}
               radius={[6, 6, 0, 0]} // Rounded top corners
               activeBar={{ fill: "#BDB169" }} // Hover effect
             />
             <Bar
-              dataKey="customers"
+              dataKey="userCount"
               fill="#075B5D"
               barSize={12}
               radius={[6, 6, 0, 0]} // Rounded top corners

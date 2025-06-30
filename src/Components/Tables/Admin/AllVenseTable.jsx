@@ -26,7 +26,7 @@ const AllVenseTable = ({
       render: (text, record) => (
         <div className="flex items-center gap-2">
           <img
-            src={getImageUrl() + record?.profileImage}
+            src={record?.profileImage}
             alt={text}
             className="w-8 h-8 rounded-full"
           />

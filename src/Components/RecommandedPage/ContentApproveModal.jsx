@@ -1,7 +1,35 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
+import { useActionRecommentedContentMutation } from "../../redux/api/adminApi";
+import { toast } from "sonner";
 
 const ContentApproveModal = ({ setIsApprove, isApprove }) => {
+  const [actionContent] = useActionRecommentedContentMutation();
+  const onApprove = async () => {
+    const toastId = toast.loading("Content is accepteing...");
+    const data = {
+      status: "accepted",
+    };
+    //   return
+    try {
+      const res = await actionContent({ data: data, id: id }).unwrap();
+      console.log(res);
+
+      toast.success("Content is accepted successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      setIsApprove(false);
+    } catch (error) {
+      toast.error(
+        error?.data?.message || "There was a problem, please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
   return (
     <Modal
       // title="Confirm Delete"
@@ -38,7 +66,8 @@ const ContentApproveModal = ({ setIsApprove, isApprove }) => {
             className="text-xl py-5 px-8"
             type="primary"
             style={{ background: "#3AD800" }}
-            onClick={() => setIsApprove(false)}
+            // onClick={() => setIsApprove(false)}
+            onClick={onApprove}
           >
             yes
           </Button>

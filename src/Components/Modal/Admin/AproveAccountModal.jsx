@@ -1,11 +1,47 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
+import { useRecoveryAccountRequestMutation } from "../../../redux/api/adminApi";
+import { toast } from "sonner";
 
 const AproveAccountModal = ({
   setApproveAccount,
   approveAccount,
   approveAccountRecord,
 }) => {
+  const [recoveryAccountRequest] = useRecoveryAccountRequestMutation();
+  // console.log(approveAccountRecord);
+  const handleAccept = async () => {
+    // console.log("reject Company:", {
+    //   id: data?._id,
+    // });
+
+    const toastId = toast.loading("Request rejecting...");
+    const data = {
+      status: "approved",
+    };
+    try {
+      const res = await recoveryAccountRequest({
+        id: approveAccountRecord?._id,
+        data: data,
+      }).unwrap();
+      console.log(res);
+      toast.success("Request reject Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      setApproveAccount(false);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem ,please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
   return (
     <Modal
       // title="Confirm Delete"
@@ -42,7 +78,7 @@ const AproveAccountModal = ({
             className="text-xl py-5 px-8"
             type="primary"
             style={{ background: "#3AD800" }}
-            onClick={() => setApproveAccount(false)}
+            onClick={handleAccept}
           >
             yes
           </Button>

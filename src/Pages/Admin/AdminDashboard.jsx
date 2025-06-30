@@ -18,34 +18,36 @@ const AdminDashboard = () => {
   const [recentCompanyData, setRecentCompanyData] = useState([]);
   const [recentCompanyLoading, setRecentCompanyLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchRecentUserData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
+  
 
-        setRecentUserData(response?.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setRecentUserLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchRecentUserData = async () => {
+  //     try {
+  //       const response = await axios.get("/data/userData.json");
 
-    fetchRecentUserData();
-    const fetchRecentCompanyData = async () => {
-      try {
-        const response = await axios.get("/data/userData.json");
+  //       setRecentUserData(response?.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } finally {
+  //       setRecentUserLoading(false);
+  //     }
+  //   };
 
-        setRecentCompanyData(response?.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setRecentCompanyLoading(false);
-      }
-    };
+  //   fetchRecentUserData();
+  //   const fetchRecentCompanyData = async () => {
+  //     try {
+  //       const response = await axios.get("/data/userData.json");
 
-    fetchRecentCompanyData();
-  }, []);
+  //       setRecentCompanyData(response?.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } finally {
+  //       setRecentCompanyLoading(false);
+  //     }
+  //   };
+
+  //   fetchRecentCompanyData();
+  // }, []);
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -92,7 +94,9 @@ const AdminDashboard = () => {
               </div>
               {/* State */}
               <div className="w-full h-fit  rounded-xl">
-                <UserRatioBarChart />
+                <UserRatioBarChart
+                  monthlyOverview={displayedData?.data?.monthlyOverview}
+                />
               </div>
             </div>
           </div>

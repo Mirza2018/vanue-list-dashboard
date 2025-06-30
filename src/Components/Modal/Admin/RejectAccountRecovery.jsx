@@ -7,6 +7,8 @@ const RejectAccountRecovery = ({
   handleCancel,
   currentCompanyRecord,
 }) => {
+  console.log(currentCompanyRecord);
+  
   return (
     <Modal
       // title="Confirm Delete"

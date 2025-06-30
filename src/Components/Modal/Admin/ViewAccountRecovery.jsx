@@ -29,18 +29,16 @@ const ViewAccountRecovery = ({
             User Information
           </h1>
           <div className="grid grid-cols-2 gap-2 text-start mt-2">
-            <h1 className="text-lg">S.ID :</h1>
-            <p className="text-lg">{currentCompanyRecord?.id}</p>
             <h1 className="text-lg">Name :</h1>
-            <p className="text-lg">{currentCompanyRecord?.userName}</p>
+            <p className="text-lg">{currentCompanyRecord?.userId?.fullName}</p>
             <h1 className="text-lg">Email :</h1>
             <p className="text-lg">{currentCompanyRecord?.email}</p>
             <h1 className="text-lg">Address :</h1>
-            <p className="text-lg">{currentCompanyRecord?.address}</p>
-            <h1 className="text-lg">Registration Date </h1>
+            <p className="text-lg">{currentCompanyRecord?.userId?.address}</p>
+            {/* <h1 className="text-lg">Registration Date </h1>
             <p className="text-lg">: {currentCompanyRecord?.joiningDate}</p>
             <h1 className="text-lg">Last Login</h1>
-            <p className="text-lg"> : {currentCompanyRecord?.joiningDate}</p>
+            <p className="text-lg"> : {currentCompanyRecord?.joiningDate}</p> */}
           </div>
         </div>
         <div className="md:col-span-3">
@@ -49,30 +47,26 @@ const ViewAccountRecovery = ({
           </h1>
           <div className="grid grid-cols-2 gap-2 text-start mt-2">
             <h1 className="text-lg">Request ID :</h1>
-            <p className="text-lg">{currentCompanyRecord?.id}</p>
+            <p className="text-lg">{currentCompanyRecord?._id}</p>
             <h1 className="text-lg">Request Date :</h1>
-            <p className="text-lg">{currentCompanyRecord?.joiningDate}</p>
+            <p className="text-lg">
+              {currentCompanyRecord?.createdAt.split("T")[0]}
+            </p>
             <h1 className="text-lg">Status :</h1>
-            <p className="text-lg">Pending.</p>
+            <p className="text-lg">{currentCompanyRecord?.status}</p>
             <h1 className="text-lg">Reason for Request :</h1>
-            <p className="text-lg">Forgot password.</p>
+            <p className="text-lg">{currentCompanyRecord?.reasonForRequest}</p>
             <h1 className="text-lg">Supporting Documents :</h1>
-            <div className="flex gap-2.5 flex-wrap">
-              <img
-                src={AllImages.doc1}
-                className="rounded-lg w-16 aspect-square object-cover"
-                alt=""
-              />
-              <img
-                src={AllImages.doc2}
-                className="rounded-lg w-16 aspect-square object-cover"
-                alt=""
-              />
-              <img
-                src={AllImages.doc3}
-                className="rounded-lg w-16 aspect-square object-cover"
-                alt=""
-              />
+           
+            <div className="flex gap-2.5 flex-wrap ">
+              {currentCompanyRecord?.supportingDocuments?.map((img) => (
+                <img
+                  key={img} // Add a unique key for each mapped element
+                  src={img}
+                  className="rounded-lg w-16 aspect-square object-cover"
+                  alt=""
+                />
+              ))}
             </div>
           </div>
         </div>

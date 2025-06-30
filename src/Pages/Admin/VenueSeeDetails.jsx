@@ -1,9 +1,78 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AllImages } from "../../../public/images/AllImages";
 import { FaChevronLeft } from "react-icons/fa";
+import {
+  usePendingVenueQuery,
+  useVenueActionMutation,
+} from "../../redux/api/adminApi";
+import { toast } from "sonner";
 
 const VenueSeeDetails = () => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    usePendingVenueQuery();
+  const displayedData = data ?? currentData;
+  const [venueAction] = useVenueActionMutation();
+  const [detailsVenue, setDetailsVenue] = useState();
+  const params = useParams();
+
+  useEffect(() => {
+    const findVenue = displayedData?.data?.find((p) => p._id == params.id);
+
+    setDetailsVenue(findVenue);
+  }, [isLoading, isFetching, isSuccess, displayedData]);
+  const navigate = useNavigate();
+  console.log(detailsVenue);
+  const handleVenueDelete = async () => {
+    const toastId = toast.loading("Venue deleteing...");
+
+    try {
+      const res = await venueAction({
+        id: detailsVenue?._id,
+        action: "deleted",
+      }).unwrap();
+      console.log(res);
+      toast.success("Venue deleted Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      navigate(`/admin/all-venues`);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem ,please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
+  const handleVenueAccept = async () => {
+    const toastId = toast.loading("Venue accepting...");
+
+    try {
+      const res = await venueAction({
+        id: detailsVenue?._id,
+        action: "accepted",
+      }).unwrap();
+      console.log(res);
+      toast.success("Venue accepted Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      navigate(`/admin/admin/all-venues`);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem ,please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
   return (
     <div className="bg-white rounded-tl-xl rounded-tr-xl">
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl mb-20">
@@ -33,19 +102,23 @@ const VenueSeeDetails = () => {
       </div>
       <div className="container mx-10">
         <div className="flex  justify-start items-center gap-2 mx-5 mb-4">
-          <img src={AllImages.kfc} className="w-20" alt="" />
+          <img src={detailsVenue?.profileImage} className="w-20" alt="" />
           <div className="">
-            <h1 className="text-xl font-semibold">Dianne Russell</h1>
-            <div className="flex justify-between items-center gap-2">
-              <Link to={`accepted`}>
-                <button
-                  className="font-semibold text-base bg-secondary-color rounded-tl-xl rounded-br-xl text-white px-3 py-2  hover:scale-105 transition delay-100  text-nowrap
+            <h1 className="text-xl font-semibold">{detailsVenue?.name}</h1>
+            <div className="flex justify-start items-center gap-4">
+              {/* <Link to={`accepted`}> */}
+              <button
+                onClick={handleVenueAccept}
+                className="font-semibold text-base bg-secondary-color rounded-tl-xl rounded-br-xl text-white px-3 py-2  hover:scale-105 transition delay-100  text-nowrap
                      "
-                >
-                  Accept
-                </button>
-              </Link>
-              <button className="font-semibold text-base rounded-br-xl  rounded-tl-xl border border-secondary-color text-secondary-color  px-3 py-2 hover:scale-105 transition delay-100 ">
+              >
+                Accept
+              </button>
+              {/* </Link> */}
+              <button
+                onClick={handleVenueDelete}
+                className="font-semibold text-base rounded-br-xl  rounded-tl-xl border border-secondary-color text-secondary-color  px-3 py-2 hover:scale-105 transition delay-100 "
+              >
                 Delete
               </button>
             </div>
@@ -59,24 +132,24 @@ const VenueSeeDetails = () => {
               <div className="text-lg  mx-auto">
                 <div className="sm:flex gap-1 sm:gap-2 mb-2">
                   <div className="font-bold">Name:</div>
-                  <div>name</div>
+                  <div>{detailsVenue?.name}</div>
                 </div>
                 <div className="sm:flex gap-1 sm:gap-2 mb-2">
                   <div className="font-bold">Phone:</div>
-                  <div>phone</div>
+                  <div>{detailsVenue?.phone}</div>
                 </div>
-                <div className="sm:flex gap-1 sm:gap-2 mb-2">
+                {/* <div className="sm:flex gap-1 sm:gap-2 mb-2">
                   <div className="font-bold">Email:</div>
                   <div>email</div>
-                </div>
+                </div> */}
 
                 <div className="sm:flex gap-1 sm:gap-2 mb-2">
                   <div className="font-bold">Address:</div>
-                  <div>location</div>
+                  <div>{detailsVenue?.postalAddress}</div>
                 </div>
                 <div className="sm:flex gap-1 sm:gap-2 mb-2">
-                  <div className="font-bold">Bio:</div>
-                  <div>Bio</div>
+                  <div className="font-bold">Description:</div>
+                  <div>{detailsVenue?.description}</div>
                 </div>
               </div>
             </div>
@@ -87,36 +160,14 @@ const VenueSeeDetails = () => {
               <h1 className="font-bold text-2xl mb-4 text-start">
                 Attachments
               </h1>
-              {/* <div className="flex  gap-4">
-                <div className="bg-[#B4B8BD] h-[116px] w-[92px] p-2  cursor-pointer">
-                  <div className="bg-secondary-color rounded-full w-[76px] aspect-square flex justify-center items-center ">
-                    <img src={AllImages.PDFImage} alt="" />
-                  </div>
-                  <p className="text-black  text-nowrap text-xs">Resume.pdf</p>
-                </div>
-                <div className="bg-[#B4B8BD] h-[116px] w-[92px] p-2  cursor-pointer ">
-                  <div className="bg-secondary-color rounded-full w-[76px] aspect-square flex justify-center items-center ">
-                    <img src={AllImages.PDFImage} alt="" />
-                  </div>{" "}
-                  <p className="text-black  text-nowrap text-xs">Resume.pdf</p>
-                </div>
-              </div> */}
               <div className="flex gap-2.5">
-                <img
-                  src={AllImages.doc1}
-                  className="rounded-lg w-28 aspect-square object-cover"
-                  alt=""
-                />
-                <img
-                  src={AllImages.doc2}
-                  className="rounded-lg w-28 aspect-square object-cover"
-                  alt=""
-                />
-                <img
-                  src={AllImages.doc3}
-                  className="rounded-lg w-28 aspect-square object-cover"
-                  alt=""
-                />
+                {detailsVenue?.photos?.map((pic) => (
+                  <img
+                    src={pic}
+                    className="rounded-lg w-28 aspect-square object-cover"
+                    alt=""
+                  />
+                ))}
               </div>
             </div>
           </div>

@@ -14,31 +14,41 @@ const AccountRecoveryTable = ({
   pageSize = 0,
 }) => {
   const columns = [
-    {
-      title: "S.lD",
-      dataIndex: "id",
-      key: "id",
-      responsive: ["md"],
-    },
+    // {
+    //   title: "S.lD",
+    //   dataIndex: "id",
+    //   key: "id",
+    //   responsive: ["md"],
+    // },
     {
       title: "Full Name",
-      dataIndex: "userName",
-      key: "userName",
+      dataIndex: "userId",
+      key: "userId",
       render: (text) => (
         <div className="flex items-center gap-2">
-          <img
+          {/* <img
             src={AllImages.yellow}
             alt={text}
             className="w-8 h-8 rounded-full"
-          />
-          <p>{text}</p>
+          /> */}
+          <p>{text?.fullName}</p>
         </div>
       ),
     },
     {
       title: "Gender",
-      dataIndex: "gender",
-      key: "gender",
+      dataIndex: "userId",
+      key: "userId",
+      render: (text) => (
+        <div className="flex items-center gap-2">
+          {/* <img
+            src={AllImages.yellow}
+            alt={text}
+            className="w-8 h-8 rounded-full"
+          /> */}
+          <p>{text?.gender}</p>
+        </div>
+      ),
     },
 
     {
@@ -52,7 +62,7 @@ const AccountRecoveryTable = ({
       key: "status",
       render: (text) => (
         <div className="flex items-center gap-2">
-          {text ? (
+          {text != "pending" ? (
             <button className="bg-[#3AD800] rounded px-1 py-1">Approved</button>
           ) : (
             <button className="bg-[#FFE100] rounded px-3 py-1">Pending</button>
@@ -68,9 +78,9 @@ const AccountRecoveryTable = ({
         <>
           <div className="flex items-center gap-2">
             {/* Block User Tooltip */}
-            {record?.status || (
+            {record?.status == "pending" && (
               <>
-                <Tooltip placement="left" title="Block this User">
+                <Tooltip placement="left" title="">
                   <Button
                     className="bg-[#3AD800] rounded px-3 py-1"
                     onClick={() => ApproveAccountRecord(record)}
@@ -78,7 +88,7 @@ const AccountRecoveryTable = ({
                     Approve
                   </Button>
                 </Tooltip>
-                <Tooltip placement="left" title="Block this User">
+                <Tooltip placement="left" title="">
                   <Button
                     className="bg-[#C70000] text-white rounded px-3 py-1"
                     onClick={() => showCompanyBlockModal(record)}
@@ -88,7 +98,7 @@ const AccountRecoveryTable = ({
                 </Tooltip>
               </>
             )}
-            {/* View Details Tooltip */}
+
             <Tooltip placement="right" title="View Details">
               <Button
                 className="bg-[#8C8C8C] text-white rounded px-3 py-1"

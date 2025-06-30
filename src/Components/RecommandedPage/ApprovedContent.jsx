@@ -2,8 +2,9 @@ import React from "react";
 import { Table, Button } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import ContentRemoveModal from "./ContentRemoveModal";
+import { useGetAcceptdRecommentedContentQuery } from "../../redux/api/adminApi";
 // Sample data for the table
-const data = Array.from({ length: 8 }, (_, index) => ({
+const data2 = Array.from({ length: 8 }, (_, index) => ({
   key: (index + 1).toString(),
   slNumber: "#1234",
   userName: "Mirza",
@@ -15,22 +16,42 @@ const data = Array.from({ length: 8 }, (_, index) => ({
 // Define the columns for the table
 
 const ApprovedContent = () => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetAcceptdRecommentedContentQuery();
+
+  const displayedData = data ?? currentData;
+  console.log(displayedData?.data);
+
   const [isRemove, setIsRemove] = React.useState(false);
+  const [contentId, setContentId] = React.useState(null);
   const columns = [
     {
-      title: "S.lD",
-      dataIndex: "slNumber",
-      key: "slNumber",
-    },
-    {
-      title: "User Name",
-      dataIndex: "userName",
-      key: "userName",
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+      render: (text, record) => (
+        <div className="flex justify-center items-center gap-4">
+          <img
+            src={record?.thumbnailImage}
+            className="w-16  rounded-lg aspect-square "
+            alt=""
+          />
+          <p>{text}</p>
+        </div>
+      ),
     },
     {
       title: "Video Preview",
-      dataIndex: "videoPreview",
-      key: "videoPreview",
+      dataIndex: "videoUrl",
+      key: "videoUrl",
+      render: (text) => (
+        <div>
+          {/* <video src={text} /> */}
+          <video width="220" height="240" className="rounded-md" controls>
+            <source src={text} type="video/mp4" />
+          </video>
+        </div>
+      ),
     },
     {
       title: "Payment Status",
@@ -39,20 +60,24 @@ const ApprovedContent = () => {
     },
     {
       title: "Uploaded At",
-      dataIndex: "timeDate",
-      key: "timeDate",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) => (
+        <div>
+         {text.split('T')[0]}
+        </div>
+      ),
     },
     {
       title: "ACTION",
       key: "action",
-      render: () => (
+      render: (_,record) => (
         <Button
-          
           type="text"
           className="!bg-red-600 !text-white "
-          onClick={() => setIsRemove(true)}
+          onClick={() => { setIsRemove(true); setContentId(record?._id)}}
         >
-          Remove
+          Delete
         </Button>
       ),
     },
@@ -61,7 +86,7 @@ const ApprovedContent = () => {
     <div className="p-4">
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={displayedData?.data}
         pagination={{
           pageSize: 8,
           total: 250, // Total number of items
@@ -73,7 +98,7 @@ const ApprovedContent = () => {
         }}
         className="custom-table"
       />
-      <ContentRemoveModal isRemove={isRemove} setIsRemove={setIsRemove}/>
+      <ContentRemoveModal id={contentId} isRemove={isRemove} setIsRemove={setIsRemove} />
     </div>
   );
 };

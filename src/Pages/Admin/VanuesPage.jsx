@@ -5,7 +5,7 @@ import axios from "axios";
 import { ConfigProvider, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { IoMdAddCircleOutline } from "react-icons/io";
- 
+
 //* Modal Table
 import AllUserTable from "../../Components/Tables/Admin/AllUserTable";
 import AllVenseTable from "../../Components/Tables/Admin/AllVenseTable";
@@ -15,30 +15,31 @@ import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal"
 import ViewVenseModal from "../../Components/Modal/Admin/ViewVenseModal";
 import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
 import { useGetVenueQuery } from "../../redux/api/adminApi";
- 
+import { FaRegEdit } from "react-icons/fa";
+import Addvenue from "../../Components/Modal/Admin/AddVenue";
+
 const VanuesPage = () => {
-   const { data, currentData, isLoading, isFetching, isSuccess } =
-     useGetVenueQuery();
-    const displayedData = data ?? currentData;
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetVenueQuery();
+  const displayedData = data ?? currentData;
   //* Store Search Value
   const [searchText, setSearchText] = useState("");
 
   //* Use to set user
   const [dat, setData] = useState([]);
+  const [addVenue, setAddVenue] = useState(false);
 
   const [loading, setLoading] = useState(true);
 
   //* It's Use to Show Modal
-  const [isVenueViewModalVisible, setIsVenueViewModalVisible] =
-    useState(false);
+  const [isVenueViewModalVisible, setIsVenueViewModalVisible] = useState(false);
 
   //* It's Use to Block Modal
   const [isVenueBlockModalVisible, setIsVenueBlockModalVisible] =
     useState(false);
 
   //* It's Use to Add Modal
-  const [isAddVenueModalVisible, setIsAddVenueModalVisible] =
-    useState(false);
+  const [isAddVenueModalVisible, setIsAddVenueModalVisible] = useState(false);
 
   //* It's Use to Set Seclected User to Block and view
   const [currentVenueRecord, setCurrentVenueRecord] = useState(null);
@@ -115,8 +116,8 @@ const VanuesPage = () => {
             >
               <Input
                 placeholder="Search User..."
-                value={searchText}
-                onChange={(e) => onSearch(e.target.value)}
+                // value={searchText}
+                // onChange={(e) => onSearch(e.target.value)}
                 className="font-semibold !border-primary-color !placeholder:text-secondary-color !bg-white text-secondary-color py-2 !rounded-full"
                 prefix={
                   <SearchOutlined className="text-secondary-color font-bold text-lg mr-2" />
@@ -126,7 +127,22 @@ const VanuesPage = () => {
           </div>
         </div>
       </div>
-
+      <div
+        onClick={() => setAddVenue(true)}
+        className="bg-secondary-color mt-5 w-fit text-primary-color flex justify-center items-center gap-2 py-2  rounded-lg cursor-pointer px-10 mx-auto"
+      >
+        <FaRegEdit
+          style={{ fontSize: "clamp(18px, 1vw + 1rem ,30px)" }}
+          className=""
+        />
+        <p
+          style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
+          className="font-semibold "
+        >
+          Add Venue
+        </p>
+      </div>
+      <Addvenue isVenue={addVenue} setIsVenue={setAddVenue} />
       {/* Table  */}
       <div className="px-10 py-10">
         <AllVenseTable
@@ -137,9 +153,8 @@ const VanuesPage = () => {
           pageSize={8}
         />
       </div>
-
+   {/* {   console.log(displayedData?.data)} */}
       {/* Modals */}
-
       {/* <AddCategoriesModal
         isAddVenueModalVisible={isAddVenueModalVisible}
         handleCancel={handleCancel}

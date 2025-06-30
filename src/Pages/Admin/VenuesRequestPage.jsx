@@ -4,19 +4,13 @@ import React, { useEffect, useState } from "react";
 import VenuesRequestSingle from "../../Components/VenuesRequest/VenuesRequestSingle";
 import axios from "axios";
 import { FaChevronLeft } from "react-icons/fa";
-import {  usePendingVenueQuery } from "../../redux/api/adminApi";
+import { usePendingVenueQuery } from "../../redux/api/adminApi";
 
 const VenuesRequestPage = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     usePendingVenueQuery();
   const displayedData = data ?? currentData;
-  console.log(data);
-  
-
-  
-
-
-
+  // console.log(data);
 
   return (
     <div className="bg-white rounded-tl-xl rounded-tr-xl h-full">
@@ -32,6 +26,11 @@ const VenuesRequestPage = () => {
           </p>
         </div>
       </div>
+      {displayedData?.data.length == 0 && (
+        <div className="text-xl font-medium flex justify-center h-screen items-center  ">
+          No venue request ...
+        </div>
+      )}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 p-10">
         {displayedData?.data?.map((singleData) => (
           <VenuesRequestSingle data={singleData} key={singleData?._Id} />

@@ -1,7 +1,35 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
+import { toast } from "sonner";
+import { useActionRecommentedContentMutation } from "../../redux/api/adminApi";
 
-const ContentRejectModal = ({ setIsReject, isReject }) => {
+const ContentRejectModal = ({ setIsReject, isReject, id }) => {
+  const [actionContent] = useActionRecommentedContentMutation();
+  const onReject = async () => {
+    const toastId = toast.loading("Content is rejecteing...");
+    const data = {
+      status: "rejected",
+    };
+    //   return
+    try {
+      const res = await actionContent({ data: data, id: id }).unwrap();
+      console.log(res);
+
+      toast.success("Content is rejected successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      setIsReject(false);
+    } catch (error) {
+      toast.error(
+        error?.data?.message || "There was a problem, please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
   return (
     <Modal
       // title="Confirm Delete"
@@ -38,7 +66,8 @@ const ContentRejectModal = ({ setIsReject, isReject }) => {
             className="text-xl py-5 px-8"
             type="primary"
             style={{ background: "#C70000" }}
-            onClick={() => setIsReject(false)}
+            // onClick={() => setIsReject(false)}
+            onClick={onReject}
           >
             yes
           </Button>
