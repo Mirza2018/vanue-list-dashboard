@@ -30,6 +30,7 @@ const EditSubscribtion = ({
         price: plan.price,
         duration: plan.duration,
         type: plan.type,
+        durationType: plan.durationType,
         facilities: plan.features || [""], // Ensure at least one empty facility
       });
     }
@@ -42,6 +43,7 @@ const EditSubscribtion = ({
       price: values.price,
       duration: values.duration,
       type: values.type,
+      durationType: values.durationType,
       features: values.facilities.filter((f) => f), // Remove empty strings
     };
 
@@ -96,48 +98,66 @@ const EditSubscribtion = ({
             layout="vertical"
             className="bg-transparent w-full text-start"
           >
-            <Typography.Title level={4} style={{ color: "#222222" }}>
-              Plan Name
-            </Typography.Title>
-            <Form.Item
-              name="name"
-              rules={[{ required: true, message: "Please enter Plan Name" }]}
-            >
-              <Input
-                placeholder="Enter Plan Name"
-                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-              />
-            </Form.Item>
-
-            <Typography.Title level={4} style={{ color: "#222222" }}>
-              Plan Price
-            </Typography.Title>
-            <Form.Item
-              name="price"
-              rules={[{ required: true, message: "Please enter Plan Price" }]}
-            >
-              <InputNumber
-                controls={false}
-                placeholder="Enter Plan Price"
-                className="px-3 text-xl border !border-input-color !bg-transparent w-full"
-              />
-            </Form.Item>
-
             <div className="flex sm:flex-row flex-col sm:gap-5">
               <div className="flex-1">
                 <Typography.Title level={4} style={{ color: "#222222" }}>
-                  Plan Type
+                  Plan Name
                 </Typography.Title>
                 <Form.Item
-                  name="type"
                   rules={[
-                    { required: true, message: "Please select Plan Type" },
+                    { required: true, message: "Please enter Plan Name" },
                   ]}
+                  name="name"
                 >
+                  <Input
+                    placeholder="Enter Plan Name"
+                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                  />
+                </Form.Item>
+              </div>
+              <div className="flex-1">
+                <Typography.Title level={4} style={{ color: "#222222" }}>
+                  Plan Price
+                </Typography.Title>
+                <Form.Item
+                  rules={[
+                    { required: true, message: "Please enter Plan Price" },
+                  ]}
+                  name="price"
+                >
+                  <InputNumber
+                    controls={false}
+                    placeholder="Enter Plan Price"
+                    className="px-3 text-xl border !border-input-color !bg-transparent w-full"
+                  />
+                </Form.Item>
+              </div>
+            </div>
+            <div className="flex sm:flex-row flex-col sm:gap-5">
+              <div className="flex-1">
+                <Typography.Title
+                  className="whitespace-nowrap"
+                  level={4}
+                  style={{ color: "#222222" }}
+                >
+                  Plan Duration Type
+                </Typography.Title>
+                <Form.Item
+                  rules={[
+                    { required: true, message: "Please enter Plan duration " },
+                  ]}
+                  name="durationType"
+                >
+                  {/* <Input
+                    placeholder="Enter Plan duration in months"
+                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
+                  /> */}
                   <Select
                     placeholder="Plan type"
-                    className="text-xl"
+                    className="text-xl "
                     options={[
+                      { value: "Each", label: "Each" },
+                      { value: "Video", label: "Video" },
                       { value: "Day", label: "Day" },
                       { value: "Week", label: "Week" },
                       { value: "Month", label: "Month" },
@@ -151,15 +171,67 @@ const EditSubscribtion = ({
                   Plan Duration
                 </Typography.Title>
                 <Form.Item
-                  name="duration"
                   rules={[
-                    { required: true, message: "Please enter Plan duration" },
+                    { required: true, message: "Please enter Plan duration " },
                   ]}
+                  name="duration"
                 >
                   <InputNumber
                     controls={false}
-                    placeholder="Enter Plan duration"
+                    placeholder="Enter Plan duration in months"
                     className="w-full px-3 text-xl border !border-input-color !bg-transparent"
+                  />
+                </Form.Item>
+              </div>
+            </div>
+            <div className="flex sm:flex-row flex-col sm:gap-5">
+              <div className="flex-1">
+                <Typography.Title
+                  className="whitespace-nowrap"
+                  level={4}
+                  style={{ color: "#222222" }}
+                >
+                  Plan Type
+                </Typography.Title>
+                <Form.Item
+                  rules={[
+                    { required: true, message: "Please enter Plan type " },
+                  ]}
+                  name="type"
+                >
+                  <Select
+                    placeholder="Plan type"
+                    className="text-xl "
+                    options={[
+                      {
+                        value: "essentialVisibility",
+                        label: "essentialVisibility",
+                      },
+                      { value: "starterDiscovery", label: "starterDiscovery" },
+                      { value: "enhancedPresence", label: "enhancedPresence" },
+                      { value: "premiumPartner", label: "premiumPartner" },
+                      { value: "premiumPlus", label: "premiumPlus" },
+                      { value: "smartExpansion", label: "smartExpansion" },
+                      { value: "smartCorporate", label: "smartCorporate" },
+                      {
+                        value: "corporatePrestige",
+                        label: "corporatePrestige",
+                      },
+                      { value: "pushNotification", label: "pushNotification" },
+                      {
+                        value: "promoVideoOnProfile",
+                        label: "promoVideoOnProfile",
+                      },
+                      { value: "homepageVideo", label: "homepageVideo" },
+                      {
+                        value: "featuredTodayBanner",
+                        label: "featuredTodayBanner",
+                      },
+                      {
+                        value: "top5OfTheWeekBadge",
+                        label: "top5OfTheWeekBadge",
+                      },
+                    ]}
                   />
                 </Form.Item>
               </div>

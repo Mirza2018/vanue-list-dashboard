@@ -188,6 +188,15 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.recommented],
     }),
+
+    createRecomment: build.mutation({
+      query: (data) => ({
+        url: `/recommented/admin/add`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [tagTypes.recommented],
+    }),
     //end
   }),
 });
@@ -219,5 +228,6 @@ export const {
 
   useGetAcceptdRecommentedContentQuery,
   useActionRecommentedContentMutation,
-  useGetPendingRecommentedContentQuery
+  useGetPendingRecommentedContentQuery,
+  useCreateRecommentMutation
 } = adminApi;

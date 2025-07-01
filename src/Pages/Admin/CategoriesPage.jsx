@@ -20,7 +20,7 @@ const CategoriesPage = () => {
 
   const [searchText, setSearchText] = useState("");
   const columns = [
-    { 
+    {  
       title: "Category Serial",
       dataIndex: "key",
       key: "key",
@@ -105,7 +105,7 @@ const CategoriesPage = () => {
           >
             Deleted Categories
           </h1>
-          <h1
+          {/* <h1
             onClick={() => setCategoryAction("add")}
             className={`text-2xl cursor-pointer py-2 text-nowrap  text-center ${
               categoryAction == "add"
@@ -114,7 +114,7 @@ const CategoriesPage = () => {
             }`}
           >
             Add Contents
-          </h1>
+          </h1> */}
         </div>
         {/* Add Service User Button  */}
         <div className="px-5 mt-5 ">
@@ -137,7 +137,7 @@ const CategoriesPage = () => {
         <main className="p-5">
           {categoryAction == "active" && <ActiveCategories />}
           {categoryAction == "delete" && <DeleteCategories />}
-          {categoryAction == "add" && <AddContent />}
+          {/* {categoryAction == "add" && <AddContent />} */}
         </main>
       </div>
     );

@@ -3,7 +3,7 @@ import { Button, Modal } from "antd";
 import { useActionRecommentedContentMutation } from "../../redux/api/adminApi";
 import { toast } from "sonner";
 
-const ContentApproveModal = ({ setIsApprove, isApprove }) => {
+const ContentApproveModal = ({ setIsApprove, isApprove,id }) => {
   const [actionContent] = useActionRecommentedContentMutation();
   const onApprove = async () => {
     const toastId = toast.loading("Content is accepteing...");

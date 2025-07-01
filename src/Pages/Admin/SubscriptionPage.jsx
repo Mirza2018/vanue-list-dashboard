@@ -112,12 +112,12 @@ const SubscriptionPage = () => {
                 >
                   {plan?.name}
                 </h1>
-                <div className="flex items-end">
+                <div className="flex items-end gap-1">
                   <h1
                     style={{ fontSize: "clamp(36px, 1vw + 1rem ,60px)" }}
                     className="text-6xl font-bold"
                   >
-                    ${plan?.price}
+                    ${plan?.price}{" "}
                   </h1>
                   <p
                     style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}

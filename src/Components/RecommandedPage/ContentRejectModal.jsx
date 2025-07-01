@@ -35,7 +35,7 @@ const ContentRejectModal = ({ setIsReject, isReject, id }) => {
       // title="Confirm Delete"
       open={isReject}
       onOk={() => setIsReject(false)}
-      onCancel={() => setIsReject(false)}
+      onCancel={() => setIsReject(false)}  
       okText="block"
       cancelText="Cancel"
       centered

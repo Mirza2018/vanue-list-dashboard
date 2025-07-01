@@ -200,22 +200,22 @@ const DashboardLayout = () => {
       ),
       label: <NavLink to="subscription">Subscription</NavLink>,
     },
-    {
-      key: "earnings",
-      icon: (
-        <img
-          src={AllIcons.five}
-          alt="earnings"
-          width={20}
-          style={{
-            filter: location.pathname.includes("earnings")
-              ? "brightness(0) invert(1)"
-              : undefined,
-          }}
-        />
-      ),
-      label: <NavLink to="earnings">Earnings</NavLink>,
-    },
+    // {
+    //   key: "earnings",
+    //   icon: (
+    //     <img
+    //       src={AllIcons.five}
+    //       alt="earnings"
+    //       width={20}
+    //       style={{
+    //         filter: location.pathname.includes("earnings")
+    //           ? "brightness(0) invert(1)"
+    //           : undefined,
+    //       }}
+    //     />
+    //   ),
+    //   label: <NavLink to="earnings">Earnings</NavLink>,
+    // },
 
     {
       key: "venue-qr",

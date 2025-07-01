@@ -12,7 +12,7 @@ import {
   Upload,
 } from "antd";
 import { FiUpload } from "react-icons/fi";
-import { useState } from "react";
+import { useState } from "react"; 
 import { PlusOutlined } from "@ant-design/icons";
 import { useCreateSubscriptionMutation } from "../../../redux/api/adminApi";
 import { toast } from "sonner";
@@ -233,6 +233,9 @@ const AddSubscribetionModal = ({ isAddSubscription, setIsAddSubscription }) => {
                 </Form.Item>
               </div>
             </div>
+
+
+            
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Facilities
             </Typography.Title>
