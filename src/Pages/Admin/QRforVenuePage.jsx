@@ -6,7 +6,13 @@ const { useToken } = theme;
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { AllImages } from "../../../public/images/AllImages";
-
+import {
+  useCreateQrMutation,
+  useGetGenerateQrVenueQuery,
+  useGetUnGenerateQrVenueQuery,
+} from "../../redux/api/adminApi";
+import { toast } from "sonner";
+const { Option } = Select;
 const data = Array.from({ length: 8 }, (_, index) => ({
   key: (index + 1).toString(),
   slNumber: "01",
@@ -17,31 +23,46 @@ const data = Array.from({ length: 8 }, (_, index) => ({
 
 // Define the columns for the table
 const columns = [
-  {
-    title: "S.lD",
-    dataIndex: "slNumber",
-    key: "slNumber",
-  },
+  // {
+  //   title: "S.lD",
+  //   dataIndex: "slNumber",
+  //   key: "slNumber",
+  // },
   {
     title: "User Name",
-    dataIndex: "userName",
-    key: "userName",
+    dataIndex: "userId",
+    key: "userId",
     render: (text) => (
       <div className="flex gap-2 justify-start items-center">
-        <img src={AllImages.user} className="rounded-full w-12" alt="" />{" "}
-        <p>{text}</p>
+        {/* <img src={AllImages.user} className="rounded-full w-12" alt="" />{" "} */}
+        <p>{text?.fullName}</p>
       </div>
     ),
   },
   {
-    title: "QR Code Link",
-    dataIndex: "qrCode",
-    key: "qrCode",
+    title: "Venue Name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: "QR Code Link",
-    dataIndex: "generatedAt",
-    key: "generatedAt",
+    title: "QR Code",
+    dataIndex: "_id",
+    key: "_id",
+    render: (text) => (
+      <div className="flex gap-2 justify-start items-center">
+        {/* <img src={AllImages.user} className="rounded-full w-12" alt="" />{" "} */}
+        <QRCode
+          id="myqrcode"
+          type={"svg"}
+          value={text}
+          bgColor="#fff"
+          color="#075B5D"
+          style={{
+            marginBottom: 16,
+          }}
+        />
+      </div>
+    ),
   },
 ];
 function doDownload(url, fileName) {
@@ -53,6 +74,11 @@ function doDownload(url, fileName) {
   document.body.removeChild(a);
 }
 const QRforVenuePage = () => {
+  const { data: usersData } = useGetUnGenerateQrVenueQuery();
+  const { data: qrGenerateHistoy } = useGetGenerateQrVenueQuery();
+  console.log(usersData?.data);
+  const [createQr] = useCreateQrMutation();
+
   const [value, setValue] = useState(null);
   const [copied, setCopied] = useState(false);
   const [qr, setQr] = useState(false);
@@ -75,6 +101,34 @@ const QRforVenuePage = () => {
       console.error("Failed to copy value: ", err);
     }
   };
+  console.log(value);
+
+  const onFinish = async () => {
+    const toastId = toast.loading("Subscription is deleting...");
+    const data = { venueId: value };
+    //   return
+    try {
+      const res = await createQr(data).unwrap();
+      console.log(res);
+
+      toast.success("Subscription delete successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      // setIsAddSubscription(false);
+      setValue(false);
+    } catch (error) {
+      toast.error(
+        error?.data?.message || "There was a problem, please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
+
   return (
     <div
       className="bg-highlight-color min-h-[90vh]  rounded-xl"
@@ -92,7 +146,7 @@ const QRforVenuePage = () => {
       <main className="py-4 px-9">
         <h1 className="text-2xl mb-4">Select User</h1>
 
-        <Select
+        {/* <Select
           name="mirza"
           //   onChange={(e) => console.log(e)}
           onChange={(e) => setValue(e)}
@@ -104,16 +158,48 @@ const QRforVenuePage = () => {
             (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
           }
           options={users}
-        />
-        {value && (
+          
+        /> */}
+
+        <Select
+          onChange={(e) => setValue(e)}
+          style={{ width: "100%" }}
+          placeholder="Select a User"
+          showSearch
+          className="mb-4"
+          optionFilterProp="children"
+          filterOption={(input, option) =>
+            option.find.toLowerCase().includes(input.toLowerCase())
+          }
+        >
+          {usersData?.data?.map((user) => (
+            <Option
+              key={user?._id}
+              find={user?.userId?.fullName}
+              value={user?._id}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span>{user?.userId?.fullName}</span>
+              </div>
+            </Option>
+          ))}
+        </Select>
+        {/* {value && (
           <h1 className="bg-base-color mb-4 py-3 px-4 rounded-xl">
             Profile is complete! You can generate a QR code.
           </h1>
-        )}
+        )} */}
 
         <button
           disabled={!value}
-          onClick={() => setQr(!qr)}
+          // onClick={() => setQr(!qr)}
+          onClick={onFinish}
           className={`text-lg font-normal  py-3 px-[18px] rounded-lg flex items-center gap-4 w-fit cursor-pointer select-none ${
             value ? "bg-secondary-color text-white" : " bg-[#6C757D] text-white"
           }`}
@@ -156,16 +242,16 @@ const QRforVenuePage = () => {
         <div className="">
           <Table
             columns={columns}
-            dataSource={data}
-            pagination={{
-              pageSize: 8,
-              total: 250, // Total number of items
-              showSizeChanger: true,
-              pageSizeOptions: ["8", "60", "120"],
-              defaultCurrent: 1,
-              showTotal: (total, range) =>
-                `SHOWING ${range[0]}-${range[1]} OF ${total}`,
-            }}
+            dataSource={qrGenerateHistoy?.data}
+            // pagination={{
+            //   pageSize: 8,
+            //   total: 250, // Total number of items
+            //   showSizeChanger: true,
+            //   pageSizeOptions: ["8", "60", "120"],
+            //   defaultCurrent: 1,
+            //   showTotal: (total, range) =>
+            //     `SHOWING ${range[0]}-${range[1]} OF ${total}`,
+            // }}
             className="custom-table"
           />
         </div>

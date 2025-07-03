@@ -52,6 +52,7 @@ import NotificationsPage from "../Pages/Admin/NotificationsPage";
 import SubscriptionPage from "../Pages/Admin/SubscriptionPage";
 import ReportPage from "../Pages/Admin/ReportPage";
 import VenueSeeDetails from "../Pages/Admin/VenueSeeDetails";
+import DiscoverMauritius from "../Pages/Admin/DiscoverMauritius";
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <AdminDashboard />,
       },
-      { 
+      {
         path: "customers",
         element: <CustomersPage />,
       },
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "recommented-content",
         element: <RecommendedContentPage />,
+      },
+      {
+        path: "discover-mauritius",
+        element: <DiscoverMauritius />,
       },
       {
         path: "notification",

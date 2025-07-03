@@ -231,7 +231,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                     <Button
                       style={{
                         zIndex: 1,
-                      }}
+                      }}      
                       className="bg-white p-2 w-fit h-fit rounded-full shadow !border-none"
                     >
                       <IoCameraOutline

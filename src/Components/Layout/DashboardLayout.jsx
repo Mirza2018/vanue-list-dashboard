@@ -61,6 +61,9 @@ const DashboardLayout = () => {
     if (currentPath.includes("/recommented-content")) {
       return ["recommented-content"];
     }
+    if (currentPath.includes("/discover-mauritius")) {
+      return ["discover-mauritius"];
+    }
     if (currentPath.includes("/notification")) {
       return ["notification"];
     }
@@ -248,6 +251,22 @@ const DashboardLayout = () => {
         />
       ),
       label: <NavLink to="recommented-content">Recommended Content</NavLink>,
+    },
+    {
+      key: "discover-mauritius",
+      icon: (
+        <img
+          src={AllIcons.seven}
+          alt="discover-mauritius"
+          width={20}
+          style={{
+            filter: location.pathname.includes("discover-mauritius")
+              ? "brightness(0) invert(1)"
+              : undefined,
+          }}
+        />
+      ),
+      label: <NavLink to="discover-mauritius">Discover Mauritius</NavLink>,
     },
     // {
     //   key: "notification",

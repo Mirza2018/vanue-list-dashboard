@@ -8,6 +8,8 @@ export const tagTypes = {
   venue: "venue",
   customer: "Customer",
   recommented: "Recommented",
+  qr: "Qr",
+  mauritius: "Mauritius",
 };
 
 export const tagTypesList = [
@@ -18,4 +20,6 @@ export const tagTypesList = [
   tagTypes.venue,
   tagTypes.customer,
   tagTypes.recommented,
+  tagTypes.qr,
+  tagTypes.mauritius,
 ];

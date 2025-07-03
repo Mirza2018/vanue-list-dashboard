@@ -1,22 +1,12 @@
-import { useMemo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
-import { ConfigProvider, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { ConfigProvider, Input } from "antd";
+import { useState } from "react";
 
 //* Modal Table
-import AllUserTable from "../../Components/Tables/Admin/AllUserTable";
-import ViewUserModal from "../../Components/Modal/Admin/ViewUserModal";
-import BlockUserModal from "../../Components/Modal/Admin/BlockUserModal";
-import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal";
-import AllCustomers from "../../Components/CustomerPage/AllCustomers";
 import AccountRecoveryRequests from "../../Components/CustomerPage/AccountRecoveryRequests";
+import AllCustomers from "../../Components/CustomerPage/AllCustomers";
 
 const CustomersPage = () => {
-
-  
   //* Store Search Value
   const [isCustomer, setIsCustomer] = useState(true);
   const [searchText, setSearchText] = useState("");
@@ -84,19 +74,14 @@ const CustomersPage = () => {
       </main>
 
       {/* Table  */}
-      {
-        isCustomer ? (
-          <AllCustomers
-            setSearchText={setSearchText}
-            searchText={searchText}
-          />
-        ) : (
-          <AccountRecoveryRequests
-            setSearchText={setSearchText}
-            searchText={searchText}
-          />
-        )
-      }
+      {isCustomer ? (
+        <AllCustomers setSearchText={setSearchText} searchText={searchText} />
+      ) : (
+        <AccountRecoveryRequests
+          setSearchText={setSearchText}
+          searchText={searchText}
+        />
+      )}
       {/* <AllCustomers setSearchText={setSearchText} searchText={searchText} />
       <AccountRecoveryRequests
         setSearchText={setSearchText}

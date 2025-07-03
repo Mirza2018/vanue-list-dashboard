@@ -6,17 +6,26 @@ import {
   Form,
   Input,
   Modal,
+  Select,
   Typography,
   Upload,
 } from "antd";
 import { FiUpload } from "react-icons/fi";
-import { useCreateRecommentMutation } from "../../../redux/api/adminApi";
+import {
+  useCreateMauritiusMutation,
+  useCreateRecommentMutation,
+  useGetVenueQuery,
+} from "../../../redux/api/adminApi";
 import { toast } from "sonner";
-
-const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
-  const [addRecomanded] = useCreateRecommentMutation();
+const { Option } = Select;
+const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetVenueQuery();
+  const displayedData = data ?? currentData;
+  const [addMauritius] = useCreateMauritiusMutation();
   const [form] = Form.useForm();
   const { Dragger } = Upload;
+
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -24,8 +33,8 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
     return e && e.fileList;
   };
   const onFinish = async (values) => {
-    const toastId = toast.loading("Content is adding...");
-    console.log(values.title);
+    const toastId = toast.loading("Discover Mauritius is adding...");
+    console.log(values);
 
     if (!values?.thumbnailImage[0]?.originFileObj) {
       return toast.error("Please select an image", {
@@ -33,7 +42,6 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
         duration: 2000,
       });
     }
-
     if (
       !values?.video?.fileList?.length ||
       !values?.video?.fileList[0]?.originFileObj
@@ -43,14 +51,15 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
         duration: 2000,
       });
     }
-    if (!values?.title) {
-      return toast.error("Please selete a Title", {
+
+    if (!values?.venueId) {
+      return toast.error("Please selete a venue", {
         id: toastId,
         duration: 2000,
       });
     }
 
-    const data = { title: values.title };
+    const data = { venueId: values.venueId };
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
 
@@ -58,9 +67,9 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
     formData.append("video", values.video.fileList[0].originFileObj);
 
     try {
-      const res = await addRecomanded(formData).unwrap();
+      const res = await addMauritius(formData).unwrap();
       console.log(res);
-      toast.success("Content is added successfully", {
+      toast.success("Discover Mauritius is added successfully", {
         id: toastId,
         duration: 2000,
       });
@@ -105,22 +114,41 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
             className="bg-transparent w-full text-start"
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Content title
+              venue
             </Typography.Title>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please enter content title",
+                  message: "Please selete venue",
                 },
               ]}
-              name="title"
+              name="venueId"
               className=" "
             >
-              <Input
-                placeholder="Enter content title"
-                className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-              />
+              <Select
+                className="sm:!h-10"
+                placeholder="Select a venue"
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.find.toLowerCase().includes(input.toLowerCase())
+                }
+              >
+                {displayedData?.data?.map((data) => (
+                  <Option key={data?._id} find={data?.name} value={data?._id}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <span>{data?.name}</span>
+                    </div>
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
@@ -166,7 +194,7 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
                   <p className="ant-upload-drag-icon">
                     <FiUpload className="text-4xl" />
                   </p>
-                  <p className="ant-upload-text">Upload your content video</p>
+                  <p className="ant-upload-text">Upload video</p>
                 </div>
               </Dragger>
             </Form.Item>
@@ -186,4 +214,4 @@ const AddRecommendedModel = ({ isAddCompanyModalVisible, handleCancel }) => {
   );
 };
 
-export default AddRecommendedModel;
+export default AddMauritius;

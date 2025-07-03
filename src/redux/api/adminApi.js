@@ -117,6 +117,31 @@ export const adminApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.venue],
     }),
 
+    //venue generate qr
+    getUnGenerateQrVenue: build.query({
+      query: () => ({
+        url: `/venue/unGenerateQr`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.venue, tagTypes.qr],
+    }),
+    getGenerateQrVenue: build.query({
+      query: () => ({
+        url: `/venue/generateQr`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.qr],
+    }),
+
+    createQr: build.mutation({
+      query: (data) => ({
+        url: `/venue/generateQr`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [tagTypes.qr],
+    }),
+
     /// Customers
 
     getCustomersOverview: build.query({
@@ -197,6 +222,27 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.recommented],
     }),
+
+    //discover-mauritius
+
+    getDiscovermauritius: build.query({
+      query: (params) => ({
+        url: `/discover`,
+        method: "GET",
+        params: params,
+      }),
+      providesTags: [tagTypes.mauritius],
+    }),
+
+    createMauritius: build.mutation({
+      query: (data) => ({
+        url: `/discover/admin/add`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [tagTypes.mauritius],
+    }),
+
     //end
   }),
 });
@@ -229,5 +275,12 @@ export const {
   useGetAcceptdRecommentedContentQuery,
   useActionRecommentedContentMutation,
   useGetPendingRecommentedContentQuery,
-  useCreateRecommentMutation
+  useCreateRecommentMutation,
+  //qr
+  useGetUnGenerateQrVenueQuery,
+  useCreateQrMutation,
+  useGetGenerateQrVenueQuery,
+  //discover-mauritius
+  useGetDiscovermauritiusQuery,
+  useCreateMauritiusMutation
 } = adminApi;
