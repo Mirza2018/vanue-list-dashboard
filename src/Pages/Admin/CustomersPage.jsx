@@ -15,9 +15,6 @@ const CustomersPage = () => {
     setSearchText(value);
   };
 
-  const showAddCompanyModal = () => {
-    setIsAddCompanyModalVisible(true);
-  };
 
   return (
     <div
@@ -28,7 +25,7 @@ const CustomersPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Customers List
+            Visitors List
           </p>
           <div className="flex gap-4 items-center">
             <ConfigProvider
@@ -57,7 +54,7 @@ const CustomersPage = () => {
                 : "font-normal text-black  "
             }`}
           >
-            All Customers
+            All Visitors
           </h1>
 
           <h1
@@ -82,11 +79,7 @@ const CustomersPage = () => {
           searchText={searchText}
         />
       )}
-      {/* <AllCustomers setSearchText={setSearchText} searchText={searchText} />
-      <AccountRecoveryRequests
-        setSearchText={setSearchText}
-        searchText={searchText}
-      /> */}
+
     </div>
   );
 };

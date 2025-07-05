@@ -2,7 +2,7 @@
 import { Button, Space, Table, Tooltip } from "antd";
 import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
-import { AllImages } from "../../../../public/images/AllImages";
+
 
 const AllUserTable = ({
   data,

@@ -68,7 +68,7 @@ const AdminDashboard = () => {
 
                     <div className="text-center w-fit">
                       <p className="text-sm lg:text-base xl:text-2xl font-medium ">
-                        Total Customers
+                        Total Visitors
                       </p>
                       <p className="text-xs lg:text-sm xl:text-xl  mb-1 text-secondary-color">
                         {displayedData?.data?.totalUsers}
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
 
                     <div className="text-center w-fit">
                       <p className="text-sm lg:text-base xl:text-2xl font-medium ">
-                        Total Venues
+                        Total Business Users
                       </p>
                       <p className="text-xs lg:text-sm xl:text-xl  mb-1 text-secondary-color">
                         {displayedData?.data?.totalVenues}

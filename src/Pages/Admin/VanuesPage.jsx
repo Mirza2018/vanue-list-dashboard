@@ -108,7 +108,7 @@ const VanuesPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Venue List
+            Business Users List
           </p>
           <div className="flex gap-4 items-center">
             <ConfigProvider
@@ -139,7 +139,7 @@ const VanuesPage = () => {
           style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
           className="font-semibold "
         >
-          Add Venue
+          Add Business Users
         </p>
       </div>
       <Addvenue isVenue={addVenue} setIsVenue={setAddVenue} />
@@ -153,12 +153,7 @@ const VanuesPage = () => {
           pageSize={8}
         />
       </div>
-   {/* {   console.log(displayedData?.data)} */}
-      {/* Modals */}
-      {/* <AddCategoriesModal
-        isAddVenueModalVisible={isAddVenueModalVisible}
-        handleCancel={handleCancel}
-      /> */}
+ 
       <ViewVenseModal
         isVenueViewModalVisible={isVenueViewModalVisible}
         handleCancel={handleCancel}

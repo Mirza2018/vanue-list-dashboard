@@ -38,6 +38,16 @@ const AllVenseTable = ({
     },
 
     {
+      title: "website Url",
+      dataIndex: "websiteUrl",
+      key: "websiteUrl",
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
+    },
+    {
       title: "Email",
       dataIndex: "email",
       key: "email",

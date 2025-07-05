@@ -134,22 +134,22 @@ const DashboardLayout = () => {
           }}
         />
       ),
-      label: <NavLink to="customers">customers</NavLink>,
+      label: <NavLink to="customers">Visitors</NavLink>,
     },
     {
       key: "venues",
-      label: <span className="!text-secondary-color">Venues</span>,
+      label: <span className="!text-secondary-color">Business Users</span>,
       icon: <img src={AllIcons.three} alt="venues" width={20} />,
       children: [
         {
           key: "all-venues",
           icon: <span>&#8226;</span>,
-          label: <NavLink to="all-venues">All Venues</NavLink>,
+          label: <NavLink to="all-venues">All Business Users</NavLink>,
         },
         {
           key: "venues-request",
           icon: <span>&#8226;</span>,
-          label: <NavLink to="venues-request">Venue Request</NavLink>,
+          label: <NavLink to="venues-request">Business Users Request</NavLink>,
         },
       ],
     },

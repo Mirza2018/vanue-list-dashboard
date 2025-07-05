@@ -35,7 +35,7 @@ const ReportPage = () => {
 
               <div className="text-center w-fit">
                 <p className="text-sm lg:text-base xl:text-2xl font-medium ">
-                  Total Venue
+                  Total Business Users
                 </p>
                 <p className="text-xs lg:text-sm xl:text-xl  mb-1 text-secondary-color">
                   780

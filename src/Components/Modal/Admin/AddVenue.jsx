@@ -231,7 +231,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                     <Button
                       style={{
                         zIndex: 1,
-                      }}      
+                      }}
                       className="bg-white p-2 w-fit h-fit rounded-full shadow !border-none"
                     >
                       <IoCameraOutline
@@ -566,7 +566,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
               </Upload.Dragger>
             </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Menu Photos (Optional)
+              Restaurant Menu (if available){" "}
             </Typography.Title>
             <Form.Item
               name="menuPhotos"
