@@ -12,19 +12,33 @@ import {
 } from "antd";
 import { FiUpload } from "react-icons/fi";
 import {
-  useCreateMauritiusMutation,
-  useCreateRecommentMutation, 
   useGetVenueQuery,
+  useUpdateMauritiusMutation,
 } from "../../../redux/api/adminApi";
 import { toast } from "sonner";
+import { useEffect } from "react";
 const { Option } = Select;
-const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
+const EditMauritius = ({
+  isAddCompanyModalVisible,
+  handleCancel,
+  currentCompanyRecord,
+}) => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useGetVenueQuery();
   const displayedData = data ?? currentData;
-  const [addMauritius] = useCreateMauritiusMutation();
+  const [UpdateMauritius] = useUpdateMauritiusMutation();
   const [form] = Form.useForm();
   const { Dragger } = Upload;
+
+  useEffect(() => {
+    if (currentCompanyRecord) {
+      form.setFieldsValue({
+        venueId: currentCompanyRecord?.venueId?.name,
+      });
+    }
+  }, [currentCompanyRecord, form]);
+
+  console.log(currentCompanyRecord);
 
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
@@ -33,43 +47,47 @@ const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
     return e && e.fileList;
   };
   const onFinish = async (values) => {
-    const toastId = toast.loading("Discover Mauritius is adding...");
+    const toastId = toast.loading("Discover Mauritius is updateing...");
     console.log(values);
-
-    if (!values?.thumbnailImage[0]?.originFileObj) {
-      return toast.error("Please select an image", {
-        id: toastId,
-        duration: 2000,
-      });
+    const formData = new FormData();
+    if (
+      Array.isArray(values?.thumbnailImage) &&
+      values.thumbnailImage.length > 0 &&
+      values.thumbnailImage[0]?.originFileObj
+    ) {
+      formData.append("thumbnailImage", values.thumbnailImage[0].originFileObj);
+      console.log(2);
+    } else {
+      formData.append("thumbnailImage", currentCompanyRecord?.thumbnailImage);
+      console.log(1);
     }
+
     if (
       !values?.video?.fileList?.length ||
       !values?.video?.fileList[0]?.originFileObj
     ) {
-      return toast.error("Please select an video", {
-        id: toastId,
-        duration: 2000,
-      });
+      formData.append("video", currentCompanyRecord?.videoUrl);
+    } else {
+      formData.append("video", values.video.fileList[0].originFileObj);
     }
 
+    let data;
     if (!values?.venueId) {
-      return toast.error("Please selete a venue", {
-        id: toastId,
-        duration: 2000,
-      });
+      data = currentCompanyRecord?.venueId?._id;
+    } else {
+      data = { venueId: values.venueId };
     }
 
-    const data = { venueId: values.venueId };
-    const formData = new FormData();
     formData.append("data", JSON.stringify(data));
 
-    formData.append("thumbnailImage", values?.thumbnailImage[0]?.originFileObj);
-    formData.append("video", values.video.fileList[0].originFileObj);
 
     try {
-      const res = await addMauritius(formData).unwrap();
+      const res = await UpdateMauritius({
+        formData: formData,
+        id: currentCompanyRecord?._id,
+      }).unwrap();
       console.log(res);
-      toast.success("Discover Mauritius is added successfully", {
+      toast.success("Discover Mauritius is update successfully", {
         id: toastId,
         duration: 2000,
       });
@@ -116,16 +134,7 @@ const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
             <Typography.Title level={4} style={{ color: "#222222" }}>
               venue
             </Typography.Title>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please selete venue",
-                },
-              ]}
-              name="venueId"
-              className=" "
-            >
+            <Form.Item name="venueId" className=" ">
               <Select
                 className="sm:!h-10"
                 placeholder="Select a venue"
@@ -179,16 +188,7 @@ const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
             <Typography.Title level={4} style={{ color: "#222222" }}>
               video
             </Typography.Title>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Upload video",
-                },
-              ]}
-              name="video"
-              className=" w-full"
-            >
+            <Form.Item name="video" className=" w-full">
               <Dragger maxCount={1} accept="video/*" name="file">
                 <div className="flex flex-col justify-center items-center text-black">
                   <p className="ant-upload-drag-icon">
@@ -214,4 +214,4 @@ const AddMauritius = ({ isAddCompanyModalVisible, handleCancel }) => {
   );
 };
 
-export default AddMauritius;
+export default EditMauritius;

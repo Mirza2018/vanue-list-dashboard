@@ -74,8 +74,20 @@ function doDownload(url, fileName) {
   document.body.removeChild(a);
 }
 const QRforVenuePage = () => {
+    const [filters, setFilters] = useState({
+      page: 1,
+      limit: 2,
+    });
+    const onPageChange = (page, limit) => {
+      setFilters((prev) => ({
+        ...prev,
+        page,
+        limit,
+      }));
+    };
+  
   const { data: usersData } = useGetUnGenerateQrVenueQuery();
-  const { data: qrGenerateHistoy } = useGetGenerateQrVenueQuery();
+  const { data: qrGenerateHistoy } = useGetGenerateQrVenueQuery(filters);
   console.log(usersData?.data);
   const [createQr] = useCreateQrMutation();
 
@@ -243,15 +255,13 @@ const QRforVenuePage = () => {
           <Table
             columns={columns}
             dataSource={qrGenerateHistoy?.data}
-            // pagination={{
-            //   pageSize: 8,
-            //   total: 250, // Total number of items
-            //   showSizeChanger: true,
-            //   pageSizeOptions: ["8", "60", "120"],
-            //   defaultCurrent: 1,
-            //   showTotal: (total, range) =>
-            //     `SHOWING ${range[0]}-${range[1]} OF ${total}`,
-            // }}
+            pagination={{
+              current: qrGenerateHistoy?.meta?.page,
+              pageSize: qrGenerateHistoy?.meta?.limit,
+              total: qrGenerateHistoy?.meta?.total,
+              onChange: onPageChange,
+              showSizeChanger: true,
+            }}
             className="custom-table"
           />
         </div>
@@ -262,20 +272,3 @@ const QRforVenuePage = () => {
 
 export default QRforVenuePage;
 
-const users = [
-  { value: "1", label: "Aiden" },
-  { value: "2", label: "Sophie" },
-  { value: "3", label: "Liam" },
-  { value: "4", label: "Olivia" },
-  { value: "5", label: "Ethan" },
-  { value: "6", label: "Isabella" },
-  { value: "7", label: "Noah" },
-  { value: "8", label: "Ava" },
-  { value: "9", label: "Mason" },
-  { value: "10", label: "Mia" },
-  { value: "11", label: "Lucas" },
-  { value: "12", label: "Emma" },
-  { value: "13", label: "James" },
-  { value: "14", label: "Charlotte" },
-  { value: "15", label: "Henry" },
-];

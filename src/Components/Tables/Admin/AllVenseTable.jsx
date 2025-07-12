@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Space, Table, Tooltip } from "antd";
 import { GoEye } from "react-icons/go";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 import { getImageUrl } from "../../../redux/getBaseUrl";
 
@@ -10,7 +10,8 @@ const AllVenseTable = ({
   loading,
   showVenueViewModal,
   showVenueBlockModal,
-  pageSize = 0,
+  onPageChange,
+  meta,
 }) => {
   const columns = [
     // {
@@ -66,7 +67,7 @@ const AllVenseTable = ({
           <Space size="middle">
             {/* Block User Tooltip */}
             <Tooltip placement="left" title="Block this User">
-              <Button
+              {/* <Button
                 className="!p-0"
                 style={{
                   background: "#FFFFFF",
@@ -76,6 +77,27 @@ const AllVenseTable = ({
                 onClick={() => showVenueBlockModal(record)}
               >
                 <RiDeleteBin6Line style={{ fontSize: "24px" }} />
+              </Button> */}
+
+              <Button
+                className="!p-0"
+                style={{
+                  background: "#FFFFFF",
+                  border: "none",
+                }}
+                onClick={() => showVenueBlockModal(record)}
+              >
+                {/* {console.log(record?.isBlocked)} */}
+
+                {record?.isBlocked == true ? (
+                  <RiDeviceRecoverLine
+                    style={{ fontSize: "26px", color: "#ff9966" }}
+                  />
+                ) : (
+                  <RiDeleteBin6Line
+                    style={{ fontSize: "24px", color: "#C50000" }}
+                  />
+                )}
               </Button>
             </Tooltip>
             {/* View Details Tooltip */}
@@ -103,7 +125,13 @@ const AllVenseTable = ({
         columns={columns}
         dataSource={data}
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger: true,
+        }}
         rowKey="id"
         scroll={{ x: true }}
       />

@@ -19,6 +19,7 @@ import {
   useCreateVenueMutation,
   useGetCategoryQuery,
   useGetCustomersQuery,
+  useGetUnCreatedCustomersQuery,
 } from "../../../redux/api/adminApi";
 import { toast } from "sonner";
 import { AllImages } from "../../../../public/images/AllImages";
@@ -50,12 +51,13 @@ const libraries = ["places"];
 const Addvenue = ({ isVenue, setIsVenue }) => {
   const [createVenue] = useCreateVenueMutation();
   const { data } = useGetCategoryQuery({ limit: 100 });
-  const { data: dataUser } = useGetCustomersQuery({ limit: 100 });
-
+  const { data: dataUser } = useGetUnCreatedCustomersQuery({ limit: 100 });
+  const [isShopping, setIsShopping] = useState(null);
   const [form] = Form.useForm();
   const { Dragger } = Upload;
   const categoryData = data?.data?.result;
   const usersData = dataUser?.data;
+  console.log(isShopping);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -113,6 +115,11 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
     delete data.profile;
     delete data.photos;
     delete data.menuPhotos;
+
+    console.log(data);
+    
+
+    
 
     console.log("Venue:", data);
     const formData = new FormData();
@@ -275,6 +282,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                 </Form.Item>
               </div>
             </div>
+
             <div className="flex sm:flex-row flex-col sm:gap-5">
               <div className="flex-1">
                 <Typography.Title level={4} style={{ color: "#222222" }}>
@@ -321,14 +329,11 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   rules={[{ required: true, message: "Please select user" }]}
                   name="category"
                 >
-                  {/* <Input
-                    placeholder="select user"
-                    className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
-                  /> */}
                   <Select
                     className="sm:!h-10"
                     placeholder="Select a Category"
                     showSearch
+                    onChange={(e) => setIsShopping(e)}
                     optionFilterProp="children"
                     filterOption={(input, option) =>
                       option.find.toLowerCase().includes(input.toLowerCase())
@@ -355,6 +360,84 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                 </Form.Item>
               </div>
             </div>
+            {isShopping == "685bfe3189b1c57bf5ebc5e7" && (
+              <div className="flex sm:flex-row flex-col sm:gap-5">
+                <div className="flex-1">
+                  <Typography.Title level={4} style={{ color: "#222222" }}>
+                    Sub Category
+                  </Typography.Title>
+                  <Form.Item
+                    rules={[
+                      { required: true, message: "Please select Sub Category" },
+                    ]}
+                    name="subcategory"
+                  >
+                    <Select
+                      className="sm:!h-10"
+                      placeholder="Select a Sub Category"
+                      showSearch
+                      optionFilterProp="children"
+                      filterOption={(input, option) =>
+                        option.key.toLowerCase().includes(input.toLowerCase())
+                      }
+                    >
+                      {subCategory?.map((cat) => (
+                        <Option key={cat?.name} value={cat?.value}>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "8px",
+                            }}
+                          >
+                            <span>{cat?.name}</span>
+                          </div>
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </div>
+                <div className="flex-1">
+                  <Typography.Title level={4} style={{ color: "#222222" }}>
+                    Shopping Type
+                  </Typography.Title>
+                  <Form.Item
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select Shopping type",
+                      },
+                    ]}
+                    name="secondarySubcategory"
+                  >
+                    <Select
+                      className="sm:!h-10"
+                      placeholder="Select a Shopping type"
+                      showSearch
+                      onChange={(e) => setIsShopping(e)}
+                      optionFilterProp="children"
+                      filterOption={(input, option) =>
+                        option.key.toLowerCase().includes(input.toLowerCase())
+                      }
+                    >
+                      {shoppingType?.map((cat) => (
+                        <Option key={cat?.name} value={cat?.value}>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "8px",
+                            }}
+                          >
+                            <span>{cat?.name}</span>
+                          </div>
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </div>
+              </div>
+            )}
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Description
@@ -612,3 +695,106 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
 };
 
 export default Addvenue;
+
+const subCategory = [
+  {
+    name: "Shopping",
+    lable: "Shopping",
+  },
+  {
+    name: "Supermarkets",
+    lable: "Supermarkets",
+  },
+  {
+    name: "Hypermarkets",
+    lable: "Hypermarkets",
+  },
+];
+
+const shoppingType = [
+  { name: "ATMs", label: "ATMs" },
+  {
+    name: "Baby Care & Gear (e.g. strollers, cribs, toys)",
+    label: "Baby Care & Gear (e.g. strollers, cribs, toys)",
+  },
+  { name: "Bank Branches", label: "Bank Branches" },
+  { name: "Beauty & Cosmetics Stores", label: "Beauty & Cosmetics Stores" },
+  { name: "Beauty Salons & Barbershops", label: "Beauty Salons & Barbershops" },
+  {
+    name: "Bookstores & Stationery Shops",
+    label: "Bookstores & Stationery Shops",
+  },
+  { name: "Bowling Alley / Arcades", label: "Bowling Alley / Arcades" },
+  { name: "Cafés & Coffee Shops", label: "Cafés & Coffee Shops" },
+  { name: "Car Rental Desks", label: "Car Rental Desks" },
+  {
+    name: "Children’s Play Area / Indoor Playground",
+    label: "Children’s Play Area / Indoor Playground",
+  },
+  { name: "Cinema / Movie Theatre", label: "Cinema / Movie Theatre" },
+  { name: "Clinics / Medical Centres", label: "Clinics / Medical Centres" },
+  { name: "Computer & Gadget Stores", label: "Computer & Gadget Stores" },
+  {
+    name: "Curtains, Blinds & Home Textile Stores",
+    label: "Curtains, Blinds & Home Textile Stores",
+  },
+  {
+    name: "Electronics & Appliances Stores",
+    label: "Electronics & Appliances Stores",
+  },
+  { name: "Escape Rooms", label: "Escape Rooms" },
+  { name: "Fashion & Apparel", label: "Fashion & Apparel" },
+  { name: "Fast Food Chains", label: "Fast Food Chains" },
+  {
+    name: "Fine Dining / Themed Restaurants",
+    label: "Fine Dining / Themed Restaurants",
+  },
+  { name: "Food Court", label: "Food Court" },
+  { name: "Footwear", label: "Footwear" },
+  { name: "Foreign Exchange Counter", label: "Foreign Exchange Counter" },
+  { name: "Furniture & Home Décor", label: "Furniture & Home Décor" },
+  { name: "Gyms / Fitness Centers", label: "Gyms / Fitness Centers" },
+  { name: "Homeware / Tableware Shops", label: "Homeware / Tableware Shops" },
+  {
+    name: "Ice Cream Parlors / Dessert Bars",
+    label: "Ice Cream Parlors / Dessert Bars",
+  },
+  {
+    name: "Insurance & Financial Services",
+    label: "Insurance & Financial Services",
+  },
+  { name: "Jewelry & Accessories", label: "Jewelry & Accessories" },
+  { name: "Juice Bars & Healthy Bites", label: "Juice Bars & Healthy Bites" },
+  { name: "Kitchen Equipment Stores", label: "Kitchen Equipment Stores" },
+  { name: "Lingerie & Undergarments", label: "Lingerie & Undergarments" },
+  {
+    name: "Luggage & Travel Accessories Stores",
+    label: "Luggage & Travel Accessories Stores",
+  },
+  { name: "Maternity Wear", label: "Maternity Wear" },
+  { name: "Mattress & Bedding Stores", label: "Mattress & Bedding Stores" },
+  {
+    name: "Men's, Women's, and Children's Clothing",
+    label: "Men's, Women's, and Children's Clothing",
+  },
+  { name: "Mobile Shops & Accessories", label: "Mobile Shops & Accessories" },
+  { name: "Nail Bars", label: "Nail Bars" },
+  { name: "Opticians & Eyewear Shops", label: "Opticians & Eyewear Shops" },
+  { name: "Pet Shops & Supplies", label: "Pet Shops & Supplies" },
+  { name: "Pharmacies", label: "Pharmacies" },
+  { name: "Spas & Massage Parlors", label: "Spas & Massage Parlors" },
+  { name: "Sports & Fitness Stores", label: "Sports & Fitness Stores" },
+  {
+    name: "Supermarkets / Grocery Stores",
+    label: "Supermarkets / Grocery Stores",
+  },
+  {
+    name: "Telecom Service Providers (SIM cards, plans)",
+    label: "Telecom Service Providers (SIM cards, plans)",
+  },
+  { name: "Toy Stores", label: "Toy Stores" },
+  { name: "Travel Agencies", label: "Travel Agencies" },
+  { name: "VR & Gaming Zones", label: "VR & Gaming Zones" },
+  { name: "Wellness Shops", label: "Wellness Shops" },
+  { name: "Yoga / Dance Studios", label: "Yoga / Dance Studios" },
+];

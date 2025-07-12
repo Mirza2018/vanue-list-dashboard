@@ -17,8 +17,24 @@ const data = Array.from({ length: 8 }, (_, index) => ({
 }));
 
 const ActiveCategories = () => {
+
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+  });
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
+
+
+
+
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useGetCategoryQuery();
+    useGetCategoryQuery(filters);
   const [categoryDelete] = useDeleteCategoryMutation();
   const displayedData = data ?? currentData;
   // console.log(displayedData?.data);
@@ -111,13 +127,11 @@ const ActiveCategories = () => {
           columns={columns}
           dataSource={displayedData?.data?.result}
           pagination={{
-            pageSize: 8,
-            total: displayedData?.data?.length,
+            current: displayedData?.data?.meta?.page,
+            pageSize: displayedData?.data?.meta?.limit,
+            total: displayedData?.data?.meta?.total,
+            onChange: onPageChange,
             showSizeChanger: true,
-            pageSizeOptions: ["8", "60", "120"],
-            defaultCurrent: 1,
-            showTotal: (total, range) =>
-              `SHOWING ${range[0]}-${range[1]} OF ${total}`,
           }}
           className="custom-table"
         />

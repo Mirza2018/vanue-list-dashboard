@@ -9,11 +9,27 @@ import { useGetCustomersQuery } from "../../redux/api/adminApi";
 //* Modal Table
 
 const AllCustomers = ({ setSearchText, searchText }) => {
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+  });
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
+
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useGetCustomersQuery();
+    useGetCustomersQuery(filters);
   const displayedData = data ?? currentData;
-
-
+  const handleSearch = (search) => {
+    setFilters((prev) => ({
+      ...prev,
+      searchTerm: search,
+    }));
+  };
 
   //* It's Use to Show Modal
   const [isCompanyViewModalVisible, setIsCompanyViewModalVisible] =
@@ -30,7 +46,6 @@ const AllCustomers = ({ setSearchText, searchText }) => {
   //* It's Use to Set Seclected User to Block and view
   const [currentCompanyRecord, setCurrentCompanyRecord] = useState(null);
 
-
   const filteredCompanyData = useMemo(() => {
     if (!searchText) return data;
     return data.filter((item) =>
@@ -45,7 +60,7 @@ const AllCustomers = ({ setSearchText, searchText }) => {
   const showAddCompanyModal = () => {
     setIsAddCompanyModalVisible(true);
   };
- 
+
   const showCompanyViewModal = (record) => {
     setCurrentCompanyRecord(record);
     setIsCompanyViewModalVisible(true);
@@ -75,10 +90,12 @@ const AllCustomers = ({ setSearchText, searchText }) => {
       <div className="px-10 py-10">
         <AllUserTable
           data={displayedData?.data}
+          meta={displayedData?.meta}
           loading={isLoading}
+          onPageChange={onPageChange}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
-          pageSize={8}
+
         />
       </div>
 

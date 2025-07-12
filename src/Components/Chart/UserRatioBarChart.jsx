@@ -89,7 +89,7 @@ const UserRatioBarChart = ({ monthlyOverview }) => {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <ConfigProvider
             theme={{
               components: {
@@ -111,7 +111,7 @@ const UserRatioBarChart = ({ monthlyOverview }) => {
               ]}
             />
           </ConfigProvider>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full h-64 mt-2">

@@ -11,7 +11,8 @@ const AccountRecoveryTable = ({
   showCompanyBlockModal,
   setApproveAccount,
   ApproveAccountRecord,
-  pageSize = 0,
+  onPageChange,
+  meta,
 }) => {
   const columns = [
     // {
@@ -118,7 +119,13 @@ const AccountRecoveryTable = ({
         columns={columns}
         dataSource={data}
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger: true,
+        }}
         rowKey="id"
         scroll={{ x: true }}
       />

@@ -1,33 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import { Pagination, Spin } from "antd";
+import React, { useState } from "react";
 import { FiBell } from "react-icons/fi";
 import { MdArrowBackIos } from "react-icons/md";
-import { Link } from "react-router-dom";
 
-const notifications = [
-  { id: 1, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 2, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 3, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 4, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 5, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 6, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 7, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 8, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 9, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 10, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 11, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 12, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 13, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 14, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 15, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 16, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 17, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 18, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 19, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-  { id: 20, message: "A company added 6 Service Users.", time: "Fri, 12:30pm" },
-];
+import { FormattedDate, FormattedTime } from "./DateAndTime";
+import { useGetNotificationQuery } from "../../redux/api/notificationApi";
 
 const Notifications = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
+  const { data, isFetching, error } = useGetNotificationQuery({
+    page: currentPage,
+    limit,
+  });
+
+  const onChange = (page) => { 
+    setCurrentPage(page); 
+  };
+console.log(data);
+
   return (
     <div
       className=" bg-slate-50  rounded-xl"
@@ -41,27 +33,58 @@ const Notifications = () => {
 
         <h1 className="text-3xl font-bold text-primary-color">Notification</h1>
       </div>
-      <div className="px-4 sm:px-6 md:px-8 ">
-        {notifications.map((notification) => (
-          <div
-            key={notification.id}
-            className="flex items-center space-x-3 p-2 border-b border-gray-300 last:border-none"
-          >
-            {/* Icon */}
-            <div className="bg-[#b8c1c3] p-2 rounded-full">
-              <FiBell className="text-secondary-color w-6 h-6" />
-            </div>
 
-            {/* Notification text */}
-            <div className="flex flex-col">
-              <span className="text-lg font-medium text-gray-700">
-                {notification.message}
-              </span>
-              <span className="text-sm text-gray-500">{notification.time}</span>
-            </div>
+      {isFetching ? (
+        <div className="flex justify-center items-center h-screen">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <>
+          <div className="px-4 sm:px-6 md:px-8 ">
+            {data?.data?.map((notification) => (
+              <div
+                key={notification?._id}
+                className="flex items-center space-x-3 p-2 border-b border-gray-300 last:border-none"
+              >
+                {/* Icon */}
+                <div className="bg-[#b8c1c3] p-2 rounded-full">
+                  <FiBell className="text-secondary-color w-6 h-6" />
+                </div>
+
+                {/* Notification text */}
+                <div className="flex flex-col">
+                  <span className="text-lg font-medium text-gray-700">
+                    {notification?.message}{" "}
+            
+                  </span>
+                  <div className="text-sm text-black-500">
+                    {/* {notification?.createdAt} */}
+                    <FormattedDate value={notification?.createdAt} />
+                    {"  "}
+                    <span className="font-bold text-secondary-color">
+                      ( <FormattedTime value={notification?.createdAt} /> )
+                    </span>
+                    {/* {Time(notification?.createdAt)} */}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+          <div className="flex justify-end items-center py-4">
+            {data?.data?.meta?.total > 0 && (
+              <Pagination
+                onChange={onChange}
+                current={currentPage}
+                total={data.data.meta.total}
+                pageSize={limit}
+                showSizeChanger={false} // Optional: Disable page size changer
+              />
+            )}www
+          </div>
+        </>
+      )}
+
+      {/* <TestSocket/> */}
     </div>
   );
 };

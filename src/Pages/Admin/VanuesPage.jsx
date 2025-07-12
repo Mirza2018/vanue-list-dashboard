@@ -7,11 +7,9 @@ import { SearchOutlined } from "@ant-design/icons";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 //* Modal Table
-import AllUserTable from "../../Components/Tables/Admin/AllUserTable";
+
 import AllVenseTable from "../../Components/Tables/Admin/AllVenseTable";
-import ViewUserModal from "../../Components/Modal/Admin/ViewUserModal";
-import BlockUserModal from "../../Components/Modal/Admin/BlockUserModal";
-import AddCategoriesModal from "../../Components/Modal/Admin/AddCategoriesModal";
+
 import ViewVenseModal from "../../Components/Modal/Admin/ViewVenseModal";
 import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
 import { useGetVenueQuery } from "../../redux/api/adminApi";
@@ -19,8 +17,19 @@ import { FaRegEdit } from "react-icons/fa";
 import Addvenue from "../../Components/Modal/Admin/AddVenue";
 
 const VanuesPage = () => {
+    const [filters, setFilters] = useState({
+      page: 1,
+      limit: 8,
+    });
+    const onPageChange = (page, limit) => {
+      setFilters((prev) => ({
+        ...prev,
+        page,
+        limit,
+      }));
+    };
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useGetVenueQuery();
+    useGetVenueQuery(filters);
   const displayedData = data ?? currentData;
   //* Store Search Value
   const [searchText, setSearchText] = useState("");
@@ -110,7 +119,7 @@ const VanuesPage = () => {
           <p className="text-3xl text-primary-color font-semibold">
             Business Users List
           </p>
-          <div className="flex gap-4 items-center">
+          {/* <div className="flex gap-4 items-center">
             <ConfigProvider
               theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
             >
@@ -124,7 +133,7 @@ const VanuesPage = () => {
                 }
               />
             </ConfigProvider>
-          </div>
+          </div> */}
         </div>
       </div>
       <div
@@ -147,13 +156,15 @@ const VanuesPage = () => {
       <div className="px-10 py-10">
         <AllVenseTable
           data={displayedData?.data}
+          meta={displayedData?.meta}
+          onPageChange={onPageChange}
           loading={isLoading}
           showVenueViewModal={showVenueViewModal}
           showVenueBlockModal={showVenueBlockModal}
           pageSize={8}
         />
       </div>
- 
+
       <ViewVenseModal
         isVenueViewModalVisible={isVenueViewModalVisible}
         handleCancel={handleCancel}

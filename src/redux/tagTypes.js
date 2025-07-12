@@ -10,6 +10,8 @@ export const tagTypes = {
   recommented: "Recommented",
   qr: "Qr",
   mauritius: "Mauritius",
+  notification: "Notification",
+  notificationCount: "NotificationCount",
 };
 
 export const tagTypesList = [
@@ -22,4 +24,6 @@ export const tagTypesList = [
   tagTypes.recommented,
   tagTypes.qr,
   tagTypes.mauritius,
+  tagTypes.notification,
+  tagTypes.notificationCount,
 ];

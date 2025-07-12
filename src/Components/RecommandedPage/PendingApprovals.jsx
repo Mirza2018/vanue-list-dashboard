@@ -17,8 +17,20 @@ const data = Array.from({ length: 8 }, (_, index) => ({
 // Define the columns for the table
 
 const PendingApprovals = () => {
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+  });
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
+
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useGetPendingRecommentedContentQuery();
+    useGetPendingRecommentedContentQuery(filters);
 
   const displayedData = data ?? currentData;
   console.log(displayedData?.data);
@@ -102,13 +114,11 @@ const PendingApprovals = () => {
         columns={columns}
         dataSource={displayedData?.data}
         pagination={{
-          pageSize: 8,
-          total: 250, // Total number of items
+          current: displayedData?.meta?.page,
+          pageSize: displayedData?.meta?.limit,
+          total: displayedData?.meta?.total,
+          onChange: onPageChange,
           showSizeChanger: true,
-          pageSizeOptions: ["8", "60", "120"],
-          defaultCurrent: 1,
-          showTotal: (total, range) =>
-            `SHOWING ${range[0]}-${range[1]} OF ${total}`,
         }}
         className="custom-table"
       />

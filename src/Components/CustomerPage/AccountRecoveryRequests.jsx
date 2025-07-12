@@ -15,8 +15,20 @@ import { toast } from "sonner";
 //* Modal Table
 
 const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
+    const [filters, setFilters] = useState({
+      page: 1,
+      limit: 8,
+    });
+    const onPageChange = (page, limit) => {
+      setFilters((prev) => ({
+        ...prev,
+        page,
+        limit,
+      }));
+    };
+  
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useGetRecoveryAccountQuery();
+    useGetRecoveryAccountQuery(filters);
 
   const displayedData = data ?? currentData;
   const [recoveryAccountRequest] = useRecoveryAccountRequestMutation();
@@ -109,12 +121,13 @@ const AccountRecoveryRequests = ({ setSearchText, searchText }) => {
       <div className="px-10 py-10">
         <AccountRecoveryTable
           data={displayedData?.data?.result}
+          meta={displayedData?.data?.meta}
           loading={isLoading}
           showCompanyViewModal={showCompanyViewModal}
           showCompanyBlockModal={showCompanyBlockModal}
           setapproveAccount={setApproveAccount}
           ApproveAccountRecord={ApproveAccountRecord}
-          pageSize={8}
+          onPageChange={onPageChange}
         />
       </div>
 

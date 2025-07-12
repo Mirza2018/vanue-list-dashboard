@@ -10,7 +10,7 @@ const RecommendedContentPage = () => {
     useState(false);
   const handleCancel = () => {
     setIsAddContentModalVisible(false);
-  };
+  }; 
   return (
     <div
       className="bg-highlight-color min-h-[90vh]  rounded-xl"

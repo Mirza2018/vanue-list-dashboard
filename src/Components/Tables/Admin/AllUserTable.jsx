@@ -9,7 +9,8 @@ const AllUserTable = ({
   loading,
   showCompanyViewModal,
   showCompanyBlockModal,
-  pageSize = 0,
+  onPageChange ,
+  meta
 }) => {
   const columns = [
     {
@@ -37,6 +38,11 @@ const AllUserTable = ({
       title: "Email",
       dataIndex: "email",
       key: "email",
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
       title: "Country",
@@ -98,7 +104,13 @@ const AllUserTable = ({
         columns={columns}
         dataSource={data}
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger: true,
+        }}
         rowKey="id"
         scroll={{ x: true }}
       />

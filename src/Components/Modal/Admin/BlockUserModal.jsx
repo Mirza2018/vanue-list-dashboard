@@ -16,7 +16,7 @@ const BlockUserModal = ({
     const toastId = toast.loading(
       `Customer is ${currentCompanyRecord?.isBlocked ? "Unblock" : "block"}ing...`
     );
-
+ 
     console.log(currentCompanyRecord?._id, block);
 
     // return;

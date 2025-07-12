@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
 import { toast } from "sonner";
+import { useVenueActionMutation } from "../../../redux/api/adminApi";
 
 const BlockVenseModal = ({
   isVenueBlockModalVisible,
@@ -8,33 +9,39 @@ const BlockVenseModal = ({
   handleCancel,
   currentVenueRecord,
 }) => {
+  console.log(currentVenueRecord);
+  const [deleteSubscription] = useVenueActionMutation();
 
-  console.log(currentVenueRecord)
-    // const [deleteSubscription] = useDeleteSubscriptionMutation();
-  
-    // const onFinish = async () => {
-    //   const toastId = toast.loading("Subscription is deleting...");
-  
-    //   //   return
-    //   try {
-    //     const res = await deleteSubscription(plan?._id).unwrap();
-    //     toast.success("Subscription delete successfully", {
-    //       id: toastId,
-    //       duration: 2000,
-    //     });
-  
-    //     setIsAddSubscription(false);
-    //   } catch (error) {
-    //     toast.error(
-    //       error?.data?.message || "There was a problem, please try later",
-    //       {
-    //         id: toastId,
-    //         duration: 2000,
-    //       }
-    //     );
-    //   }
-    // };
-  
+  const onFinish = async (block) => {
+    const toastId = toast.loading(
+      `Business User is ${
+        currentVenueRecord?.isBlocked ? "Unblock" : "block"
+      }ing...`
+    );
+
+    //   return
+    try {
+      const res = await deleteSubscription({
+        id: currentVenueRecord?._id,
+        action: block,
+      }).unwrap();
+      toast.success("Business User is blocked successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      handleCancel();
+    } catch (error) {
+      toast.error(
+        error?.data?.message || "There was a problem, please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
+
   return (
     <Modal
       // title="Confirm Delete"
@@ -67,19 +74,40 @@ const BlockVenseModal = ({
           >
             Cancel
           </Button>
-          <Button
+          {/* <Button
             className="text-xl py-5 px-8"
             type="primary"
             style={{ background: "#CE0000" }}
-            onClick={() => handleVenueBlock(currentVenueRecord)}
+            onClick={onFinish}
           >
             Block
-          </Button>
+          </Button> */}
+
+          {currentVenueRecord?.isBlocked ? (
+            <Button
+              className="text-xl py-5 px-8"
+              type="primary"
+              style={{ background: "#ff9966" }}
+              onClick={() => onFinish("unblocked")}
+            >
+              UnBlock
+            </Button>
+          ) : (
+            <Button
+              className="text-xl py-5 px-8"
+              type="primary"
+              style={{ background: "#CE0000" }}
+              onClick={() => onFinish("blocked")}
+            >
+              Block
+            </Button>
+          )}
         </div>
       }
     >
       <p className="text-3xl font-semibold pt-10 pb-4 text-center text-black">
-        Do you want to block this Venue?
+        Do you want to {currentVenueRecord?.isBlocked ? "Unblock" : "block"}{" "}
+        this Business User?
       </p>
     </Modal>
   );

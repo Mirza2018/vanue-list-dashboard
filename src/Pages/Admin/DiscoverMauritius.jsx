@@ -47,7 +47,7 @@ const DiscoverMauritius = () => {
       <AddMauritius
         isAddCompanyModalVisible={isAddContentModalVisible}
         handleCancel={handleCancel}
-      />
+      /> 
 
       {/* Table  */}
 

@@ -3,13 +3,16 @@ import { Button, Space, Table, Tooltip } from "antd";
 import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
+import { TbBrush } from "react-icons/tb";
+import { CiEdit } from "react-icons/ci";
 
 const AllMauritiusTable = ({
   data,
   loading,
   showCompanyViewModal,
-  showCompanyBlockModal,
-  pageSize = 0,
+  showCompanyEditModal,
+  onPageChange,
+  meta,
 }) => {
   const columns = [
     {
@@ -54,32 +57,45 @@ const AllMauritiusTable = ({
       ),
     },
 
-    // {
-    //   title: "Action",
-    //   key: "isBlocked",
-    //   render: (text, record) => (
-    //     <>
-    //       <Space size="middle">
-    //         {/* Block User Tooltip */}
+    {
+      title: "Action",
+      key: "isBlocked",
+      render: (text, record) => (
+        <>
+          <Space size="middle">
+            {/* Block User Tooltip */}
 
-    //         {/* View Details Tooltip */}
-    //         <Tooltip placement="right" title="View Details">
-    //           <Button
-    //             className="!p-0"
-    //             style={{
-    //               background: "#FFFFFF",
-    //               border: "none",
-    //               color: "#075B5D",
-    //             }}
-    //             onClick={() => showCompanyViewModal(record)}
-    //           >
-    //             <GoEye style={{ fontSize: "24px" }} />
-    //           </Button>
-    //         </Tooltip>
-    //       </Space>
-    //     </>
-    //   ),
-    // },
+            {/* View Details Tooltip */}
+            <Tooltip placement="right" title="View Details">
+              <Button
+                className="!p-0"
+                style={{
+                  background: "#FFFFFF",
+                  border: "none",
+                  color: "#C50000",
+                }}
+                onClick={() => showCompanyViewModal(record)}
+              >
+                <RiDeleteBin6Line style={{ fontSize: "24px" }} />
+              </Button>
+            </Tooltip>
+            <Tooltip placement="right" title="View Details">
+              <Button
+                className="!p-0"
+                style={{
+                  background: "#FFFFFF",
+                  border: "none",
+                  color: "#075B5D",
+                }}
+                onClick={() => showCompanyEditModal(record)}
+              >
+                <CiEdit style={{ fontSize: "24px" }} />
+              </Button>
+            </Tooltip>
+          </Space>
+        </>
+      ),
+    },
   ];
   return (
     <div>
@@ -87,7 +103,13 @@ const AllMauritiusTable = ({
         columns={columns}
         dataSource={data}
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger: true,
+        }}
         rowKey="id"
         scroll={{ x: true }}
       />

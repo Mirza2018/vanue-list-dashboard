@@ -27,7 +27,7 @@ const CustomersPage = () => {
           <p className="text-3xl text-primary-color font-semibold">
             Visitors List
           </p>
-          <div className="flex gap-4 items-center">
+          {/* <div className="flex gap-4 items-center">
             <ConfigProvider
               theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
             >
@@ -41,7 +41,7 @@ const CustomersPage = () => {
                 }
               />
             </ConfigProvider>
-          </div>
+          </div> */}
         </div>
       </div>
       <main className="p-5">

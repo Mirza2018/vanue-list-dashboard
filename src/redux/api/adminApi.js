@@ -13,9 +13,10 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.category],
     }),
     getdeleteCategory: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `/category/deleted`,
         method: "GET",
+        params,
       }),
       providesTags: [tagTypes.category],
     }),
@@ -88,9 +89,10 @@ export const adminApi = baseApi.injectEndpoints({
 
     // venue
     getVenue: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `/venue`,
         method: "GET",
+        params,
       }),
       providesTags: [tagTypes.venue],
     }),
@@ -126,9 +128,10 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.venue, tagTypes.qr],
     }),
     getGenerateQrVenue: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `/venue/generateQr`,
         method: "GET",
+        params,
       }),
       providesTags: [tagTypes.qr],
     }),
@@ -152,9 +155,10 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.customer],
     }),
     getRecoveryAccount: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `/recovery/account`,
         method: "GET",
+        params,
       }),
       providesTags: [tagTypes.customer],
     }),
@@ -162,6 +166,14 @@ export const adminApi = baseApi.injectEndpoints({
     getCustomers: build.query({
       query: (params) => ({
         url: `/users/all`,
+        method: "GET",
+        params: params,
+      }),
+      providesTags: [tagTypes.customer],
+    }),
+    getUnCreatedCustomers: build.query({
+      query: (params) => ({
+        url: `/users/unCreatedVenueUser`,
         method: "GET",
         params: params,
       }),
@@ -193,7 +205,7 @@ export const adminApi = baseApi.injectEndpoints({
       query: (params) => ({
         url: `/recommented/accepted`,
         method: "GET",
-        params: params,
+        params,
       }),
       providesTags: [tagTypes.recommented],
     }),
@@ -201,14 +213,14 @@ export const adminApi = baseApi.injectEndpoints({
       query: (params) => ({
         url: `/recommented/pending`,
         method: "GET",
-        params: params,
+        params,
       }),
       providesTags: [tagTypes.recommented],
     }),
     actionRecommentedContent: build.mutation({
       query: (data) => ({
         url: `/recommented/updateStatus/${data.id}`,
-        method: "PARCH",
+        method: "PATCH",
         body: data.data,
       }),
       invalidatesTags: [tagTypes.recommented],
@@ -242,6 +254,26 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.mauritius],
     }),
+    updateMauritius: build.mutation({
+      query: (data) => ({
+        url: `/discover/update/${data.id}`,
+        method: "PATCH",
+        body: data.formData,
+      }),
+      invalidatesTags: [tagTypes.mauritius],
+    }),
+
+    deleteMauritius: build.mutation({
+      query: (id) => {
+        // console.log("data ",data);
+        // return
+        return {
+          url: `/discover/delete/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [tagTypes.mauritius],
+    }),
 
     //end
   }),
@@ -267,6 +299,7 @@ export const {
   // Customers
   useGetCustomersQuery,
   useBlockCustomersMutation,
+  useGetUnCreatedCustomersQuery,
   useGetCustomersOverviewQuery,
   useGetRecoveryAccountQuery,
   useRecoveryAccountRequestMutation,
@@ -282,5 +315,7 @@ export const {
   useGetGenerateQrVenueQuery,
   //discover-mauritius
   useGetDiscovermauritiusQuery,
-  useCreateMauritiusMutation
+  useCreateMauritiusMutation,
+  useUpdateMauritiusMutation,
+  useDeleteMauritiusMutation,
 } = adminApi;
