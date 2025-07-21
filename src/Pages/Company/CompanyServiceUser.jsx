@@ -7,10 +7,11 @@ import { SearchOutlined } from "@ant-design/icons";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 //* Modal Table
-import CompanyServiceUserTable from "../../Components/Tables/company/CompanyServiceUserTable";
+// import CompanyServiceUserTable from "../../Components/Tables/company/CompanyServiceUserTable";
 import AddServiceUserModal from "../../Components/Modal/Company/AddServiceUserModal";
 import ViewServiceUserModal from "../../Components/Modal/Company/ViewServiceUserModal";
 import BlockServiceUserModal from "../../Components/Modal/Company/BlockServiceUserModal";
+import CompanyServiceTable from "../../Components/Tables/Company/CompanyServiceTable";
 
 const CompanyServiceUser = () => {
   //* Store Search Value
@@ -127,7 +128,7 @@ const CompanyServiceUser = () => {
 
       {/* Table  */}
       <div className="px-10 py-10">
-        <CompanyServiceUserTable
+        <CompanyServiceTable
           data={filteredData}
           loading={loading}
           showViewModal={showViewModal}
