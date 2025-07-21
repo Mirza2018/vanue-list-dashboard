@@ -64,7 +64,6 @@ function AuthRedirect() {
   return <Loading />;
 }
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -231,7 +230,6 @@ const router = createBrowserRouter([
         path: "report",
         element: <CompanyReport />,
       },
-
       {
         path: "profile",
         element: <Profile />,

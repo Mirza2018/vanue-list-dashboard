@@ -15,19 +15,20 @@ import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
 import { useGetVenueQuery } from "../../redux/api/adminApi";
 import { FaRegEdit } from "react-icons/fa";
 import Addvenue from "../../Components/Modal/Admin/AddVenue";
+import EditVenseModal from "../../Components/Modal/Admin/EditVenseModal";
 
 const VanuesPage = () => {
-    const [filters, setFilters] = useState({
-      page: 1,
-      limit: 8,
-    });
-    const onPageChange = (page, limit) => {
-      setFilters((prev) => ({
-        ...prev,
-        page,
-        limit,
-      }));
-    };
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+  });
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useGetVenueQuery(filters);
   const displayedData = data ?? currentData;
@@ -46,6 +47,7 @@ const VanuesPage = () => {
   //* It's Use to Block Modal
   const [isVenueBlockModalVisible, setIsVenueBlockModalVisible] =
     useState(false);
+  const [isVenueEditModalVisible, setIsVenueEditModalVisible] = useState(false);
 
   //* It's Use to Add Modal
   const [isAddVenueModalVisible, setIsAddVenueModalVisible] = useState(false);
@@ -92,11 +94,16 @@ const VanuesPage = () => {
     setCurrentVenueRecord(record);
     setIsVenueBlockModalVisible(true);
   };
+  const showVenueEditModal = (record) => {
+    setCurrentVenueRecord(record);
+    setIsVenueEditModalVisible(true);
+  };
 
   const handleCancel = () => {
     setIsVenueViewModalVisible(false);
     setIsVenueBlockModalVisible(false);
     setIsAddVenueModalVisible(false);
+    setIsVenueEditModalVisible(false);
   };
 
   const handleVenueBlock = (data) => {
@@ -161,6 +168,7 @@ const VanuesPage = () => {
           loading={isLoading}
           showVenueViewModal={showVenueViewModal}
           showVenueBlockModal={showVenueBlockModal}
+          showVenueEditModal={showVenueEditModal}
           pageSize={8}
         />
       </div>
@@ -175,6 +183,11 @@ const VanuesPage = () => {
       <BlockVenseModal
         isVenueBlockModalVisible={isVenueBlockModalVisible}
         handleVenueBlock={handleVenueBlock}
+        handleCancel={handleCancel}
+        currentVenueRecord={currentVenueRecord}
+      />
+      <EditVenseModal
+        isVenueEditModalVisible={isVenueEditModalVisible}
         handleCancel={handleCancel}
         currentVenueRecord={currentVenueRecord}
       />

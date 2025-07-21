@@ -13,7 +13,7 @@ import {
 import { FiUpload } from "react-icons/fi";
 import {
   useCreateMauritiusMutation,
-  useCreateRecommentMutation, 
+  useCreateRecommentMutation,
   useGetVenueQuery,
 } from "../../../redux/api/adminApi";
 import { toast } from "sonner";

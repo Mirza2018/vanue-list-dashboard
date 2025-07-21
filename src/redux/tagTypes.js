@@ -12,6 +12,7 @@ export const tagTypes = {
   mauritius: "Mauritius",
   notification: "Notification",
   notificationCount: "NotificationCount",
+  privacy: "Privacy",
 };
 
 export const tagTypesList = [
@@ -26,4 +27,5 @@ export const tagTypesList = [
   tagTypes.mauritius,
   tagTypes.notification,
   tagTypes.notificationCount,
+  tagTypes.privacy,
 ];

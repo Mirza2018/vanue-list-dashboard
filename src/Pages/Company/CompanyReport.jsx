@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-
+ 
 //* Modal Table
 import CompanyReportTable from "../../Components/Tables/Company/CompanyReportTable";
 import ViewReportModal from "../../Components/Modal/Company/ViewReportModal";

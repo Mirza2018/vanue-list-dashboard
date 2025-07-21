@@ -118,6 +118,14 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.venue],
     }),
+    editVenue: build.mutation({
+      query: (data) => ({
+        url: `venue/${data?.id}/update`,
+        method: "PATCH",
+        body: data.data,
+      }),
+      invalidatesTags: [tagTypes.venue],
+    }),
 
     //venue generate qr
     getUnGenerateQrVenue: build.query({
@@ -275,6 +283,30 @@ export const adminApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.mauritius],
     }),
 
+    getPrivacyData: build.query({
+      query: () => ({
+        url: `/settings/privacy`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.privacy],
+    }),
+    gettermAndConditionsData: build.query({
+      query: () => ({
+        url: `/settings/termAndConditions`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.privacy],
+    }),
+
+    privacyTerms: build.mutation({
+      query: (privacy) => ({
+        url: `/settings`,
+        method: "PUT",
+        body: privacy,
+      }),
+      invalidatesTags: [tagTypes.privacy],
+    }),
+
     //end
   }),
 });
@@ -296,6 +328,7 @@ export const {
   usePendingVenueQuery,
   useCreateVenueMutation,
   useVenueActionMutation,
+  useEditVenueMutation,
   // Customers
   useGetCustomersQuery,
   useBlockCustomersMutation,
@@ -318,4 +351,7 @@ export const {
   useCreateMauritiusMutation,
   useUpdateMauritiusMutation,
   useDeleteMauritiusMutation,
+  usePrivacyTermsMutation,
+  useGetPrivacyDataQuery,
+  useGettermAndConditionsDataQuery
 } = adminApi;

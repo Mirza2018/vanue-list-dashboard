@@ -4,12 +4,14 @@ import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 import { getImageUrl } from "../../../redux/getBaseUrl";
+import { FaRegEdit } from "react-icons/fa";
 
 const AllVenseTable = ({
   data,
   loading,
   showVenueViewModal,
   showVenueBlockModal,
+  showVenueEditModal,
   onPageChange,
   meta,
 }) => {
@@ -112,6 +114,19 @@ const AllVenseTable = ({
                 onClick={() => showVenueViewModal(record)}
               >
                 <GoEye style={{ fontSize: "24px" }} />
+              </Button>
+            </Tooltip>
+            <Tooltip placement="right" title="Edit website url">
+              <Button
+                className="!p-0"
+                style={{
+                  background: "#FFFFFF",
+                  border: "none",
+                  color: "#0000FF",
+                }}
+                onClick={() => showVenueEditModal(record)}
+              >
+                <FaRegEdit style={{ fontSize: "24px" }} />
               </Button>
             </Tooltip>
           </Space>

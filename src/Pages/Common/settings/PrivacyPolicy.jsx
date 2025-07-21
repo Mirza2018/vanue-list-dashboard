@@ -1,14 +1,51 @@
 import { Button } from "antd";
 import JoditEditor from "jodit-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
+import {
+  useGetPrivacyDataQuery,
+  usePrivacyTermsMutation,
+} from "../../../redux/api/adminApi";
+import { toast } from "sonner";
 
 const PrivacyPolicy = () => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useGetPrivacyDataQuery();
+    const displayedData = data ?? currentData;
+  const [staticData] = usePrivacyTermsMutation();
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
-  const handleOnSave = () => {
-    console.log(content);
+    useEffect(() => {
+      setContent(displayedData?.data?.content);
+    }, [displayedData]);
+
+  const handleOnSave = async () => {
+    const toastId = toast.loading("  Privacy Policy is Posting...");
+
+    const data = {
+      key: "privacy_policy",
+      content: content,
+    };
+    //  console.log(data);
+
+    //  setContent("");
+    //  return
+    try {
+      const res = await staticData(data).unwrap();
+      console.log(res);
+      toast.success("  Privacy Policy post Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      setContent("");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.data?.message || "There is an problem", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
   };
 
   return (

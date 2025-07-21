@@ -7,7 +7,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 //* Modal Table
-import CompanyServiceUsersTable from "../../Components/Tables/company/CompanyServiceUserTable";
+import CompanyServiceUserTable from "../../Components/Tables/company/CompanyServiceUserTable";
 import AddServiceUserModal from "../../Components/Modal/Company/AddServiceUserModal";
 import ViewServiceUserModal from "../../Components/Modal/Company/ViewServiceUserModal";
 import BlockServiceUserModal from "../../Components/Modal/Company/BlockServiceUserModal";
@@ -127,7 +127,7 @@ const CompanyServiceUser = () => {
 
       {/* Table  */}
       <div className="px-10 py-10">
-        <CompanyServiceUsersTable
+        <CompanyServiceUserTable
           data={filteredData}
           loading={loading}
           showViewModal={showViewModal}

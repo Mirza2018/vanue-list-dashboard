@@ -4,7 +4,7 @@ import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 
-const CompanyServiceUsersTable = ({
+const CompanyServiceUserTable = ({
   data,
   loading,
   showViewModal,
@@ -103,4 +103,4 @@ const CompanyServiceUsersTable = ({
   );
 };
 
-export default CompanyServiceUsersTable;
+export default CompanyServiceUserTable;
