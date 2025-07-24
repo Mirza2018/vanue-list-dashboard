@@ -117,9 +117,6 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
     delete data.menuPhotos;
 
     console.log(data);
-    
-
-    
 
     console.log("Venue:", data);
     const formData = new FormData();
@@ -257,12 +254,12 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                 </Typography.Title>
                 <Form.Item
                   rules={[
-                    { required: true, message: "Please enter Plan Name" },
+                    { required: true, message: "Please enter  Name" },
                   ]}
                   name="name"
                 >
                   <Input
-                    placeholder="Enter Plan Name"
+                    placeholder="Enter  Name"
                     className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
                   />
                 </Form.Item>
@@ -276,7 +273,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   name="email"
                 >
                   <Input
-                    placeholder="Enter Plan email"
+                    placeholder="Enter  email"
                     className="py-2 px-3 text-xl border !border-input-color !bg-transparent"
                   />
                 </Form.Item>
