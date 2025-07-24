@@ -19,7 +19,11 @@ const EditVenseModal = ({
   useEffect(() => {
     if (currentVenueRecord) {
       form.setFieldsValue({
+        name: currentVenueRecord?.name,
         websiteUrl: currentVenueRecord?.websiteUrl,
+        phone: currentVenueRecord?.phone,
+        postalAddress: currentVenueRecord?.postalAddress,
+        email: currentVenueRecord?.email,
       });
     }
   }, [currentVenueRecord, form]);
@@ -82,6 +86,19 @@ const EditVenseModal = ({
             className="text-start !text-xl"
             style={{ color: "#222222" }}
           >
+            Venue Name
+          </Typography.Title>
+          <Form.Item name="name" className="">
+            <Input
+              placeholder="Enter your Venue Name"
+              className="py-2 px-3 text-xl bg-site-color border !border-secondary-color "
+            />
+          </Form.Item>
+
+          <Typography.Title
+            className="text-start !text-xl"
+            style={{ color: "#222222" }}
+          >
             website Url
           </Typography.Title>
           <Form.Item name="websiteUrl" className="">
@@ -90,6 +107,44 @@ const EditVenseModal = ({
               className="py-2 px-3 text-xl bg-site-color border !border-secondary-color "
             />
           </Form.Item>
+
+          <Typography.Title
+            className="text-start !text-xl"
+            style={{ color: "#222222" }}
+          >
+            Phone
+          </Typography.Title>
+          <Form.Item name="phone" className="">
+            <Input
+              placeholder="Enter your phone number"
+              className="py-2 px-3 text-xl bg-site-color border !border-secondary-color "
+            />
+          </Form.Item>
+          <Typography.Title
+            className="text-start !text-xl"
+            style={{ color: "#222222" }}
+          >
+            Email
+          </Typography.Title>
+          <Form.Item name="email" className="">
+            <Input
+              placeholder="Enter your email"
+              className="py-2 px-3 text-xl bg-site-color border !border-secondary-color "
+            />
+          </Form.Item>
+          <Typography.Title
+            className="text-start !text-xl"
+            style={{ color: "#222222" }}
+          >
+            Address
+          </Typography.Title>
+          <Form.Item name="postalAddress" className="">
+            <Input
+              placeholder="Enter your Address"
+              className="py-2 px-3 text-xl bg-site-color border !border-secondary-color "
+            />
+          </Form.Item>
+
           <Form.Item>
             <button
               className="text-xl py-3 px-8 !text-white rounded-lg bg-[#075B5D]"

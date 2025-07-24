@@ -23,7 +23,7 @@ const VanuesPage = () => {
     limit: 8,
   });
   const onPageChange = (page, limit) => {
-    setFilters((prev) => ({
+    setFilters((prev) => ({ 
       ...prev,
       page,
       limit,

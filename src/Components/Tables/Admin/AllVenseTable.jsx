@@ -7,7 +7,7 @@ import { getImageUrl } from "../../../redux/getBaseUrl";
 import { FaRegEdit } from "react-icons/fa";
 
 const AllVenseTable = ({
-  data,
+  data, 
   loading,
   showVenueViewModal,
   showVenueBlockModal,

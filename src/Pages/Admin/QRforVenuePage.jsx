@@ -116,14 +116,14 @@ const QRforVenuePage = () => {
   console.log(value);
 
   const onFinish = async () => {
-    const toastId = toast.loading("Subscription is deleting...");
+    const toastId = toast.loading("Qr is generating..");
     const data = { venueId: value };
     //   return
     try {
       const res = await createQr(data).unwrap();
       console.log(res);
 
-      toast.success("Subscription delete successfully", {
+      toast.success("Qr generated successfully", {
         id: toastId,
         duration: 2000,
       });

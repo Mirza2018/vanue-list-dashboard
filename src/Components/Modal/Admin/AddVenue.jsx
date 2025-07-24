@@ -61,7 +61,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyATSv5h_egKxfkIHDob5a48AH2E85QrEpU",
+    googleMapsApiKey: "AIzaSyAicZRwkffHVARNs1m6LKk_5lsA2LYAb6U",
     libraries,
   });
 
