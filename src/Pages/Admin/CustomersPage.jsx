@@ -5,6 +5,8 @@ import { useState } from "react";
 //* Modal Table
 import AccountRecoveryRequests from "../../Components/CustomerPage/AccountRecoveryRequests";
 import AllCustomers from "../../Components/CustomerPage/AllCustomers";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import AddVisitor from "../../Components/Modal/Admin/AddVisitor";
 
 const CustomersPage = () => {
   //* Store Search Value
@@ -14,8 +16,11 @@ const CustomersPage = () => {
   const onSearch = (value) => {
     setSearchText(value);
   };
-
-
+  const [isAddContentModalVisible, setIsAddContentModalVisible] =
+    useState(false);
+  const handleCancel = () => {
+    setIsAddContentModalVisible(false);
+  };
   return (
     <div
       className="bg-highlight-color min-h-[90vh]  rounded-xl"
@@ -27,23 +32,24 @@ const CustomersPage = () => {
           <p className="text-3xl text-primary-color font-semibold">
             Visitors List
           </p>
-          {/* <div className="flex gap-4 items-center">
-            <ConfigProvider
-              theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
-            >
-              <Input
-                placeholder="Search User..."
-                value={searchText}
-                onChange={(e) => onSearch(e.target.value)}
-                className="font-semibold !border-primary-color !placeholder:text-secondary-color !bg-white text-secondary-color py-2 !rounded-full"
-                prefix={
-                  <SearchOutlined className="text-secondary-color font-bold text-lg mr-2" />
-                }
-              />
-            </ConfigProvider>
-          </div> */}
         </div>
       </div>
+
+      <div className="px-5 mt-5 ">
+        <div
+          onClick={() => setIsAddContentModalVisible(true)}
+          className="bg-secondary-color text-primary-color flex justify-center items-center gap-2 py-2 w-full rounded-lg cursor-pointer"
+        >
+          <IoMdAddCircleOutline className="md:text-3xl text-2xl" />
+          <p className="md:text-2xl text-lg font-semibold whitespace-nowrap">
+            Add Visitor
+          </p>
+        </div>
+      </div>
+      <AddVisitor
+        isAddCompanyModalVisible={isAddContentModalVisible}
+        handleCancel={handleCancel}
+      />
       <main className="p-5">
         <div className="flex md:flex-row md:gap-2 gap-5  flex-col  justify-start items-center   w-fit mt-5 mb-[21px] bg-base-color pe-1">
           <h1
@@ -79,7 +85,6 @@ const CustomersPage = () => {
           searchText={searchText}
         />
       )}
-
     </div>
   );
 };

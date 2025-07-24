@@ -188,6 +188,14 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.customer],
     }),
 
+    addCustomers: build.mutation({
+      query: (data) => ({
+        url: `/users/admin/create`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [tagTypes.customer],
+    }),
     blockCustomers: build.mutation({
       query: (data) => ({
         url: `/users/${data.action}/${data?.id}`,
@@ -195,6 +203,7 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.customer],
     }),
+
     recoveryAccountRequest: build.mutation({
       query: (data) => {
         // console.log("data ",data);
@@ -336,6 +345,7 @@ export const {
   useGetCustomersOverviewQuery,
   useGetRecoveryAccountQuery,
   useRecoveryAccountRequestMutation,
+  useAddCustomersMutation,
   //recommented
 
   useGetAcceptdRecommentedContentQuery,
@@ -353,5 +363,5 @@ export const {
   useDeleteMauritiusMutation,
   usePrivacyTermsMutation,
   useGetPrivacyDataQuery,
-  useGettermAndConditionsDataQuery
+  useGettermAndConditionsDataQuery,
 } = adminApi;

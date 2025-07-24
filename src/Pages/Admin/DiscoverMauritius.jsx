@@ -1,11 +1,9 @@
-import { SearchOutlined } from "@ant-design/icons";
-import { ConfigProvider, Input } from "antd";
 import { useState } from "react";
 
 //* Modal Table
+import { IoMdAddCircleOutline } from "react-icons/io";
 import AllDiscoverMauritius from "../../Components/CustomerPage/AllDiscoverMauritius";
 import AddMauritius from "../../Components/Modal/Admin/AddMauritius";
-import { IoMdAddCircleOutline } from "react-icons/io";
 
 const DiscoverMauritius = () => {
   const [isAddContentModalVisible, setIsAddContentModalVisible] =
