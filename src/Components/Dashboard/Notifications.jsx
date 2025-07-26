@@ -15,10 +15,10 @@ const Notifications = () => {
     limit,
   });
 
-  const onChange = (page) => { 
-    setCurrentPage(page); 
+  const onChange = (page) => {
+    setCurrentPage(page);
   };
-console.log(data);
+  console.log(data);
 
   return (
     <div
@@ -55,16 +55,13 @@ console.log(data);
                 <div className="flex flex-col">
                   <span className="text-lg font-medium text-gray-700">
                     {notification?.message}{" "}
-            
                   </span>
                   <div className="text-sm text-black-500">
-                    {/* {notification?.createdAt} */}
                     <FormattedDate value={notification?.createdAt} />
                     {"  "}
                     <span className="font-bold text-secondary-color">
                       ( <FormattedTime value={notification?.createdAt} /> )
                     </span>
-                    {/* {Time(notification?.createdAt)} */}
                   </div>
                 </div>
               </div>
@@ -79,7 +76,7 @@ console.log(data);
                 pageSize={limit}
                 showSizeChanger={false} // Optional: Disable page size changer
               />
-            )}www
+            )}
           </div>
         </>
       )}
