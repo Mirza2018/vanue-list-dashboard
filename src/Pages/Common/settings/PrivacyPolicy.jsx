@@ -2,7 +2,7 @@ import { Button } from "antd";
 import JoditEditor from "jodit-react";
 import { useEffect, useRef, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
-import {
+import { 
   useGetPrivacyDataQuery,
   usePrivacyTermsMutation,
 } from "../../../redux/api/adminApi";

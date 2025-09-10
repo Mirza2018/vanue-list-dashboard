@@ -281,7 +281,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
             </div>
 
             <div className="flex sm:flex-row flex-col sm:gap-5">
-              <div className="flex-1">
+              {/* <div className="flex-1">
                 <Typography.Title level={4} style={{ color: "#222222" }}>
                   User
                 </Typography.Title>
@@ -317,7 +317,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                     ))}
                   </Select>
                 </Form.Item>
-              </div>
+              </div> */}
               <div className="flex-1">
                 <Typography.Title level={4} style={{ color: "#222222" }}>
                   Category

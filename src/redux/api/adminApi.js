@@ -92,7 +92,7 @@ export const adminApi = baseApi.injectEndpoints({
       query: (params) => ({
         url: `/venue`,
         method: "GET",
-        params,
+        params, 
       }),
       providesTags: [tagTypes.venue],
     }),
