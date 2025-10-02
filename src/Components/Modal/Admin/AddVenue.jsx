@@ -233,7 +233,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   src={AllImages.userImage}
                   alt=""
                 />
-                <Form.Item name="profile ">
+                <Form.Item name="profile">
                   <Upload
                     beforeUpload={() => false} // Prevent automatic upload to server
                     //   onChange={handleImageUpload}
