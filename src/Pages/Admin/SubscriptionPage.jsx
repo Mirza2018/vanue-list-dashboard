@@ -114,10 +114,10 @@ const SubscriptionPage = () => {
                 </h1>
                 <div className="flex items-end gap-1">
                   <h1
-                    style={{ fontSize: "clamp(36px, 1vw + 1rem ,60px)" }}
+                    style={{ fontSize: "clamp(28px, 1vw + 1rem ,36px)" }}
                     className="text-6xl font-bold"
                   >
-                    ${plan?.price}{" "}
+                    Mur {plan?.price}{" "}
                   </h1>
                   <p
                     style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
@@ -129,8 +129,8 @@ const SubscriptionPage = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                {plan?.features?.map((facility) => (
-                  <div className="flex items-center gap-2">
+                {plan?.features?.map((facility,index) => (
+                  <div key={index}  className="flex items-center gap-2">
                     <div>
                       <FaCheck className="bg-base-color size-8 rounded-full p-2 text-secondary-color" />
                     </div>
