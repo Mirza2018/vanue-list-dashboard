@@ -1,21 +1,16 @@
-import { useMemo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "axios";
-import { ConfigProvider, Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { useEffect, useMemo, useState } from "react";
 
 //* Modal Table
 
 import AllVenseTable from "../../Components/Tables/Admin/AllVenseTable";
 
-import ViewVenseModal from "../../Components/Modal/Admin/ViewVenseModal";
-import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
-import { useGetVenueQuery } from "../../redux/api/adminApi";
 import { FaRegEdit } from "react-icons/fa";
 import Addvenue from "../../Components/Modal/Admin/AddVenue";
+import BlockVenseModal from "../../Components/Modal/Admin/BlockVenseModal";
 import EditVenseModal from "../../Components/Modal/Admin/EditVenseModal";
+import ViewVenseModal from "../../Components/Modal/Admin/ViewVenseModal";
+import { useGetVenueQuery } from "../../redux/api/adminApi";
 
 const VanuesPage = () => {
   const [filters, setFilters] = useState({

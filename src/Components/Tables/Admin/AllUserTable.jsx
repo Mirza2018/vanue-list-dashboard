@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Space, Table, Tooltip } from "antd";
+import { AiOutlineStop } from "react-icons/ai";
+import { CgUnblock } from "react-icons/cg";
 import { GoEye } from "react-icons/go";
 import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 
@@ -19,11 +21,18 @@ const AllUserTable = ({
       key: "fullName",
       render: (text, record) => (
         <div className="flex items-center gap-2">
-          <img
-            src={record?.profileImage}
-            alt={text}
-            className="w-8 h-8 rounded-full"
-          />
+          {record?.profileImage ? (
+            <img
+              src={record?.profileImage}
+              alt={text}
+              className="w-8 h-8 rounded-full"
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-secondary-color flex items-center justify-center text-white font-semibold">
+              {record?.fullName?.charAt(0)}
+            </div>
+          )}
+
           <p>{text}</p>
         </div>
       ),
@@ -69,12 +78,10 @@ const AllUserTable = ({
                 {/* {console.log(record?.isBlocked)} */}
 
                 {record?.isBlocked == true ? (
-                  <RiDeviceRecoverLine
-                    style={{ fontSize: "26px", color: "#ff9966" }}
-                  />
+                  <CgUnblock style={{ fontSize: "32px", color: "#ff9966" }} />
                 ) : (
-                  <RiDeleteBin6Line
-                    style={{ fontSize: "24px", color: "#C50000" }}
+                  <AiOutlineStop
+                    style={{ fontSize: "25px", color: "#C50000" }}
                   />
                 )}
               </Button>

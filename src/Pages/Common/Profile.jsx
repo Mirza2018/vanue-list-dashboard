@@ -64,7 +64,7 @@ const Profile = () => {
                 />
                 <p className="text-center text-2xl font-medium">Admin</p>
                 <p className="text-3xl font-medium">
-                  {displayedData?.data?.name}
+                  {displayedData?.data?.fullName}
                 </p>
               </div>
             </div>

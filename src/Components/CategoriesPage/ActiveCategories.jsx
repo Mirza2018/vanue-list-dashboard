@@ -179,7 +179,7 @@ const ActiveCategories = () => {
           }
         >
           <p className="text-3xl font-semibold pt-10 pb-4 text-center text-black">
-            Do you want to Delete this user?
+            Do you want to Delete this category?
           </p>
         </Modal>
         <EditCompanyModel

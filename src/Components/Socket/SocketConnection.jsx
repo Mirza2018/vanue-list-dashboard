@@ -2,17 +2,12 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { getSocketUrl } from "../../redux/getBaseUrl";
 
-// import { getSocketUrl } from "../../redux/getBaseUrl";
 
 const SocketConnection = ({ setIsNewNotificationCount }) => {
-  // const [messages, setMessages] = useState([]);
-  // Socket.IO configuration
+
 
   const allInfo = JSON.parse(localStorage.getItem("persist:tiktok_voteing"));
   const token = JSON.parse(allInfo?.auth).accessToken;
-
-  // const token =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsTmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6IiIsInVzZXJJZCI6IjY3ZmEyY2JkN2ZiZTZkYzNkYjk0MzRkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTcyNzUzOCwiZXhwIjoxNzU0MzY3NTM4fQ.gp98XVYeHvITJaieSQEfjJSDyhJLflpkpO5sntJibdA";
 
   const socketUrl = getSocketUrl();
 

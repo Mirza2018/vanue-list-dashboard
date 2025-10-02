@@ -14,7 +14,7 @@ const Notifications = () => {
     page: currentPage,
     limit,
   });
-
+ 
   const onChange = (page) => {
     setCurrentPage(page);
   };

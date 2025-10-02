@@ -93,12 +93,14 @@ const EditProfile = () => {
         style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
       >
         <div className=" w-full p-4   rounded-tl-xl rounded-tr-xl">
-          <div className=" w-[95%] mx-auto  flex items-center ">
-            <IoChevronBackOutline
-              className="text-4xl cursor-pointer  font-semibold"
+          <div>
+            <button
               onClick={() => window.history.back()}
-            />
-            <p className="text-3xl text-black font-semibold">Edit Profile</p>
+              className=" w-[95%] mx-auto  flex items-center "
+            >
+              <IoChevronBackOutline className="text-4xl cursor-pointer  font-semibold" />
+              <p className="text-3xl text-black font-semibold">Edit Profile</p>
+            </button>
           </div>
         </div>
         <div className=" ">
@@ -146,7 +148,7 @@ const EditProfile = () => {
                 </div>
                 <p className="text-center text-2xl font-medium">Admin</p>
                 <p className="text-3xl font-medium">
-                  {displayedData?.data?.name}
+                  {displayedData?.data?.fullName}
                 </p>
               </div>
 

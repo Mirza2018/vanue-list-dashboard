@@ -100,6 +100,7 @@ const DeleteCategories = () => {
       <Table
         columns={columns}
         dataSource={displayedData?.data?.result}
+        loading={isLoading || isFetching}
         pagination={{
           current: displayedData?.data?.meta?.page,
           pageSize: displayedData?.data?.meta?.limit,

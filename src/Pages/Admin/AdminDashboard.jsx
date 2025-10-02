@@ -1,11 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AllIcons } from "../../../public/images/AllImages";
 import RecentUserTable from "../../Components/Tables/RecentUserTable";
 
+import { Spin } from "antd";
 import UserRatioBarChart from "../../Components/Chart/UserRatioBarChart";
 import { useGetCustomersOverviewQuery } from "../../redux/api/adminApi";
-import { Spin } from "antd";
 
 const AdminDashboard = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =

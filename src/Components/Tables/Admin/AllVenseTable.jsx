@@ -5,6 +5,8 @@ import { RiDeleteBin6Line, RiDeviceRecoverLine } from "react-icons/ri";
 import { AllImages } from "../../../../public/images/AllImages";
 import { getImageUrl } from "../../../redux/getBaseUrl";
 import { FaRegEdit } from "react-icons/fa";
+import { CgUnblock } from "react-icons/cg";
+import { AiOutlineStop } from "react-icons/ai";
 
 const AllVenseTable = ({
   data, 
@@ -68,7 +70,7 @@ const AllVenseTable = ({
         <>
           <Space size="middle">
             {/* Block User Tooltip */}
-            <Tooltip placement="left" title="Block this User">
+            <Tooltip placement="left" title="Block/Unblock User">
               {/* <Button
                 className="!p-0"
                 style={{
@@ -92,11 +94,9 @@ const AllVenseTable = ({
                 {/* {console.log(record?.isBlocked)} */}
 
                 {record?.isBlocked == true ? (
-                  <RiDeviceRecoverLine
-                    style={{ fontSize: "26px", color: "#ff9966" }}
-                  />
+                  <CgUnblock style={{ fontSize: "26px", color: "#ff9966" }} />
                 ) : (
-                  <RiDeleteBin6Line
+                  <AiOutlineStop
                     style={{ fontSize: "24px", color: "#C50000" }}
                   />
                 )}

@@ -14,7 +14,7 @@ const BlockUserModal = ({
 
   const handleBlock = async (block) => {
     const toastId = toast.loading(
-      `Customer is ${currentCompanyRecord?.isBlocked ? "Unblock" : "block"}ing...`
+      `User is ${currentCompanyRecord?.isBlocked ? "Unblock" : "block"}ing...`
     );
  
     console.log(currentCompanyRecord?._id, block);
@@ -26,7 +26,7 @@ const BlockUserModal = ({
         action: block,
       }).unwrap();
       console.log(res);
-      toast.success(res?.message || "Customer is block successfully", {
+      toast.success(res?.message || "User is block successfully", {
         id: toastId,
         duration: 2000,
       });

@@ -109,6 +109,21 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
     }
   };
 
+    const uploadCommonProps = {
+      beforeUpload: () => false, // prevent auto-upload
+      accept: "image/*",
+      listType: "picture",
+      showUploadList: { showRemoveIcon: true },
+    };
+
+    const uploadCommonProps1 = {
+      beforeUpload: () => false, // prevent auto-upload
+      maxCount: 1,
+      accept: "image/*",
+      listType: "text",
+      showUploadList: { showRemoveIcon: true },
+    };
+
   const onFinish = async (values) => {
     const toastId = toast.loading("Venue is creating...");
     const data = { ...values };
@@ -218,13 +233,14 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   src={AllImages.userImage}
                   alt=""
                 />
-                <Form.Item name="profile">
+                <Form.Item name="profile ">
                   <Upload
                     beforeUpload={() => false} // Prevent automatic upload to server
                     //   onChange={handleImageUpload}
                     maxCount={1}
-                    accept="image/*"
-                    className="absolute -top-10 !right-3 text-end noText"
+                    {...uploadCommonProps1}
+                   
+                    className="absolute -top-10 !right-3 text-end noText w-100"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -253,9 +269,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   Venue name
                 </Typography.Title>
                 <Form.Item
-                  rules={[
-                    { required: true, message: "Please enter  Name" },
-                  ]}
+                  rules={[{ required: true, message: "Please enter  Name" }]}
                   name="name"
                 >
                   <Input
@@ -281,43 +295,6 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
             </div>
 
             <div className="flex sm:flex-row flex-col sm:gap-5">
-              {/* <div className="flex-1">
-                <Typography.Title level={4} style={{ color: "#222222" }}>
-                  User
-                </Typography.Title>
-                <Form.Item
-                  rules={[{ required: true, message: "Please select user" }]}
-                  name="userId"
-                >
-                  <Select
-                    className="sm:!h-10"
-                    placeholder="Select a User"
-                    showSearch
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.find.toLowerCase().includes(input.toLowerCase())
-                    }
-                  >
-                    {usersData?.map((user) => (
-                      <Option
-                        key={user?._id}
-                        find={user?.fullName}
-                        value={user?._id}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px",
-                          }}
-                        >
-                          <span>{user?.fullName}</span>
-                        </div>
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </div> */}
               <div className="flex-1">
                 <Typography.Title level={4} style={{ color: "#222222" }}>
                   Category
@@ -411,7 +388,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                       className="sm:!h-10"
                       placeholder="Select a Shopping type"
                       showSearch
-                      onChange={(e) => setIsShopping(e)}
+                      // onChange={(e) => setIsShopping(e)}
                       optionFilterProp="children"
                       filterOption={(input, option) =>
                         option.key.toLowerCase().includes(input.toLowerCase())
@@ -454,7 +431,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   Phone
                 </Typography.Title>
                 <Form.Item
-                  rules={[{ required: true, message: "Please enter phone" }]}
+                  // rules={[{ required: true, message: "Please enter phone" }]}
                   name="phone"
                 >
                   <Input
@@ -498,9 +475,9 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                   Postal Address
                 </Typography.Title>
                 <Form.Item
-                  rules={[
-                    { required: true, message: "Please enter postalAddress" },
-                  ]}
+                  // rules={[
+                  //   { required: true, message: "Please enter postalAddress" },
+                  // ]}
                   name="postalAddress"
                 >
                   <Input
@@ -628,6 +605,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                 multiple="true"
                 // onChange={handleUploadChange}
                 name="files"
+                {...uploadCommonProps}
                 maxCount={10}
                 // action="/upload.do"
               >
@@ -656,7 +634,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
             >
               <Upload.Dragger
                 multiple="true"
-                // onChange={handleUploadChange}
+                {...uploadCommonProps}
                 name="files"
                 maxCount={5}
                 // action="/upload.do"
