@@ -1,19 +1,30 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
 
 .react-tel-input .form-control {
   width: 100% !important;
 
   border: 1px solid #839f9f !important;
 }
-.country-name{
+.country-name {
   color: black;
 }
- .noText .ant-upload-list-text {
-  width:150px  !important;
-  text-align: start;
 
+/* Always show delete button */
+.profile-upload .ant-upload-list-item-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Prevent AntD hover logic */
+.profile-upload .ant-upload-list-item:hover .ant-upload-list-item-actions {
+  opacity: 1 !important;
+}
+
+.noText .ant-upload-list-text {
+  width: 150px !important;
+  text-align: start;
 }
 
 ::-webkit-scrollbar {
@@ -21,7 +32,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #075B5D, #075B5D);
+  background: linear-gradient(45deg, #075b5d, #075b5d);
   margin-left: 2px;
   margin-right: 2px;
   border-radius: 10px;
@@ -41,4 +52,3 @@
   color: #ffffff;
   background: #19363d;
 }
-

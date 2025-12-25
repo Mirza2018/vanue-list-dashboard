@@ -92,7 +92,7 @@ export const adminApi = baseApi.injectEndpoints({
       query: (params) => ({
         url: `/venue`,
         method: "GET",
-        params, 
+        params,
       }),
       providesTags: [tagTypes.venue],
     }),
@@ -115,6 +115,13 @@ export const adminApi = baseApi.injectEndpoints({
         url: `/venue/admin/create`,
         method: "POST",
         body: data,
+      }),
+      invalidatesTags: [tagTypes.venue],
+    }),
+    deleteVenue: build.mutation({
+      query: (id) => ({
+        url: `/venue/deleted/${id}`,
+        method: "DELETE",
       }),
       invalidatesTags: [tagTypes.venue],
     }),
@@ -338,6 +345,7 @@ export const {
   useCreateVenueMutation,
   useVenueActionMutation,
   useEditVenueMutation,
+  useDeleteVenueMutation,
   // Customers
   useGetCustomersQuery,
   useBlockCustomersMutation,

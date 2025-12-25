@@ -57,24 +57,69 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAicZRwkffHVARNs1m6LKk_5lsA2LYAb6U",
+    googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAP_KEY,
     libraries,
   });
 
   const [markerPosition, setMarkerPosition] = useState(null);
   const [searchAddress, setSearchAddress] = useState("");
+  const cleanAddress = (address = "") => {
+    // Remove Plus Codes like "M9M4+PRC,"
+    return address.replace(/^[A-Z0-9]{4}\+[A-Z0-9]{3},?\s*/i, "");
+  };
 
-  const handleMapClick = (event) => {
+  const handleMapClick = async (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
+
     setMarkerPosition({ lat, lng });
     form.setFieldsValue({ latitude: lat, longitude: lng });
+
+    // Reverse geocode
+    const geocoder = new window.google.maps.Geocoder();
+
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const formattedAddress = cleanAddress(results[0].formatted_address);
+
+        // const formattedAddress = results[0].formatted_address;
+
+        // update search input
+        setSearchAddress(formattedAddress);
+
+        // extract country & city
+        let country = "";
+        let cityTown = "";
+
+        results[0].address_components.forEach((component) => {
+          if (component.types.includes("country")) {
+            country = component.long_name;
+          }
+          if (
+            component.types.includes("locality") ||
+            component.types.includes("administrative_area_level_1")
+          ) {
+            cityTown = component.long_name;
+          }
+        });
+
+        form.setFieldsValue({
+          country: country || "Unknown",
+          cityTown: cityTown || "Unknown",
+        });
+      }
+    });
   };
 
   const handleSelect = async (address) => {
+    console.log(address);
+
     setSearchAddress(address);
     try {
       const results = await geocodeByAddress(address);
+      console.log(results);
+      // setSearchAddress(results[0].formatted_address);
+
       const latLng = await getLatLng(results[0]);
       setMarkerPosition(latLng);
 
@@ -82,7 +127,7 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
       const addressComponents = results[0].address_components;
       let country = "";
       let cityTown = "";
-      let postalAddress = "";
+      // let postalAddress = "";
 
       addressComponents.forEach((component) => {
         if (component.types.includes("country")) {
@@ -94,9 +139,9 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
         ) {
           cityTown = component.long_name;
         }
-        if (component.types.includes("postal_code")) {
-          postalAddress = component.long_name;
-        }
+        // if (component.types.includes("postal_code")) {
+        //   postalAddress = component.long_name;
+        // }
       });
 
       // Update form fields with extracted values
@@ -105,12 +150,13 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
         longitude: latLng.lng,
         country: country || "Unknown",
         cityTown: cityTown || "Unknown",
-        postalAddress: postalAddress || "Unknown",
+        // postalAddress: postalAddress || address,
       });
     } catch (error) {
       console.error("Error selecting address:", error);
     }
   };
+  console.log(searchAddress);
 
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
@@ -148,9 +194,11 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
   const onFinish = async (values) => {
     const toastId = toast.loading("Venue is creating...");
     const data = { ...values };
+    data.postalAddress = searchAddress;
     delete data.profile;
     delete data.photos;
     delete data.menuPhotos;
+    console.log(data);
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -212,8 +260,8 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
       theme={{
         components: {
           Modal: {
-            contentBg: "#E8EBEC",
-            headerBg: "#E8EBEC",
+            contentBg: "#fff",
+            headerBg: "#fff",
           },
         },
       }}
@@ -248,22 +296,27 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                     beforeUpload={() => false}
                     maxCount={1}
                     {...uploadCommonProps1}
-                    className="absolute -top-10 !right-3 text-end noText w-100"
+                    className="rofile-upload  absolute -top-10 !right-3 text-end noText w-100"
                     style={{
                       width: "100%",
                       height: "100%",
-                      opacity: 0,
                       cursor: "pointer",
+                    }}
+                    showUploadList={{
+                      showPreviewIcon: false,
+                      showRemoveIcon: true,
+                      removeIcon: (
+                        <div className="bg-red-500  hover:bg-red-600 text-white rounded-full p-1">
+                          ✕
+                        </div>
+                      ),
                     }}
                   >
                     <Button
                       style={{ zIndex: 1 }}
-                      className="bg-white p-2 w-fit h-fit rounded-full shadow !border-none"
+                      className="!bg-[#19363dd0] p-2 w-fit h-fit rounded-full shadow !border-none"
                     >
-                      <IoCameraOutline
-                        className="w-5 h-5"
-                        style={{ color: "#19363D" }}
-                      />
+                      <IoCameraOutline className="w-5 h-5 text-white " />
                     </Button>
                   </Upload>
                 </Form.Item>
@@ -507,22 +560,22 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
                 </Form.Item>
               )}
               <Form.Item
-                label="Latitude"
+                // label="Latitude"
                 name="latitude"
                 rules={[
                   { required: true, message: "Please select a location" },
                 ]}
               >
-                <Input readOnly />
+                <Input readOnly type="hidden" />
               </Form.Item>
               <Form.Item
-                label="Longitude"
+                // label="Longitude"
                 name="longitude"
                 rules={[
                   { required: true, message: "Please select a location" },
                 ]}
               >
-                <Input readOnly />
+                <Input readOnly type="hidden" />
               </Form.Item>
               <Form.Item name="country" noStyle>
                 <Input type="hidden" />
@@ -530,9 +583,9 @@ const Addvenue = ({ isVenue, setIsVenue }) => {
               <Form.Item name="cityTown" noStyle>
                 <Input type="hidden" />
               </Form.Item>
-              <Form.Item name="postalAddress" noStyle>
+              {/* <Form.Item name="postalAddress" noStyle>
                 <Input type="hidden" />
-              </Form.Item>
+              </Form.Item> */}
             </div>
             <div className="flex sm:flex-row flex-col sm:gap-5">
               <div className="flex-1">

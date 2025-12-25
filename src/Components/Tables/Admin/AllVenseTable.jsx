@@ -7,9 +7,14 @@ import { getImageUrl } from "../../../redux/getBaseUrl";
 import { FaRegEdit } from "react-icons/fa";
 import { CgUnblock } from "react-icons/cg";
 import { AiOutlineStop } from "react-icons/ai";
+import { render } from "react-dom";
+import { useState } from "react";
+import { Modal } from "antd";
+import { toast } from "sonner";
+import { useDeleteVenueMutation } from "../../../redux/api/adminApi";
 
 const AllVenseTable = ({
-  data, 
+  data,
   loading,
   showVenueViewModal,
   showVenueBlockModal,
@@ -17,6 +22,9 @@ const AllVenseTable = ({
   onPageChange,
   meta,
 }) => {
+  const [deleteVenue] = useDeleteVenueMutation();
+  const [isDelete, setIsDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
   const columns = [
     // {
     //   title: "S.lD",
@@ -46,6 +54,11 @@ const AllVenseTable = ({
       title: "website Url",
       dataIndex: "websiteUrl",
       key: "websiteUrl",
+      render: (text) => (
+        <p className="whitespace-nowrap w-56 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+          {text}
+        </p>
+      ),
     },
     {
       title: "Phone",
@@ -54,6 +67,7 @@ const AllVenseTable = ({
     },
     {
       title: "Email",
+
       dataIndex: "email",
       key: "email",
     },
@@ -70,19 +84,48 @@ const AllVenseTable = ({
         <>
           <Space size="middle">
             {/* Block User Tooltip */}
-            <Tooltip placement="left" title="Block/Unblock User">
-              {/* <Button
+            <Tooltip placement="right" title="Edit website url">
+              <Button
                 className="!p-0"
                 style={{
                   background: "#FFFFFF",
                   border: "none",
-                  color: "#C50000",
+                  color: "#0000FF",
                 }}
-                onClick={() => showVenueBlockModal(record)}
+                onClick={() => showVenueEditModal(record)}
               >
-                <RiDeleteBin6Line style={{ fontSize: "24px" }} />
-              </Button> */}
+                <FaRegEdit style={{ fontSize: "24px" }} />
+              </Button>
+            </Tooltip>
+            <Tooltip placement="right" title="View Details">
+              <Button
+                className="!p-0"
+                style={{
+                  background: "#FFFFFF",
+                  border: "none",
+                  color: "#075B5D",
+                }}
+                onClick={() => showVenueViewModal(record)}
+              >
+                <GoEye style={{ fontSize: "24px" }} />
+              </Button>
+            </Tooltip>
+            <Button
+              className="!p-0"
+              style={{
+                background: "#FFFFFF",
+                border: "none",
+                color: "#C50000",
+              }}
+              onClick={() => {
+                setDeleteId(record?._id);
+                setIsDelete(true);
+              }}
+            >
+              <RiDeleteBin6Line style={{ fontSize: "24px" }} />
+            </Button>
 
+            <Tooltip placement="left" title="Block/Unblock User">
               <Button
                 className="!p-0"
                 style={{
@@ -103,37 +146,32 @@ const AllVenseTable = ({
               </Button>
             </Tooltip>
             {/* View Details Tooltip */}
-            <Tooltip placement="right" title="View Details">
-              <Button
-                className="!p-0"
-                style={{
-                  background: "#FFFFFF",
-                  border: "none",
-                  color: "#075B5D",
-                }}
-                onClick={() => showVenueViewModal(record)}
-              >
-                <GoEye style={{ fontSize: "24px" }} />
-              </Button>
-            </Tooltip>
-            <Tooltip placement="right" title="Edit website url">
-              <Button
-                className="!p-0"
-                style={{
-                  background: "#FFFFFF",
-                  border: "none",
-                  color: "#0000FF",
-                }}
-                onClick={() => showVenueEditModal(record)}
-              >
-                <FaRegEdit style={{ fontSize: "24px" }} />
-              </Button>
-            </Tooltip>
           </Space>
         </>
       ),
     },
   ];
+
+  const handleDelete = async () => {
+    const toastId = toast.loading("Venue is deleteing...");
+    try {
+      const res = await deleteVenue(deleteId).unwrap();
+      console.log(res);
+
+      toast.success("Venue is delete successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (error) {
+      toast.error("There is an problem , please try latter", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+
+    setIsDelete(false);
+    setDeleteId("");
+  };
   return (
     <div>
       <Table
@@ -150,6 +188,35 @@ const AllVenseTable = ({
         rowKey="id"
         scroll={{ x: true }}
       />
+
+      <Modal
+        title={
+          <div className="text-xl text-center mb-10">
+            Do you wan to delete this Venue?
+          </div>
+        }
+        closable={{ "aria-label": "Custom Close Button" }}
+        open={isDelete}
+        onOk={() => setIsDelete(false)}
+        onCancel={() => setIsDelete(false)}
+        footer={[]}
+      >
+        <div className="flex justify-center gap-5">
+          <Button
+            onClick={handleDelete}
+            className="!bg-red-600 !text-white text-xl font-semibold py-4 px-5"
+          >
+            Yes
+          </Button>
+          <Button
+            onClick={() => setIsDelete(false)}
+            className="!bg-white !text-black text-xl font-semibold py-4 px-5"
+          >
+            {" "}
+            No
+          </Button>{" "}
+        </div>
+      </Modal>
     </div>
   );
 };

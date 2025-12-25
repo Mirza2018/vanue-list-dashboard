@@ -4,6 +4,7 @@ import { AllImages } from "../../../../public/images/AllImages";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../../redux/getBaseUrl";
+import { QRCode } from "antd";
 
 const ViewVenseModal = ({
   isVenueViewModalVisible,
@@ -69,6 +70,22 @@ const ViewVenseModal = ({
                 <div className="font-bold">Description:</div>
                 <div>{currentVenueRecord?.description}</div>
               </div>
+              {currentVenueRecord?.generateQR && (
+                <div className="flex items-center gap-1 sm:gap-2 mb-2">
+                  <div className="font-bold">Qr code : </div>
+
+                  <QRCode
+                    id="myqrcode"
+                    type={"svg"}
+                    value={currentVenueRecord?._id}
+                    bgColor="#fff"
+                    color="#075B5D"
+                    style={{
+                      margin: 16,
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

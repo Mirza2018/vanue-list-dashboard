@@ -57,7 +57,7 @@ const EditVenueModal = ({
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAicZRwkffHVARNs1m6LKk_5lsA2LYAb6U",
+    googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAP_KEY,
     libraries,
   });
 
@@ -109,6 +109,7 @@ const EditVenueModal = ({
         photos: initialPhotosFileList,
         menuPhotos: initialMenuPhotosFileList,
       });
+      setSearchAddress(currentVenueRecord?.postalAddress);
 
       // Set preview states
       setProfileImage(currentVenueRecord?.profileImage || AllImages.userImage);
@@ -118,7 +119,7 @@ const EditVenueModal = ({
           lat: currentVenueRecord.location.coordinates[1],
           lng: currentVenueRecord.location.coordinates[0],
         });
-        setSearchAddress(currentVenueRecord?.postalAddress || "");
+        // setSearchAddress(currentVenueRecord?.postalAddress || "");
       }
     }
   }, [currentVenueRecord, form]);
@@ -142,13 +143,53 @@ const EditVenueModal = ({
     }
   }, [form]);
 
-  const handleMapClick = (event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    setMarkerPosition({ lat, lng });
-    form.setFieldsValue({ latitude: lat, longitude: lng });
+  const cleanAddress = (address = "") => {
+    // Remove Plus Codes like "M9M4+PRC,"
+    return address.replace(/^[A-Z0-9]{4}\+[A-Z0-9]{3},?\s*/i, "");
   };
 
+  const handleMapClick = async (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+
+    setMarkerPosition({ lat, lng });
+    form.setFieldsValue({ latitude: lat, longitude: lng });
+
+    // Reverse geocode
+    const geocoder = new window.google.maps.Geocoder();
+
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const formattedAddress = cleanAddress(results[0].formatted_address);
+
+        // const formattedAddress = results[0].formatted_address;
+
+        // update search input
+        setSearchAddress(formattedAddress);
+
+        // extract country & city
+        let country = "";
+        let cityTown = "";
+
+        results[0].address_components.forEach((component) => {
+          if (component.types.includes("country")) {
+            country = component.long_name;
+          }
+          if (
+            component.types.includes("locality") ||
+            component.types.includes("administrative_area_level_1")
+          ) {
+            cityTown = component.long_name;
+          }
+        });
+
+        form.setFieldsValue({
+          country: country || "Unknown",
+          cityTown: cityTown || "Unknown",
+        });
+      }
+    });
+  };
   const handleSelect = async (address) => {
     setSearchAddress(address);
     try {
@@ -160,7 +201,7 @@ const EditVenueModal = ({
       const addressComponents = results[0].address_components;
       let country = "";
       let cityTown = "";
-      let postalAddress = "";
+      // let postalAddress = "";
 
       addressComponents.forEach((component) => {
         if (component.types.includes("country")) {
@@ -172,9 +213,9 @@ const EditVenueModal = ({
         ) {
           cityTown = component.long_name;
         }
-        if (component.types.includes("postal_code")) {
-          postalAddress = component.long_name;
-        }
+        // if (component.types.includes("postal_code")) {
+        //   postalAddress = component.long_name;
+        // }
       });
 
       form.setFieldsValue({
@@ -182,7 +223,7 @@ const EditVenueModal = ({
         longitude: latLng.lng,
         country: country || "Unknown",
         cityTown: cityTown || "Unknown",
-        postalAddress: postalAddress || "Unknown",
+        // postalAddress: postalAddress || "Unknown",
       });
     } catch (error) {
       console.error("Error selecting address:", error);
@@ -229,6 +270,7 @@ const EditVenueModal = ({
     const toastId = toast.loading("Business User Website is Editing...");
     const data = { ...values };
     delete data.profile;
+    data.postalAddress = searchAddress || currentVenueRecord?.postalAddress;
     // delete data.photos;
     // delete data.menuPhotos;
 
@@ -321,18 +363,23 @@ const EditVenueModal = ({
                   style={{
                     width: "100%",
                     height: "100%",
-                    opacity: 0,
                     cursor: "pointer",
+                  }}
+                  showUploadList={{
+                    showPreviewIcon: false,
+                    showRemoveIcon: true,
+                    removeIcon: (
+                      <div className="bg-red-500  hover:bg-red-600 text-white rounded-full p-1">
+                        ✕
+                      </div>
+                    ),
                   }}
                 >
                   <Button
                     style={{ zIndex: 1 }}
-                    className="bg-white p-2 w-fit h-fit rounded-full shadow !border-none"
+                    className="!bg-[#19363dd0] p-2 w-fit h-fit rounded-full shadow !border-none"
                   >
-                    <IoCameraOutline
-                      className="w-5 h-5"
-                      style={{ color: "#19363D" }}
-                    />
+                    <IoCameraOutline className="w-5 h-5 text-white " />
                   </Button>
                 </Upload>
               </Form.Item>
@@ -569,18 +616,18 @@ const EditVenueModal = ({
               </Form.Item>
             )}
             <Form.Item
-              label="Latitude"
+              // label="Latitude"
               name="latitude"
               rules={[{ required: true, message: "Please select a location" }]}
             >
-              <Input readOnly />
+              <Input readOnly type="hidden" />
             </Form.Item>
             <Form.Item
-              label="Longitude"
+              // label="Longitude"
               name="longitude"
               rules={[{ required: true, message: "Please select a location" }]}
             >
-              <Input readOnly />
+              <Input readOnly type="hidden" />
             </Form.Item>
             <Form.Item name="country" noStyle>
               <Input type="hidden" />
