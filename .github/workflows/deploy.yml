@@ -1,59 +1,59 @@
-# name: Deploy Website to VPS
+name: Deploy Website to VPS
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-#       - name: Setup SSH
-#         uses: webfactory/ssh-agent@v0.7.0
-#         with:
-#           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-#       - name: Deploy Website to VPS
-#         uses: appleboy/ssh-action@v1.0.3
-#         with:
-#           host: ${{ secrets.DROPLET_IP }}
-#           username: root
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           port: ${{ secrets.SSH_PORT || 22 }}
-#           script: |
-#             # Ensure Node.js & npm are available
-#             # export PATH=$PATH:/usr/bin:/usr/local/bin:/root/.local/share/fnm/node-versions/v24.12.0/installation/bin
+      - name: Deploy Website to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            # Ensure Node.js & npm are available
+            # export PATH=$PATH:/usr/bin:/usr/local/bin:/root/.local/share/fnm/node-versions/v24.12.0/installation/bin
 
-#             export FNM_DIR="/root/.local/share/fnm"
-#             export PATH="$FNM_DIR:$PATH"
-#             eval "$(fnm env --use-on-cd)"
+            export FNM_DIR="/root/.local/share/fnm"
+            export PATH="$FNM_DIR:$PATH"
+            eval "$(fnm env --use-on-cd)"
 
-#             # Go to website directory
-#             cd ~/applications/vanue-list-dashboard || exit 1
+            # Go to website directory
+            cd ~/applications/vanue-list-dashboard || exit 1
 
-#             # Get latest code
-#             git fetch --all
-#             git reset --hard origin/main
+            # Get latest code
+            git fetch --all
+            git reset --hard origin/main
 
-#             # Install dependencies
-#             npm install
+            # Install dependencies
+            npm install
 
-#             # Build Next.js app
-#             npm run build
+            # Build Next.js app
+            npm run build
 
-#             # Restart if exists, otherwise start (production)
-#             if pm2 describe Dashboard > /dev/null 2>&1; then
-#               pm2 restart Dashboard
-#             else
-#               pm2 start npm --name "Dashboard" -- run preview -- --host 0.0.0.0 --port 3001
-#             fi
+            # Restart if exists, otherwise start (production)
+            if pm2 describe Dashboard > /dev/null 2>&1; then
+              pm2 restart Dashboard
+            else
+              pm2 start npm --name "Dashboard" -- run preview -- --host 0.0.0.0 --port 3001
+            fi
 
-#             # Save PM2 process list
-#             pm2 save
+            # Save PM2 process list
+            pm2 save
 
-#             echo "✅ Dashboard deployment (build + start) finished!"
+            echo "✅ Dashboard deployment (build + start) finished!"
